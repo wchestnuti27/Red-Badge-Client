@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
-    <div>
+    <div className="App">
+
     </div>
   );
 }
