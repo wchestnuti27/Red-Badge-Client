@@ -27,10 +27,11 @@ export default class Feed extends Component {
         .then(response => response.json())
         .then(json => {
             console.log(json);
+            console.log(`https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[0].url}`)
             this.setState({
-                url: `https://team6-red-badge-meme-server.herokuapp.com/${json[9].url}`,
-                caption: json[9].caption,
-                voteCount: json[9].voteCount
+                url: `https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[0].url}`,
+                caption: json[0].caption,
+                voteCount: json[0].voteCount
             })
         })
     }
