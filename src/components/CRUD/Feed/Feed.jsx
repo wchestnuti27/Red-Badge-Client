@@ -29,7 +29,7 @@ export default class Feed extends Component {
             console.log(json);
             console.log(`https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[0].url}`)
             this.setState({
-                url: `https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[0].url}`,
+                url: `https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[8].url}`,
                 caption: json[0].caption,
                 voteCount: json[0].voteCount
             })
