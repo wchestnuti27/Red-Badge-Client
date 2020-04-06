@@ -6,8 +6,7 @@ export default class Feed extends Component {
         super(props)
 
         this.state = {
-            memes: [],
-            url: 'https://team6-red-badge-meme-server.herokuapp.com/uploads/'
+            memes: []
         }
     }
 
@@ -20,7 +19,6 @@ export default class Feed extends Component {
         })
         .then(response => response.json())
         .then(json => {
-            console.log(json);
             this.setState({
                 memes: json
             });
@@ -31,7 +29,7 @@ export default class Feed extends Component {
     render() {
         return (
             <div>                
-                <FeedDisplay memes={this.state.memes} url={this.state.url} />   
+                <FeedDisplay memes={this.state.memes} />   
             </div>
         )
     }
