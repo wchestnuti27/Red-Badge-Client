@@ -1,19 +1,13 @@
-import React, { Component } from 'react'
-
-let style = {
-    height: '200px',
-    width: 'auto',
-    borderRadius: '3%'
-}
+import React, { Component } from 'react';
+import FeedDisplay from './FeedDisplay';
 
 export default class Feed extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            url: '',
-            caption: '',
-            voteCount: ''
+            memes: [],
+            url: 'https://team6-red-badge-meme-server.herokuapp.com/uploads/'
         }
     }
 
@@ -27,21 +21,17 @@ export default class Feed extends Component {
         .then(response => response.json())
         .then(json => {
             console.log(json);
-            console.log(`https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[0].url}`)
             this.setState({
-                url: `https://team6-red-badge-meme-server.herokuapp.com/uploads/${json[0].url}`,
-                caption: json[0].caption,
-                voteCount: json[0].voteCount
-            })
+                memes: json
+            });
+            console.log('MEMES', this.state.memes);
         })
     }
 
     render() {
         return (
-            <div>
-                <h4>{this.state.caption}</h4>
-                <img src={this.state.url} alt='meme' style={style} />
-                <h4>votes: {this.state.voteCount}</h4>
+            <div>                
+                <FeedDisplay memes={this.state.memes} url={this.state.url} />   
             </div>
         )
     }
