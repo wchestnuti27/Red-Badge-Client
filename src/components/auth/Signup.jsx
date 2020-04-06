@@ -9,7 +9,7 @@ export class Signup extends React.Component {
     // }
 
     render() {
-        return <div className="base-container" ref={this.props.containerRef}>>
+        return <div className="base-container" ref={this.props.containerRef}>
             <div className="header">Signup</div>
             <br/>
             <div className="content">
@@ -37,3 +37,5 @@ export class Signup extends React.Component {
         </div>
     }
 }
+
+// export default Signup;
