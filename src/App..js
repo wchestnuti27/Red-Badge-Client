@@ -31,7 +31,8 @@ class App extends React.Component {
   render() {
     return (
       // <h1>is this working</h1>
-      <Auth />
+      // <Auth />
+      <Feed />
     )
   }
 
