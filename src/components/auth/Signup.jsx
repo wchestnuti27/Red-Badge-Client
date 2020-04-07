@@ -1,5 +1,7 @@
-import React from './node_modules/react';
+import React from 'react';
 import './style.scss'
+import '../../helpers/environment';
+import APIURL from '../../helpers/environment';
 import loginImg from '../../Assets/Login Pic.jpg'; 
 
 export class Signup extends React.Component {
@@ -19,7 +21,7 @@ export class Signup extends React.Component {
 
             fetch('https://team6-red-badge-meme-server.herokuapp.com/user/signup', {
                 method: 'POST',
-                body: JSON.stringify({ username: this.state.username, email: this.state.email, password: this.state.password }),
+                body: JSON.stringify({ username: this.state.username, email: this.state.email, password: this.state.password, role: "user" }),
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 })
@@ -27,8 +29,8 @@ export class Signup extends React.Component {
                 (response) => response.json()
             ).then((data) => {
                 console.log(data)
-                // data.sessionToken ? this.props.udateToken(data.sessionToken)
-                //     : alert(`${data.error}: Username or Password Not Found`)
+                this.props.updateToken(data.sessionToken)
+                    // : alert(`${data.error}: Username or Password Not Found`)
             })
     }
 

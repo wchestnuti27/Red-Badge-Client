@@ -68,7 +68,7 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
+      {['left', 'right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <SwipeableDrawer
@@ -84,3 +84,4 @@ export default function SwipeableTemporaryDrawer() {
     </div>
   );
 }
+
