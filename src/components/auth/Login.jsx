@@ -18,19 +18,19 @@ export class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-            fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
-                method: 'POST',
-                body: JSON.stringify({ username: this.state.username, password: this.state.password }),
-                headers: new Headers({
-                    'Content-Type': 'application/json'
-                })
-            }).then(
-                (response) => response.json()
-            ).then((data) => {
-                console.log(data)
-                // data.sessionToken ? this.props.udateToken(data.sessionToken)
-                //     : alert(`${data.error}: Username or Password Not Found`)
+        fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ username: this.state.username, password: this.state.password }),
+            headers: new Headers({
+                'Content-Type': 'application/json'
             })
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            console.log(data)
+            data.sessionToken ? this.props.updateToken(data.sessionToken)
+                : alert(`${data.error}: Username or Password Not Found`)
+        })
     }
 
 
