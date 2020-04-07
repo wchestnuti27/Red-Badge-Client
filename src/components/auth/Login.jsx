@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss'
 import '../../helpers/environment';
 import APIURL from '../../helpers/environment';
-import loginImg from '../../Assets/Login Pic.jpg';
+import loginImg from '../../Assets/Meme Pic.jpg';
 
 export class Login extends React.Component {
     constructor(props) {

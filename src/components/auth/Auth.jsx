@@ -41,7 +41,7 @@ class Auth extends React.Component {
               <Login containerRef={ref => (this.current = ref)} updateToken={this.props.updateToken.bind(this)} />
             )}
             {!isLogginActive && (
-              <Signup containerRef={ref => (this.current = ref)} />
+              <Signup containerRef={ref => (this.current = ref)} updateToken={this.props.updateToken.bind(this)} />
             )}
           </div>
           <RightSide
