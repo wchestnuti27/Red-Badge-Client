@@ -10,7 +10,6 @@ export class Login extends React.Component {
 
         this.state = {
             username: '',
-            email: '',
             password: ''
         }
     }
@@ -19,20 +18,19 @@ export class Login extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        if (this.state.username && this.state.password && this.state.email) {
             fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
                 method: 'POST',
-                body: JSON.stringify({ username: this.state.username, password: this.state.password, email: this.state.email }),
+                body: JSON.stringify({ username: this.state.username, password: this.state.password }),
                 headers: new Headers({
                     'Content-Type': 'application/json'
                 })
             }).then(
                 (response) => response.json()
             ).then((data) => {
-                data.sessionToken ? this.props.updateToken(data.sessionToken)
-                    : alert(`${data.error}: Username or Password Not Found`)
+                console.log(data)
+                // data.sessionToken ? this.props.udateToken(data.sessionToken)
+                //     : alert(`${data.error}: Username or Password Not Found`)
             })
-        } else { alert('Please Fill Out All Fields') }
     }
 
 
@@ -50,17 +48,13 @@ export class Login extends React.Component {
                         <input onChange={e => this.setState({ username: e.target.value })} type="text" name="username" placeholder="username" />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input onChange={e => this.setState({ email: e.target.value })} type="text" name="email" placeholder="email" />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input onChange={e => this.setState({ password: e.target.value })} type="password" name="password" placeholder="password" />
                     </div>
                 </div>
             </div>
             <div className="footer">
-                <button onClick={this.handleSubmit} type="button" className="btn">Login</button>
+                <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Login</button>
             </div>
         </div>
     }
