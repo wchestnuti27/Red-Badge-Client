@@ -1,43 +1,78 @@
 import React from 'react';
 import './style.scss'
 import '../../helpers/environment';
-import APIURL from '../../helpers/environment';
+// import APIURL from '../../helpers/environment';
 import loginImg from '../../Assets/Login Pic.jpg';
 
 export class Login extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
+
+        this.state = {
+            username: "",
+            email: "",
+            password: ""
+        }
+    } 
+
+
+        handleSubmit = (e) => {
+            e.preventDefault();
+
+            const bodyObj = {
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+            }
+
+            fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
+                method: 'POST',
+                body: JSON.stringify(bodyObj),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(json => {
+                    console.log(json);
+                    // .then(json => props.setSession(json.sessionToken));
+                });
+        
+
+        render() {
+            return (
+                <div className="base-container" ref={this.props.containerRef}>
+                    <form onSubmit={handleSubmit}>
+                        <div className="header">Login</div>
+                        <br />
+                        <div className="content">
+                            <div className="image">
+                                <img src={loginImg} alt="login" />
+                            </div>
+                            <div className="form">
+                                <div className="form-group">
+                                    <label htmlFor="username">Username</label>
+                                    <input onChange={this.setState({ username: e.target.value })} type="text" name="username" placeholder="username" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Email</label>
+                                    <input onChange={this.setState({ email: e.target.value })} type="text" name="email" placeholder="email" />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="password">Password</label>
+                                    <input onChange={this.setState({ password: e.target.value })} type="password" name="password" placeholder="password" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="footer">
+                            <button type="submit" className="btn">Login</button>
+                        </div>
+                    </form>
+                </div>
+            );
+        }
     }
 
-    render() {
-        return <div className="base-container" ref={this.props.containerRef}>
-            <div className="header">Login</div>
-            <br/>
-            <div className="content">
-                <div className="image">
-                    <img src={loginImg} alt="login" />
-                </div>
-                <div className="form">
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input type="text" name="username" placeholder="username"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" name="email" placeholder="email"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" name="password" placeholder="password"/>
-                    </div>
-                </div>
-            </div>
-            <div className="footer">
-                <button type="button" className="btn">Login</button>
-            </div>
-        </div>
-    }
-}
 
 
 
@@ -60,8 +95,11 @@ export class Login extends React.Component {
 
 
 
-// import React from 'react';
-// import './Auth.css';
+
+
+
+
+
 
 
 

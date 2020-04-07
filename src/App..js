@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.scss';
 // import Feed from './components/CRUD/Feed/Feed';
-import { Login, Signup } from "./components/Signin/index";
+import { Login, Signup } from "./components/Auth/index";
 
 class App extends React.Component {
 
