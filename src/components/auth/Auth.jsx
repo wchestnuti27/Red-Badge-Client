@@ -1,5 +1,5 @@
 import React from 'react';
-import { Login, Signup } from './index';
+import { Login, Signup } from './index';//
 
 class Auth extends React.Component {
 
