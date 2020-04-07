@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 
 import Auth from './components/auth/Auth';
 import Feed from './components/CRUD/Feed/Feed';
+
 import './components/auth/style.scss'
 
 document.title = 'SupreMemes';
@@ -21,21 +22,21 @@ class App extends React.Component {
   }
 
 
-  updateToken (newToken) {
+  updateToken(newToken) {
     localStorage.setItem('token', newToken);
-    this.setState({sessionToken: localStorage.getItem('token')})
+    this.setState({ sessionToken: localStorage.getItem('token') })
     console.log(this.state.sessionToken)
   }
 
-  clearToken () {
+  clearToken() {
     localStorage.clear();
-    this.setState({sessionToken: ''});
+    this.setState({ sessionToken: '' });
   }
 
   componentWillMount() {
     console.log('hi,')
   }
-  
+
   componentDidMount() {
     console.log('how are ya?')
     console.log(this.state.guestUser)
