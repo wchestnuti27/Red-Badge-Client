@@ -18,18 +18,31 @@ class App extends React.Component {
     }
   }
 
+
+  updateToken (newToken) {
+    localStorage.setItem('token', newToken);
+    this.setState({sessionToken: localStorage.getItem('token')})
+    console.log(this.state.sessionToken)
+  }
+
+  clearToken () {
+    localStorage.clear();
+    this.setState({sessionToken: ''});
+  }
+
   componentWillMount() {
     console.log('hi,')
   }
-
+  
   componentDidMount() {
     console.log('how are ya?')
     console.log(this.state.guestUser)
   }
 
+
   render() {
     const guestUserSwitch = () => {
-      return (this.state.authToggler ? <Auth /> : <Feed />) // this toggles guest user landing page and auth
+      return (this.state.authToggler ? <Auth updateToken={this.updateToken.bind(this)} /> : <Feed />) // this toggles guest user landing page and auth
     }
     return (
       <div>
