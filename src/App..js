@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state = {
       sessionToken: "",
       guestUser: true, // this will gate the users ability to post memes if they are not logged in, true by default (no accout/user not signed in)
-      authToggler: false // this will be changes when someone clicks the sign up or log in button
+      authToggler: true // this will be changes when someone clicks the sign up or log in button
     }
   }
 
