@@ -1,69 +1,41 @@
 import React from 'react';
 import './App.scss';
-// import Feed from './components/CRUD/Feed/Feed';
-import { Login, Signup } from "./components/Auth/index";
+import { Login, Signup } from "./components/auth/index";
+
+// import Auth from './components/auth/Auth';
+import Feed from './components/CRUD/Feed/Feed';
+import './components/auth/style.scss'
+
+document.title = 'SupreMemes';
 
 class App extends React.Component {
-
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
-      isLogginActive: true,
-    };
-  }
 
-  componentDidMount () {
-    // add .right by default //
-    this.rightSide.classList.add('right');
-  }
-
-  changeState() {
-    const { isLogginActive } = this.state;
-
-    if(isLogginActive) {
-      this.rightSide.classList.remove('right');
-      this.rightSide.classList.add('left');
-    } else {
-      this.rightSide.classList.remove('left');
-      this.rightSide.classList.add('right');
     }
 
-    this.setState((prevState) => ({ isLogginActive: !prevState.isLogginActive }));
   }
+
+
+
+  componentWillMount() {
+    console.log('hi,')
+  }
+
+  componentDidMount() {
+    console.log('how are ya?')
+  }
+
 
   render() {
-    const { isLogginActive } = this.state;
-    const current = isLogginActive ? "Signup" : "Login";
-    const currentActive = isLogginActive ? "Login" : "Signup";
     return (
-      <div className="App">
-        <div className="login">
-          <div className="container" ref={ref => (this.container = ref)}>
-            {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
-            )}
-            {!isLogginActive && (
-              <Signup containerRef={ref => (this.current = ref)} />
-            )}
-          </div>
-          <RightSide
-            current={current}
-            currentActive={currentActive}
-            containerRef={ref => (this.rightSide = ref)}
-            onClick={this.changeState.bind(this)}
-          />
-        </div>
-      </div>
-    );
+      // <h1>is this working</h1>
+      // <Auth />
+      <Feed />
+    )
   }
-}
-
-const RightSide = props => {
-  return <div className= "right-side" ref={props.containerRef} onClick={props.onClick}>
-    <div className='inner-container'>
-    <div className="text">{props.current}></div>
-  </div>
-  </div>
 
 }
 
