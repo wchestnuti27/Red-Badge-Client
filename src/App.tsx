@@ -7,17 +7,8 @@ import './components/auth/style.scss'
 
 document.title = 'SupreMemes';
 
+
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-
-    }
-
-  }
-
-
 
   componentWillMount() {
     console.log('hi,')
