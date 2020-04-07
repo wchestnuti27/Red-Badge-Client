@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FeedDisplay from './FeedDisplay';
+// import Navbar from '../../Navbar/Navbar';
 
 export default class Feed extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class Feed extends Component {
 
     render() {
         return (
-            <div>                
+            <div>              
                 <FeedDisplay memes={this.state.memes} />   
             </div>
         )
