@@ -13,12 +13,11 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-
+      sessionToken: "",
+      guestUser: true, // this will gate the users ability to post memes if they are not logged in, true by default (no accout/user not signed in)
+      authToggler: true // this will be chagnes when someone clickes the sign up or log in button
     }
-
   }
-
-
 
   componentWillMount() {
     console.log('hi,')
@@ -26,14 +25,17 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log('how are ya?')
+    console.log(this.state.guestUser)
   }
 
-
   render() {
+    const guestUserSwitch = () => {
+      return (this.state.authToggler ? <Auth /> : <Feed />) // this toggles guest user landing page and auth
+    }
     return (
-      // <h1>is this working</h1>
-      // <Auth />
-      <Feed />
+      <div>
+        {guestUserSwitch()}
+      </div>
     )
   }
 

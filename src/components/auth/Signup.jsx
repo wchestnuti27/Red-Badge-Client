@@ -1,6 +1,6 @@
 import React from './node_modules/react';
 import './style.scss'
-import loginImg from '../../Assets/Login Pic.jpg';
+import loginImg from '../../Assets/Login Pic.jpg'; 
 
 export class Signup extends React.Component {
 
