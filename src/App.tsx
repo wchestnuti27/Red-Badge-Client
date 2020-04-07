@@ -3,6 +3,7 @@ import './App.scss';
 
 import Auth from './components/auth/Auth';
 import Feed from './components/CRUD/Feed/Feed';
+
 import './components/auth/style.scss'
 
 document.title = 'SupreMemes';
@@ -22,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       // <h1>is this working</h1>
-      // <Auth />
+      // <Auth /
       <Feed />
     )
   }
