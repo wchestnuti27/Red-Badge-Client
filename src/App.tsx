@@ -64,7 +64,7 @@ class App extends React.Component<{}, AppState> {
     }
     return (
       <div>
-        <Navbar />
+        <Navbar updateToken={this.updateToken.bind(this)} />
         {guestUserSwitch()}
       </div>
     )

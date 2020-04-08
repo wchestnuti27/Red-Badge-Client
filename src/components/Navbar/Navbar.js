@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Auth from '../auth/Auth'
 
 
 export default class SwipeableTemporaryDrawer extends React.Component {
@@ -31,10 +32,10 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
   list = (anchor) => (
     <div
-      style={{ width: 250 }}
+      style={{ width: 800 }}
       role="presentation"
-      onClick={this.toggleDrawer(anchor, false)}
-      onKeyDown={this.toggleDrawer(anchor, false)}
+      // onClick={this.toggleDrawer(anchor, false)}
+      // onKeyDown={this.toggleDrawer(anchor, false)}
     >
       <List>
         {['Login', 'My Memes', 'Feed'].map((text, index) => (
@@ -44,6 +45,9 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           </ListItem>
         ))}
       </List>
+
+      <Auth updateToken={this.props.updateToken.bind(this)}/>
+
       <Divider />
       <List>
         {['Logout'].map((text, index) => (
