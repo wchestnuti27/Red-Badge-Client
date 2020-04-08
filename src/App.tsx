@@ -57,7 +57,7 @@ class App extends React.Component<{}, AppState> {
           <Auth updateToken={this.updateToken.bind(this)} />
           :
           <div>
-            <PostMeme sessionToken={this.state.sessionToken} />
+            {/* <PostMeme sessionToken={this.state.sessionToken} /> */}
             <Feed />
           </div>
       )

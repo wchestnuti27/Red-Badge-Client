@@ -83,7 +83,7 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
     return (
         <div className={classes.root}>
             {displayMemes(memes)}
-            <h2>Follow Your Memes</h2>
+            <h2>Dank Memes</h2>
         </div>
     )
 }
