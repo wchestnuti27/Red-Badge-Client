@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import './App.scss';
 import { Login, Signup } from "./components/auth/index";
 import Navbar from './components/Navbar/Navbar';
@@ -64,8 +67,14 @@ class App extends React.Component<{}, AppState> {
     }
     return (
       <div>
-        <Navbar updateToken={this.updateToken.bind(this)} />
-        {guestUserSwitch()}
+        <Router>
+          <Navbar
+            sessionToken={this.state.sessionToken}
+            updateToken={this.updateToken.bind(this)}
+            clearToken={this.clearToken.bind(this)}
+          />
+        </Router>
+        {/* {guestUserSwitch()} */}
       </div>
     )
   }
