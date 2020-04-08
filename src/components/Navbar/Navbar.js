@@ -6,12 +6,23 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import Auth from '../auth/Auth'
 
+// icons
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+
+import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonIcon from '@material-ui/icons/Person';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
 
 export default class SwipeableTemporaryDrawer extends React.Component {
   constructor(props) {
@@ -34,28 +45,54 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     <div
       style={{ width: 800 }}
       role="presentation"
-      // onClick={this.toggleDrawer(anchor, false)}
-      // onKeyDown={this.toggleDrawer(anchor, false)}
+    // onClick={this.toggleDrawer(anchor, false)}
+    // onKeyDown={this.toggleDrawer(anchor, false)}
     >
       <List>
-        {['Login', 'My Memes', 'Feed'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button>
+          <ListItemIcon><VpnKeyIcon /></ListItemIcon>
+          <ListItemText primary='Login' />
+        </ListItem>
+
+        <ListItem button>
+          <ListItemIcon><PersonIcon /></ListItemIcon>
+          <ListItemText primary='My Account' />
+        </ListItem>
+
+        <ListItem button>
+          <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
+          <ListItemText primary='Feed' />
+        </ListItem>
+      </List>
+
+      <Divider />
+
+      <List>
+        <ListItem button>
+          <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
+          <ListItemText>Will</ListItemText>
+        </ListItem>
+
+        <ListItem button>
+          <ListItemIcon><FastfoodOutlinedIcon /></ListItemIcon>
+          <ListItemText>Nathan</ListItemText>
+        </ListItem>
+
+        <ListItem button>
+          <ListItemIcon><HelpOutlineOutlinedIcon /></ListItemIcon>
+          <ListItemText>Dan</ListItemText>
+        </ListItem>
       </List>
 
       <Auth updateToken={this.props.updateToken.bind(this)}/>
 
       <Divider />
+
       <List>
-        {['Logout'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button>
+          <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+          <ListItemText>Logout</ListItemText>
+        </ListItem>
       </List>
     </div>
   );
@@ -68,7 +105,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         {
           ['right'].map((anchor) => (
             <React.Fragment key={anchor}>
-              <Button onClick={this.toggleDrawer(anchor, true)}>LOGIN</Button>
+              {/* 
+              {props.sessionToken ? 
+              <Button onClick={this.toggleDrawer(anchor, true)}><MenuOutlinedIcon /></Button>} 
+              : <button that routes you to auth comp>
+              }*/}
+              <Button onClick={this.toggleDrawer(anchor, true)}><MenuOutlinedIcon /></Button>
               <SwipeableDrawer
                 anchor={anchor}
                 open={this.state.anchor}
