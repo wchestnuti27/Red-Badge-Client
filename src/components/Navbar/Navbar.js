@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Auth from '../auth/Auth'
 
 const useStyles = makeStyles({
   list: {
@@ -23,10 +24,7 @@ const useStyles = makeStyles({
 export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
-    top: false,
-    Login: false,
-    bottom: false,
-    Profile: false,
+    left: false
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -47,7 +45,7 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Post Meme', 'Liked Meme', 'More stuff'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
@@ -68,9 +66,9 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div>
-      {['left', 'right'].map((anchor) => (
+      {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>whats this</Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
