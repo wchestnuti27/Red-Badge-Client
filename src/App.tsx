@@ -52,13 +52,26 @@ class App extends React.Component<{}, AppState> {
 
   render() {
     const guestUserSwitch = () => {
-      return (this.state.sessionToken === null ? <Auth updateToken={this.updateToken.bind(this)} /> : <PostMeme sessionToken={this.state.sessionToken} />) // this toggles guest user landing page and auth
+      return (
+        this.state.sessionToken === null ? // this toggles guest user landing page and auth
+          <Auth updateToken={this.updateToken.bind(this)} />
+          :
+          <div>
+            {/* <PostMeme sessionToken={this.state.sessionToken} /> */}
+            <Feed />
+          </div>
+      )
     }
     return (
       <div>
+<<<<<<< HEAD
         <Navbar />
         {/* {guestUserSwitch()} */}
         <Feed />
+=======
+        <Navbar updateToken={this.updateToken.bind(this)} />
+        {guestUserSwitch()}
+>>>>>>> a590ef5d760d55152c135b799d9b313d716c0c0a
       </div>
     )
   }
