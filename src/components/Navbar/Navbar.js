@@ -1,5 +1,5 @@
 import React from 'react';
-import clsx from 'clsx';
+
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
@@ -21,12 +21,11 @@ const useStyles = makeStyles({
 });
 
 export default function SwipeableTemporaryDrawer() {
+
   const classes = useStyles();
+
   const [state, setState] = React.useState({
-    top: false,
-    Login: false,
-    bottom: false,
-    Profile: false,
+    left: false
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -39,15 +38,13 @@ export default function SwipeableTemporaryDrawer() {
 
   const list = (anchor) => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
+      className={classes.list}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Login', 'My Memes', 'Feed'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
@@ -56,7 +53,7 @@ export default function SwipeableTemporaryDrawer() {
       </List>
       <Divider />
       <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
+        {['Logout'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
             <ListItemText primary={text} />
@@ -68,7 +65,7 @@ export default function SwipeableTemporaryDrawer() {
 
   return (
     <div>
-      {['left', 'right'].map((anchor) => (
+      {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
           <SwipeableDrawer
