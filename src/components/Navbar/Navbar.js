@@ -11,37 +11,30 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
 
-export default function SwipeableTemporaryDrawer() {
+export default class SwipeableTemporaryDrawer extends React.Component {
+  constructor(props) {
+    super(props)
 
-  const classes = useStyles();
+    this.state = {
+      right: false
+    }
+  }
 
-  const [state, setState] = React.useState({
-    left: false
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
+  toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    setState({ ...state, [anchor]: open });
+    this.setState({ anchor: open });
   };
 
-  const list = (anchor) => (
+  list = (anchor) => (
     <div
-      className={classes.list}
+      style={{ width: 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      onClick={this.toggleDrawer(anchor, false)}
+      onKeyDown={this.toggleDrawer(anchor, false)}
     >
       <List>
         {['Login', 'My Memes', 'Feed'].map((text, index) => (
@@ -63,22 +56,28 @@ export default function SwipeableTemporaryDrawer() {
     </div>
   );
 
-  return (
-    <div>
-      {['left'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
-    </div>
-  );
+
+
+  render() {
+    return (
+      <div style={{ backgroundColor: 'lightblue' }}>
+        {
+          ['right'].map((anchor) => (
+            <React.Fragment key={anchor}>
+              <Button onClick={this.toggleDrawer(anchor, true)}>LOGIN</Button>
+              <SwipeableDrawer
+                anchor={anchor}
+                open={this.state.anchor}
+                onClose={this.toggleDrawer(anchor, false)}
+                onOpen={this.toggleDrawer(anchor, true)}
+              >
+                {this.list(anchor)}
+              </SwipeableDrawer>
+            </React.Fragment>
+          ))
+        }
+      </div >
+    );
+  }
 }
 
