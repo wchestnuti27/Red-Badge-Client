@@ -1,10 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import clsx from 'clsx';
-import Auth from '../auth/Auth';
-=======
-
->>>>>>> a590ef5d760d55152c135b799d9b313d716c0c0a
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
@@ -33,34 +27,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
   constructor(props) {
     super(props)
 
-<<<<<<< HEAD
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-});
-
-export default function SwipeableTemporaryDrawer() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    right: false,
-    bottom: false,
-    left: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-=======
     this.state = {
       right: false
     }
   }
 
   toggleDrawer = (anchor, open) => (event) => {
->>>>>>> a590ef5d760d55152c135b799d9b313d716c0c0a
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -70,7 +42,7 @@ export default function SwipeableTemporaryDrawer() {
 
   list = (anchor) => (
     <div
-      style={{ width: 800 }}
+      style={{ width: "400px" }}
       role="presentation"
     // onClick={this.toggleDrawer(anchor, false)}
     // onKeyDown={this.toggleDrawer(anchor, false)}
@@ -111,23 +83,6 @@ export default function SwipeableTemporaryDrawer() {
         </ListItem>
       </List>
 
-<<<<<<< HEAD
-  return (
-    <div>
-      {['left', 'right'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>Profile</Button>
-          <SwipeableDrawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-            onOpen={toggleDrawer(anchor, true)}
-          >
-            {list(anchor)}
-          </SwipeableDrawer>
-        </React.Fragment>
-      ))}
-=======
       <Auth updateToken={this.props.updateToken.bind(this)}/>
 
       <Divider />
@@ -138,7 +93,6 @@ export default function SwipeableTemporaryDrawer() {
           <ListItemText>Logout</ListItemText>
         </ListItem>
       </List>
->>>>>>> a590ef5d760d55152c135b799d9b313d716c0c0a
     </div>
   );
 
