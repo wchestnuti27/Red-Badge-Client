@@ -19,11 +19,11 @@ class Auth extends React.Component {
     const { isLogginActive } = this.state;
 
     if(isLogginActive) {
-      this.rightSide.classList.remove('right');
-      this.rightSide.classList.add('left');
+      this.rightSide.classList.remove('top');
+      this.rightSide.classList.add('down');
     } else {
-      this.rightSide.classList.remove('left');
-      this.rightSide.classList.add('right');
+      this.rightSide.classList.remove('down');
+      this.rightSide.classList.add('top');
     }
 
     this.setState((prevState) => ({ isLogginActive: !prevState.isLogginActive }));

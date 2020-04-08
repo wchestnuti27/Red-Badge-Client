@@ -1,5 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
+import Auth from '../auth/Auth';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
@@ -24,9 +25,9 @@ export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
-    Login: false,
+    right: false,
     bottom: false,
-    Profile: false,
+    left: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -70,7 +71,7 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {['left', 'right'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>Profile</Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

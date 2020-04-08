@@ -57,7 +57,8 @@ class App extends React.Component<{}, AppState> {
     return (
       <div>
         <Navbar />
-        {guestUserSwitch()}
+        {/* {guestUserSwitch()} */}
+        <Feed />
       </div>
     )
   }
