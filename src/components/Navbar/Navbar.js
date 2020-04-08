@@ -1,6 +1,12 @@
 import React from 'react';
+import { Route, Link, Switch } from 'react-router-dom';
 
-import { makeStyles } from '@material-ui/core/styles';
+// components
+import Auth from '../auth/Auth';
+import PostMeme from '../CRUD/Feed/PostMeme';
+import Feed from '../CRUD/Feed/Feed';
+
+// material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -8,13 +14,8 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Auth from '../auth/Auth'
-
 // icons
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-
 import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
@@ -23,6 +24,8 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
+import AddToQueueOutlinedIcon from '@material-ui/icons/AddToQueueOutlined';
+
 
 export default class SwipeableTemporaryDrawer extends React.Component {
   constructor(props) {
@@ -43,53 +46,64 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
   list = (anchor) => (
     <div
-      style={{ width: 800 }}
+      style={{ width: 250 }}
       role="presentation"
-    // onClick={this.toggleDrawer(anchor, false)}
-    // onKeyDown={this.toggleDrawer(anchor, false)}
+      onClick={this.toggleDrawer(anchor, false)}
+      onKeyDown={this.toggleDrawer(anchor, false)}
     >
       <List>
+        {/* ===== LOGIN ===== */}
         <ListItem button>
-          <ListItemIcon><VpnKeyIcon /></ListItemIcon>
-          <ListItemText primary='Login' />
+          <Link to='/auth'>
+            <ListItemIcon><VpnKeyIcon /></ListItemIcon>
+            <ListItemText primary='Login' />
+          </Link>
         </ListItem>
 
+        {/* ===== MY ACCOUNT ===== */}
         <ListItem button>
-          <ListItemIcon><PersonIcon /></ListItemIcon>
-          <ListItemText primary='My Account' />
+          <Link to='/postmeme'>
+            <ListItemIcon><PersonIcon /></ListItemIcon>
+            <ListItemText primary='My Account' />
+          </Link>
         </ListItem>
 
+        {/* ===== FEED ===== */}
         <ListItem button>
-          <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
-          <ListItemText primary='Feed' />
+          <Link to='/'>
+            <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
+            <ListItemText primary='Feed' />
+          </Link>
         </ListItem>
       </List>
 
       <Divider />
 
       <List>
+        {/* ===== WILL ===== */}
         <ListItem button>
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
 
+        {/* ===== NATHAN ===== */}
         <ListItem button>
           <ListItemIcon><FastfoodOutlinedIcon /></ListItemIcon>
           <ListItemText>Nathan</ListItemText>
         </ListItem>
 
+        {/* ===== DANIEL ===== */}
         <ListItem button>
           <ListItemIcon><HelpOutlineOutlinedIcon /></ListItemIcon>
           <ListItemText>Dan</ListItemText>
         </ListItem>
       </List>
 
-      <Auth updateToken={this.props.updateToken.bind(this)}/>
-
       <Divider />
 
       <List>
-        <ListItem button>
+        {/* ===== LOGOUT ===== */}
+        <ListItem button onClick={this.props.clearToken}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </ListItem>
@@ -97,19 +111,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     </div>
   );
 
-
-
   render() {
     return (
       <div style={{ backgroundColor: 'lightblue' }}>
         {
           ['right'].map((anchor) => (
             <React.Fragment key={anchor}>
-              {/* 
-              {props.sessionToken ? 
-              <Button onClick={this.toggleDrawer(anchor, true)}><MenuOutlinedIcon /></Button>} 
-              : <button that routes you to auth comp>
-              }*/}
               <Button onClick={this.toggleDrawer(anchor, true)}><MenuOutlinedIcon /></Button>
               <SwipeableDrawer
                 anchor={anchor}
@@ -119,9 +126,18 @@ export default class SwipeableTemporaryDrawer extends React.Component {
               >
                 {this.list(anchor)}
               </SwipeableDrawer>
+
+              <Button><Link to='/postmeme'><AddToQueueOutlinedIcon /></Link></Button>
+
             </React.Fragment>
           ))
         }
+
+        <Switch>
+          <Route exact path='/'><Feed /></Route>
+          <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
+          <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
+        </Switch>
       </div >
     );
   }
