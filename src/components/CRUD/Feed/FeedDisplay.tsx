@@ -20,7 +20,7 @@ let imageHeight = 150;
 const useStyles = makeStyles({
     root: {
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'column-reverse',
         alignItems: 'center',
         backgroundColor: 'rgb(33,33,33)',
         color: 'white'
@@ -46,12 +46,16 @@ const useStyles = makeStyles({
     }
 })
 
-const FeedDisplay = (props) => {
+type AcceptedProps = {
+    memes: any[]
+}
+
+const FeedDisplay = ({ memes }: AcceptedProps) => {
 
     const classes = useStyles();
 
-    const displayMemes = (memes) => {
-        return memes.map((meme, index) => {
+    const displayMemes = (memes: object[]) => {
+        return memes.map((meme: any, index: number) => {
             return (
                 <Card key={index} className={classes.card}>
                     <CardActionArea>
@@ -78,8 +82,8 @@ const FeedDisplay = (props) => {
 
     return (
         <div className={classes.root}>
+            {displayMemes(memes)}
             <h2>Follow Your Memes</h2>
-            {props.memes.length > 0 ? displayMemes(props.memes) : null}
         </div>
     )
 }

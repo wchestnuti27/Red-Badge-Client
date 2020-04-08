@@ -24,9 +24,9 @@ export default function SwipeableTemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
-    left: false,
+    Login: false,
     bottom: false,
-    right: false,
+    Profile: false,
   });
 
   const toggleDrawer = (anchor, open) => (event) => {
