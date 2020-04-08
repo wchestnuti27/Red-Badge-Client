@@ -1,4 +1,5 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { Route, Link, Switch } from 'react-router-dom';
 
 // components
@@ -46,6 +47,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
   list = (anchor) => (
     <div
+      style={{ width: "400px" }}
       style={{ width: 250 }}
       role="presentation"
       onClick={this.toggleDrawer(anchor, false)}
