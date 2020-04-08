@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import FeedDisplay from './FeedDisplay';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 type MemeState = {
     memes: any[]
 }
@@ -37,7 +39,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
     render() {
         return (
             <div>
-                {this.state.memes != [] ? <FeedDisplay memes={this.state.memes} /> : null}
+                {this.state.memes !== [] ? <FeedDisplay memes={this.state.memes} /> : <CircularProgress />}
             </div>
         )
     }

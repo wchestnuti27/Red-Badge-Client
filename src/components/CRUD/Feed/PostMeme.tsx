@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
 
-export default class Feed extends Component {
-    constructor(props) {
+type PostState = {
+    memeImage: string | Blob,
+    caption: string,
+    voteCount: string
+}
+
+type AcceptedProps = {
+    sessionToken: string | null
+}
+
+export default class Feed extends Component<AcceptedProps, PostState> {
+    constructor(props: AcceptedProps) {
         super(props)
 
         this.state = {
-            memeImage: {},
+            memeImage: '',
             caption: '',
-            voteCount: 0,
-
-
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU1YjkzNzliLTA4ZjAtNDhjNC1iZGYwLTBmYTFhMzkyNTlkNiIsImlhdCI6MTU4NjI5MzI4MywiZXhwIjoxNTg2Mzc5NjgzfQ.7280uQD043mzICIwx60J02yLHaQ8W1owDNDy7hAXT_Y'
+            voteCount: '0',
         }
     }
 
+    checkSessionToken(token: string | null): string {
+        if (token === null) {
+            return 'no token'
+        } else {
+            return token
+        }
+    }
 
-    handleSubmit(event) {
+    handleSubmit(event: any) {
         event.preventDefault();
 
         let formData = new FormData();
@@ -27,24 +41,23 @@ export default class Feed extends Component {
             method: 'POST',
             body: formData,
             headers: new Headers({
-                'Authorization': this.state.token
+                'Authorization': this.checkSessionToken(this.props.sessionToken)
             })
         })
             .then(response => response.json())
             .then(jsonData => console.log(jsonData))
     }
 
+    changeMemeImage(e: any) {
+        this.setState({ memeImage: e.target.files[0] });
+    }
+
     render() {
         return (
             <div>
-                <form onSubmit={event => this.handleSubmit(event)}>
+                <form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
                     <label htmlFor="memeImage">Choose an Image</label>
-                    <input
-                        type="file"
-                        method="post"
-                        encType="multipart/form-data"
-                        onChange={e => this.setState({ memeImage: e.target.files[0] })}
-                    />
+                    <input type="file" onChange={e => this.changeMemeImage(e)} />
 
                     <label htmlFor="caption">Caption</label>
                     <input type="text" onChange={e => this.setState({ caption: e.target.value })} />

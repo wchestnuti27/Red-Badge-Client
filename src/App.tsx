@@ -5,13 +5,20 @@ import Navbar from './components/Navbar/Navbar';
 
 import Auth from './components/auth/Auth';
 import Feed from './components/CRUD/Feed/Feed';
+import PostMeme from './components/CRUD/Feed/PostMeme';
 
 import './components/auth/style.scss'
 
 document.title = 'SupreMemes';
 
-class App extends React.Component {
-  constructor(props) {
+type AppState = {
+  sessionToken: string | null,
+  guestUser: boolean,
+  authToggler: boolean
+}
+
+class App extends React.Component<{}, AppState> {
+  constructor(props: any) {
     super(props)
 
     this.state = {
@@ -22,7 +29,7 @@ class App extends React.Component {
   }
 
 
-  updateToken(newToken) {
+  updateToken(newToken: string) {
     localStorage.setItem('token', newToken);
     this.setState({ sessionToken: localStorage.getItem('token') })
     console.log(this.state.sessionToken)
@@ -39,13 +46,13 @@ class App extends React.Component {
 
   componentDidMount() {
     console.log('how are ya?')
-    console.log(this.state.guestUser)
+    console.log('GuesUser', this.state.guestUser)
   }
 
 
   render() {
     const guestUserSwitch = () => {
-      return (this.state.authToggler ? <Auth updateToken={this.updateToken.bind(this)} /> : <Feed />) // this toggles guest user landing page and auth
+      return (this.state.sessionToken === null ? <Auth updateToken={this.updateToken.bind(this)} /> : <PostMeme sessionToken={this.state.sessionToken} />) // this toggles guest user landing page and auth
     }
     return (
       <div>
