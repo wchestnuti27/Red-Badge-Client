@@ -8,6 +8,10 @@ import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
+import Auth from '../auth/Auth'
+
 // icons
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 
@@ -39,7 +43,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
   list = (anchor) => (
     <div
-      style={{ width: 250 }}
+      style={{ width: 800 }}
       role="presentation"
     // onClick={this.toggleDrawer(anchor, false)}
     // onKeyDown={this.toggleDrawer(anchor, false)}
@@ -79,6 +83,8 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           <ListItemText>Dan</ListItemText>
         </ListItem>
       </List>
+
+      <Auth updateToken={this.props.updateToken.bind(this)}/>
 
       <Divider />
 
