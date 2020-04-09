@@ -1,4 +1,5 @@
 import React from 'react';
+import Votes from '../Votes/Votes';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -64,7 +65,8 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
                             <Typography variant="h6">{meme.caption}</Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions className={classes.vote}>
+                    <Votes voteCount={meme.voteCount} />
+                    {/* <CardActions className={classes.vote}>
                         <Typography variant="subtitle1">Votes: {meme.voteCount}</Typography>
                         <span>
                             <Button className={classes.button}>
@@ -74,7 +76,7 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
                                 <ThumbDownIcon color="error" fontSize="default" />
                             </Button>
                         </span>
-                    </CardActions>
+                    </CardActions> */}
                 </Card>
             )
         })

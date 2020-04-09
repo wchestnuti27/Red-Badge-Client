@@ -1,10 +1,24 @@
 import React, { Component } from 'react'
+import VoteDisplay from './VoteDisplay';
 
-export default class Votes extends Component {
+type AcceptedProps = {
+    voteCount: number
+}
+
+export default class Votes extends Component<AcceptedProps> {
+    constructor(props: AcceptedProps) {
+        super(props)
+
+    }
+
+    componentDidMount() {
+        // logic for up/downvoting
+    }
+
     render() {
         return (
             <div>
-                
+                <VoteDisplay voteCount={this.props.voteCount} />
             </div>
         )
     }
