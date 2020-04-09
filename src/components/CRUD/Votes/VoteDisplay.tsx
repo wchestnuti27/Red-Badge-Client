@@ -19,23 +19,34 @@ const useStyles = makeStyles({
 });
 
 type AcceptedProps = {
-    voteCount: number
+    voteCount: number,
+    memeId: string,
+    changeVote: (vote: number) => void,
+    voteOnMeme: (event: any, memeId: string, vote: number) => void
 }
 
-const VoteDisplay = ({ voteCount }: AcceptedProps) => {
+const VoteDisplay = ({ voteCount, memeId, changeVote, voteOnMeme }: AcceptedProps) => {
     const classes = useStyles();
 
     return (
         <div>
             <CardActions className={classes.vote}>
+
+
+                <span>
+                    <form onSubmit={(event) => voteOnMeme(event, memeId, 1)}>
+                        <Button type='submit' className={classes.button} onClick={event => changeVote(1)}>
+                            <ThumbUpIcon color="error" fontSize="default" />
+                        </Button>
+                    </form>
+                </span>
                 <Typography variant="subtitle1">Votes: {voteCount}</Typography>
                 <span>
-                    <Button className={classes.button}>
-                        <ThumbUpIcon color="error" fontSize="default" />
-                    </Button>
-                    <Button className={classes.button}>
-                        <ThumbDownIcon color="error" fontSize="default" />
-                    </Button>
+                    <form onSubmit={(event) => voteOnMeme(event, memeId, -1)}>
+                        <Button type='submit' className={classes.button} onClick={event => changeVote(-1)}>
+                            <ThumbDownIcon color="error" fontSize="default" />
+                        </Button>
+                    </form>
                 </span>
             </CardActions>
         </div>
