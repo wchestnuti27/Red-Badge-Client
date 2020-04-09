@@ -34,8 +34,19 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     super(props)
 
     this.state = {
-      right: false
+      right: false,
+      postModal: false
     }
+  }
+
+  openPostModal(e) {
+    this.setState({ postModal: true })
+    console.log('openPostModal fired')
+  }
+
+  closePostModal(e) {
+    this.setState({ postModal: false })
+    console.log('closePostModal fired')
   }
 
   toggleDrawer = (anchor, open) => (event) => {
@@ -85,7 +96,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
       <List>
         {/* ===== WILL ===== */}
         <ListItem button>
-        <Link to='<WillDisplay />' />
+          <Link to='<WillDisplay />' />
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
@@ -131,13 +142,14 @@ export default class SwipeableTemporaryDrawer extends React.Component {
                 {this.list(anchor)}
               </SwipeableDrawer>
 
-              <Button><Link to='/postmeme'><AddToQueueOutlinedIcon /></Link></Button>
+              {/* <Button><Link to='/postmeme'><AddToQueueOutlinedIcon /></Link></Button> */}
+              <Button onClick={e => this.openPostModal(e)}><AddToQueueOutlinedIcon /></Button>
 
             </React.Fragment>
           ))
         }
-
         <Switch>
+          {this.state.postModal ? <PostMeme closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
           <Route exact path='/'><Feed /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
