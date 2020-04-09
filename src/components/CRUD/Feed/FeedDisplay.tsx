@@ -65,7 +65,7 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
                             <Typography variant="h6">{meme.caption}</Typography>
                         </CardContent>
                     </CardActionArea>
-                    <Votes voteCount={meme.voteCount} />
+                    <Votes voteCount={meme.voteCount} memeId={meme.id} />
                     {/* <CardActions className={classes.vote}>
                         <Typography variant="subtitle1">Votes: {meme.voteCount}</Typography>
                         <span>
