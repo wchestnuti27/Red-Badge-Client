@@ -140,7 +140,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         </React.Fragment>
 
         <Switch>
-          <Route exact path='/'><Feed /></Route>
+          <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/account'><MyAccount sessionToken={this.props.sessionToken} /></Route>
