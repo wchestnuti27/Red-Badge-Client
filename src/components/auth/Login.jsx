@@ -2,17 +2,42 @@ import React from 'react';
 import './style.scss'
 import '../../helpers/environment';
 import APIURL from '../../helpers/environment';
-import loginImg from '../../Assets/Login Pic.jpg';
+import loginImg from '../../Assets/Meme Pic.jpg';
 
 export class Login extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            username: '',
+            password: ''
+        }
     }
+
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ username: this.state.username, password: this.state.password }),
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            console.log(data)
+            data.sessionToken ? this.props.updateToken(data.sessionToken)
+                : alert(`${data.error}: Username or Password Not Found`)
+        })
+    }
+
 
     render() {
         return <div className="base-container" ref={this.props.containerRef}>
             <div className="header">Login</div>
-            <br/>
+            <br />
             <div className="content">
                 <div className="image">
                     <img src={loginImg} alt="login" />
@@ -20,24 +45,22 @@ export class Login extends React.Component {
                 <div className="form">
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" placeholder="username"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="text" name="email" placeholder="email"/>
+                        <input onChange={e => this.setState({ username: e.target.value })} type="text" name="username" placeholder="username" />
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" name="password" placeholder="password"/>
+                        <input onChange={e => this.setState({ password: e.target.value })} type="password" name="password" placeholder="password" />
                     </div>
                 </div>
             </div>
             <div className="footer">
-                <button type="button" className="btn">Login</button>
+                <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Login</button>
             </div>
         </div>
     }
 }
+
+// export default Login;
 
 
 

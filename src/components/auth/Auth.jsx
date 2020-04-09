@@ -1,9 +1,7 @@
 import React from 'react';
-import './App.scss';
-// import Feed from './components/CRUD/Feed/Feed';
-import { Login, Signup } from "./components/Signin/index";
+import { Login, Signup } from './index';
 
-class App extends React.Component {
+class Auth extends React.Component {
 
   constructor(props) {
     super(props);
@@ -40,10 +38,10 @@ class App extends React.Component {
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
+              <Login containerRef={ref => (this.current = ref)} updateToken={this.props.updateToken.bind(this)} />
             )}
             {!isLogginActive && (
-              <Signup containerRef={ref => (this.current = ref)} />
+              <Signup containerRef={ref => (this.current = ref)} updateToken={this.props.updateToken.bind(this)} />
             )}
           </div>
           <RightSide
@@ -67,4 +65,4 @@ const RightSide = props => {
 
 }
 
-export default App;
+export default Auth;
