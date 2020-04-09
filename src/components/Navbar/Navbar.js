@@ -7,6 +7,7 @@ import './Navbar.css';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
+import MyAccount from '../CRUD/MyAccount/MyAccount';
 // import WillDisplay from './Will/WillDisplay';
 
 // material ui
@@ -63,7 +64,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         </Link>
 
         {/* ===== MY ACCOUNT ===== */}
-        <Link to='/postmeme' id='link'>
+        <Link to='/account' id='link'>
           <ListItem button>
             <ListItemIcon><PersonIcon /></ListItemIcon>
             <ListItemText primary='My Account' />
@@ -120,7 +121,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <div id='navbar'>
 
           {/* OPEN NAV DRAWER */}
-          <Button onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
+          <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
           {/* POST MEME */}
           <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button>
@@ -142,8 +143,9 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           <Route exact path='/'><Feed /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
+          <Route exact path='/account'><MyAccount sessionToken={this.props.sessionToken} /></Route>
         </Switch>
-      </div>
+      </div >
     );
   }
 }

@@ -47,16 +47,16 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
     }
 
     UpdateMemeImage(e: any) {
-        this.setState({ });
+        this.setState({});
     }
 
 
     render() {
         return (
             <div>
-                
+
             </div>
         )
     }
 
-    }
+}
