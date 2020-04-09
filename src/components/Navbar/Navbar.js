@@ -120,7 +120,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <div id='navbar'>
 
           {/* OPEN NAV DRAWER */}
-          <Button onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
+          <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
           {/* POST MEME */}
           <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button>
@@ -143,7 +143,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
         </Switch>
-      </div>
+      </div >
     );
   }
 }
