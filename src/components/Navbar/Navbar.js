@@ -7,7 +7,7 @@ import './Navbar.css';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
-import WillDisplay from './Will/WillDisplay';
+// import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -48,7 +48,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
   list = () => (
     <div
+<<<<<<< HEAD
+      style={{ width: "400px" }}
+      style={{ width: "250px" }}
+=======
       style={{ width: 250 }}
+>>>>>>> 1b6a925abafa42343846efc35a1db5edafc302f5
       role="presentation"
       onClick={this.toggleDrawer(false)}
       onKeyDown={this.toggleDrawer(false)}
