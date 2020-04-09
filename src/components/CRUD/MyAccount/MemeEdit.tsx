@@ -30,7 +30,7 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
 
 
         // Update Memes by user //
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes:postId', {
+        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/:postId', {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',

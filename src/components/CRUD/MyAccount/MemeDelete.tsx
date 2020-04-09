@@ -30,7 +30,7 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
 
 
         // Delete Memes by user //
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes:postId', {
+        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/:postId', {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
