@@ -1,4 +1,5 @@
 import React from 'react';
+import Votes from '../Votes/Votes';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -7,9 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 import 'typeface-roboto';
 
@@ -64,17 +62,8 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
                             <Typography variant="h6">{meme.caption}</Typography>
                         </CardContent>
                     </CardActionArea>
-                    <CardActions className={classes.vote}>
-                        <Typography variant="subtitle1">Votes: {meme.voteCount}</Typography>
-                        <span>
-                            <Button className={classes.button}>
-                                <ThumbUpIcon color="error" fontSize="default" />
-                            </Button>
-                            <Button className={classes.button}>
-                                <ThumbDownIcon color="error" fontSize="default" />
-                            </Button>
-                        </span>
-                    </CardActions>
+                    <Votes voteCount={meme.voteCount} memeId={meme.id} />
+                    {/* <p>Brought to you by: {meme.username}</p> */}
                 </Card>
             )
         })
