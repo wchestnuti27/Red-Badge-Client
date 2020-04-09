@@ -6,6 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
+import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -84,6 +85,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
       <List>
         {/* ===== WILL ===== */}
         <ListItem button>
+        <Link to='<WillDisplay />' />
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
