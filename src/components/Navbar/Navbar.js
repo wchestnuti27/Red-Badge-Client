@@ -6,7 +6,7 @@ import { Route, Link, Switch } from 'react-router-dom';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
-import WillDisplay from './Will/WillDisplay';
+// import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -49,7 +49,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
   list = (anchor) => (
     <div
       style={{ width: "400px" }}
-      style={{ width: 250 }}
+      style={{ width: "250px" }}
       role="presentation"
       onClick={this.toggleDrawer(anchor, false)}
       onKeyDown={this.toggleDrawer(anchor, false)}

@@ -1,4 +1,5 @@
 import React from 'react';
+import WillDisplay from './WillDisplay';
 
 export default class Will extends React.Component {
     constructor(props) {
@@ -33,7 +34,7 @@ export default class Will extends React.Component {
     render() {
         return (
             <div>
-                
+                <WillDisplay />
             </div>
         )
     }
