@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { Route, Link, Switch } from 'react-router-dom';
+
+import './Navbar.css';
 
 // components
 import Auth from '../auth/Auth';
@@ -26,8 +27,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
-import AddToQueueOutlinedIcon from '@material-ui/icons/AddToQueueOutlined';
-
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 export default class SwipeableTemporaryDrawer extends React.Component {
   constructor(props) {
@@ -38,46 +38,45 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     }
   }
 
-  toggleDrawer = (anchor, open) => (event) => {
+  toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
 
-    this.setState({ anchor: open });
+    this.setState({ right: open });
   };
 
-  list = (anchor) => (
+  list = () => (
     <div
-      style={{ width: "400px" }}
       style={{ width: 250 }}
       role="presentation"
-      onClick={this.toggleDrawer(anchor, false)}
-      onKeyDown={this.toggleDrawer(anchor, false)}
+      onClick={this.toggleDrawer(false)}
+      onKeyDown={this.toggleDrawer(false)}
     >
       <List>
         {/* ===== LOGIN ===== */}
-        <ListItem button>
-          <Link to='/auth'>
+        <Link to='/auth' id='link'>
+          <ListItem button>
             <ListItemIcon><VpnKeyIcon /></ListItemIcon>
             <ListItemText primary='Login' />
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
 
         {/* ===== MY ACCOUNT ===== */}
-        <ListItem button>
-          <Link to='/postmeme'>
+        <Link to='/postmeme' id='link'>
+          <ListItem button>
             <ListItemIcon><PersonIcon /></ListItemIcon>
             <ListItemText primary='My Account' />
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
 
         {/* ===== FEED ===== */}
-        <ListItem button>
-          <Link to='/'>
+        <Link to='/' id='link'>
+          <ListItem button>
             <ListItemIcon><FormatListBulletedIcon /></ListItemIcon>
             <ListItemText primary='Feed' />
-          </Link>
-        </ListItem>
+          </ListItem>
+        </Link>
       </List>
 
       <Divider />
@@ -85,7 +84,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
       <List>
         {/* ===== WILL ===== */}
         <ListItem button>
-        <Link to='<WillDisplay />' />
+          <Link to='<WillDisplay />' id='link' />
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
@@ -107,7 +106,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
       <List>
         {/* ===== LOGOUT ===== */}
-        <ListItem button onClick={this.props.clearToken}>
+        <ListItem button id='logoutButton' onClick={this.props.clearToken}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
           <ListItemText>Logout</ListItemText>
         </ListItem>
@@ -117,32 +116,34 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
   render() {
     return (
-      <div style={{ backgroundColor: 'lightblue' }}>
-        {
-          ['right'].map((anchor) => (
-            <React.Fragment key={anchor}>
-              <Button onClick={this.toggleDrawer(anchor, true)}><MenuOutlinedIcon /></Button>
-              <SwipeableDrawer
-                anchor={anchor}
-                open={this.state.anchor}
-                onClose={this.toggleDrawer(anchor, false)}
-                onOpen={this.toggleDrawer(anchor, true)}
-              >
-                {this.list(anchor)}
-              </SwipeableDrawer>
+      <div>
+        <div id='navbar'>
 
-              <Button><Link to='/postmeme'><AddToQueueOutlinedIcon /></Link></Button>
+          {/* OPEN NAV DRAWER */}
+          <Button onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
-            </React.Fragment>
-          ))
-        }
+          {/* POST MEME */}
+          <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button>
+
+        </div>
+
+        <React.Fragment>
+          <SwipeableDrawer
+            anchor={'right'}
+            open={this.state.right}
+            onClose={this.toggleDrawer(false)}
+            onOpen={this.toggleDrawer(true)}
+          >
+            {this.list()}
+          </SwipeableDrawer>
+        </React.Fragment>
 
         <Switch>
           <Route exact path='/'><Feed /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
         </Switch>
-      </div >
+      </div>
     );
   }
 }
