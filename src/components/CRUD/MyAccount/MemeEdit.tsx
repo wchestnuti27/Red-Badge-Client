@@ -6,15 +6,15 @@ import {
 } from 'reactstrap';
 
 type AcctState = {
-    userMemes: any[],
     caption: string
 }
 
 type AcceptedProps = {
     sessionToken: string | null,
     memeId: string,
-    // openEditModal: (e: any) => void,
-    closeEditModal: (e: any) => void
+    memeCaption: string,
+    closeEditModal: (e: any) => void,
+    fetchUserMemes: () => void
 }
 
 export default class MemeEdit extends Component<AcceptedProps, AcctState> {
@@ -22,7 +22,6 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
         super(props)
 
         this.state = {
-            userMemes: [],
             caption: ''
         }
     }
@@ -49,11 +48,8 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
                 'Authorization': this.checkSessionToken(this.props.sessionToken)
             })
         })
-            .then(response => response.json())
-            .then(json => {
-                this.setState({
-                    userMemes: json
-                });
+            .then(res => {
+                this.props.fetchUserMemes();
                 this.props.closeEditModal(event);
             })
     }
