@@ -129,6 +129,7 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                     <MemeEdit
                         sessionToken={this.props.sessionToken}
                         memeId={this.state.editMemeId}
+                        fetchUserMemes={this.fetchUserMemes.bind(this)}
                         // openEditModal={this.openEditModal.bind(this)}
                         closeEditModal={this.closeEditModal.bind(this)}
                     />

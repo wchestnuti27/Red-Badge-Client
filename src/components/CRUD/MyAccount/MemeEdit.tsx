@@ -14,7 +14,8 @@ type AcceptedProps = {
     sessionToken: string | null,
     memeId: string,
     // openEditModal: (e: any) => void,
-    closeEditModal: (e: any) => void
+    closeEditModal: (e: any) => void,
+    fetchUserMemes: (e: any) => void
 }
 
 export default class MemeEdit extends Component<AcceptedProps, AcctState> {
@@ -49,11 +50,7 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
                 'Authorization': this.checkSessionToken(this.props.sessionToken)
             })
         })
-            .then(response => response.json())
-            .then(json => {
-                this.setState({
-                    userMemes: json
-                });
+            .then(res => {
                 this.props.closeEditModal(event);
             })
     }
@@ -72,8 +69,8 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
                             <Label htmlFor="caption">Caption</Label>
                             <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
-                        <Button type="submit">Submit</Button>
                     </Form>
+                        <Button type="submit">Submit</Button>
                 </ModalBody>
             </Modal>
         )
