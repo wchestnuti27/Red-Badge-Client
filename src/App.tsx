@@ -36,6 +36,10 @@ class App extends React.Component<{}, AppState> {
     console.log(this.state.sessionToken)
   }
 
+  componentDidMount(){
+    this.setState({sessionToken: localStorage.getItem('token')})
+  }
+
   clearToken() {
     localStorage.clear();
     this.setState({ sessionToken: '' });

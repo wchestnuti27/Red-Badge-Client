@@ -10,7 +10,7 @@ import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 // import WillDisplay from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
-import WillDisplay from './Will/WillDisplay';
+// import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
