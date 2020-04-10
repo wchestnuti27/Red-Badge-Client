@@ -39,7 +39,12 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
     render() {
         return (
             <div>
-                {this.state.memes !== [] ? <FeedDisplay memes={this.state.memes} /> : <CircularProgress />}
+                {this.state.memes !== [] ?
+                    <FeedDisplay
+                        sessionToken={this.props.sessionToken}
+                        memes={this.state.memes}
+                    />
+                    : <CircularProgress />}
             </div>
         )
     }
