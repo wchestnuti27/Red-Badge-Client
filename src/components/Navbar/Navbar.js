@@ -10,7 +10,6 @@ import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 // import WillDisplay from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
-// import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -37,8 +36,20 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     super(props)
 
     this.state = {
-      right: false
+      right: false,
+      postModal: false
     }
+  }
+
+  openPostModal(e) {
+    this.setState({ postModal: true })
+    console.log('openPostModal fired')
+  }
+
+
+  closePostModal(e) {
+    this.setState({ postModal: false })
+    console.log('closePostModal fired')
   }
 
   toggleDrawer = (open) => (event) => {
@@ -128,7 +139,8 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
           {/* POST MEME */}
-          <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button>
+          {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}
+          <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button>
 
         </div>
 
@@ -143,10 +155,13 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           </SwipeableDrawer>
         </React.Fragment>
 
+        {this.state.postModal ? <PostMeme closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
         <Switch>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
-          <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route>
+          
+          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Dan /></Route>
 
