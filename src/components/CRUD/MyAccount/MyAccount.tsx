@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-// import Votes from '../Votes/Votes';
-
 import './MyAccount.css';
+
+import MemeEdit from './MemeEdit';
 
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -13,7 +13,9 @@ import Button from '@material-ui/core/Button';
 
 
 type AcctState = {
-    userMemes: any[]
+    userMemes: any[],
+    editModal: boolean,
+    editMemeId: string
 }
 
 type AcceptedProps = {
@@ -25,7 +27,9 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
         super(props)
 
         this.state = {
-            userMemes: []
+            userMemes: [],
+            editModal: false,
+            editMemeId: ''
         }
     }
 
@@ -44,7 +48,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
     }
 
     fetchUserMemes() {
-        // Get Memes by user //
         fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/', {
             method: 'GET',
             headers: new Headers({
@@ -73,12 +76,28 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                         </CardContent>
                     </CardActionArea>
                     <CardActions className='buttonContainer'>
-                        <Button variant='contained' color='primary' id='button'>Update</Button>
+                        <Button variant='contained' color='primary' id='button' onClick={e => this.openEditModal(e, meme.id)}>Update</Button>
                         <Button variant='contained' color='secondary' id='button' onClick={e => this.deleteMeme(meme.id)}>Delete</Button>
                     </CardActions>
                 </Card>
             )
         })
+    }
+
+    openEditModal(e: any, memeId: string) {
+        this.setState({
+            editModal: true,
+            editMemeId: memeId
+        });
+        console.log('opened edit modal');
+    }
+
+    closeEditModal(e: any) {
+        this.setState({
+            editModal: false,
+            editMemeId: ''
+        });
+        console.log('closed edit modal');
     }
 
     deleteMeme(memeId: string) {
@@ -105,9 +124,15 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                 <br />
                 <div className='memeContainer'>
                     {this.MemeDisplay(this.state.userMemes)}
-                    {/* <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Update Meme</button>
-                <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Delete Meme</button> */}
                 </div>
+                {this.state.editModal ?
+                    <MemeEdit
+                        sessionToken={this.props.sessionToken}
+                        memeId={this.state.editMemeId}
+                        // openEditModal={this.openEditModal.bind(this)}
+                        closeEditModal={this.closeEditModal.bind(this)}
+                    />
+                    : null}
             </div>
         )
     }

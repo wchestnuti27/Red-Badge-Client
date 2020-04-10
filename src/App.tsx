@@ -63,7 +63,7 @@ class App extends React.Component<{}, AppState> {
     //   )
     // }
     return (
-      <div>
+      <div style={{ backgroundColor: 'rgb(33,33,33)' }}>
         <Router>
           <Navbar
             sessionToken={this.state.sessionToken}
