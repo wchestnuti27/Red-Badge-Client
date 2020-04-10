@@ -52,6 +52,26 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
             })
     }
 
+<<<<<<< HEAD
+=======
+    MemeDisplay(memes: any[]) {
+            return memes.map((meme: any, index: number) => {
+                return (
+                    <Card key={index}>
+                        <CardActionArea>
+                            <CardMedia image={meme.url} />
+                            <CardContent>
+                                <Typography variant="h6">{meme.caption}</Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <Votes voteCount={meme.voteCount} memeId={meme.id} />
+                        {/* <p>Brought to you by: {meme.username}</p> */}
+                    </Card>
+                )
+            })
+        }
+
+>>>>>>> 5e93f858aa66b5c317f14f04d41f9112f2475100
     render() {
         return (
             <div>

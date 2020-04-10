@@ -9,11 +9,17 @@ import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import WillDisplay from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
 =======
 import WillDisplay from './Will/WillDisplay';
 >>>>>>> 7a857309ed06748b4471ad8e9590b9a58ddabacd
+=======
+// import WillDisplay from '../Individual/Will/Will';
+import Dan from '../Individual/Dan/Dan';
+import WillDisplay from './Will/WillDisplay';
+>>>>>>> 5e93f858aa66b5c317f14f04d41f9112f2475100
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
