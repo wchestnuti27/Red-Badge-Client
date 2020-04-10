@@ -3,12 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import './App.scss';
-import { Login, Signup } from "./components/auth/index";
 import Navbar from './components/Navbar/Navbar';
-
 import Auth from './components/auth/Auth';
 import Feed from './components/CRUD/Feed/Feed';
-import PostMeme from './components/CRUD/Feed/PostMeme';
 
 import './components/auth/style.scss'
 
@@ -16,6 +13,7 @@ document.title = 'SupreMemes';
 
 type AppState = {
   sessionToken: string | null,
+  user: object,
   guestUser: boolean,
   authToggler: boolean
 }
@@ -26,19 +24,24 @@ class App extends React.Component<{}, AppState> {
 
     this.state = {
       sessionToken: "",
+      user: {},
       guestUser: true, // this will gate the users ability to post memes if they are not logged in, true by default (no accout/user not signed in)
       authToggler: true // this will be changes when someone clicks the sign up or log in button
     }
   }
 
+
   componentDidMount() {
     this.setState({ sessionToken: localStorage.getItem('token') })
   }
 
-
   updateToken(newToken: string) {
     localStorage.setItem('token', newToken);
     this.setState({ sessionToken: localStorage.getItem('token') })
+  }
+
+  componentDidMount(){
+    this.setState({sessionToken: localStorage.getItem('token')})
   }
 
   clearToken() {
@@ -54,7 +57,6 @@ class App extends React.Component<{}, AppState> {
   //   console.log('how are ya?')
   //   console.log('GuesUser', this.state.guestUser)
   // }
-
 
   render() {
     // const guestUserSwitch = () => {

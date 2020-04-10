@@ -7,7 +7,10 @@ import './Navbar.css';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
-import WillDisplay from './Will/WillDisplay';
+import MyAccount from '../CRUD/MyAccount/MyAccount';
+// import WillDisplay from '../Individual/Will/Will';
+import Dan from '../Individual/Dan/Dan';
+// import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -75,7 +78,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         </Link>
 
         {/* ===== MY ACCOUNT ===== */}
-        <Link to='/postmeme' id='link'>
+        <Link to='/account' id='link'>
           <ListItem button>
             <ListItemIcon><PersonIcon /></ListItemIcon>
             <ListItemText primary='My Account' />
@@ -96,7 +99,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
       <List>
         {/* ===== WILL ===== */}
         <ListItem button>
-          <Link to='<WillDisplay />' id='link' />
+          <Link to='/Will' id='link' />
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
@@ -108,10 +111,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         </ListItem>
 
         {/* ===== DANIEL ===== */}
-        <ListItem button>
-          <ListItemIcon><HelpOutlineOutlinedIcon /></ListItemIcon>
-          <ListItemText>Dan</ListItemText>
-        </ListItem>
+        <Link to='/dan' id='link'>
+          <ListItem button>
+            <ListItemIcon><HelpOutlineOutlinedIcon /></ListItemIcon>
+            <ListItemText>Dan</ListItemText>
+          </ListItem>
+        </Link>
       </List>
 
       <Divider />
@@ -132,7 +137,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <div id='navbar'>
 
           {/* OPEN NAV DRAWER */}
-          <Button onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
+          <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
           {/* POST MEME */}
           {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}
@@ -155,9 +160,22 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <Switch>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
+          
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
+          <Route exact path='/dan'><Dan /></Route>
+
+          {/* protected routes */}
+          <Route exact path='/account'>
+            {
+              this.props.sessionToken ? <MyAccount sessionToken={this.props.sessionToken} />
+                : <Auth updateToken={this.props.updateToken.bind(this)} />
+            }
+          </Route>
+
+          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
         </Switch>
-      </div>
+      </div >
     );
   }
 }
