@@ -36,6 +36,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     super(props)
 
     this.state = {
+      // right tells the navbar to open from the right side (this comes from material-ui)
       right: false,
       postModal: false
     }
@@ -159,7 +160,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <Switch>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
-          
+
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
 
           <Route exact path='/dan'><Dan /></Route>
