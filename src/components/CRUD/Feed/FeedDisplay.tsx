@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 })
 
 type AcceptedProps = {
-    sessionToken?: string,
+    sessionToken?: string | null,
     memes: any[]
 }
 

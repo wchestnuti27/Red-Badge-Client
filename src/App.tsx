@@ -31,10 +31,6 @@ class App extends React.Component<{}, AppState> {
   }
 
 
-  componentDidMount() {
-    this.setState({ sessionToken: localStorage.getItem('token') })
-  }
-
   updateToken(newToken: string) {
     localStorage.setItem('token', newToken);
     this.setState({ sessionToken: localStorage.getItem('token') })
