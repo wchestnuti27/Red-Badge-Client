@@ -29,7 +29,7 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
         event.preventDefault();
 
         // Get Memes by user //
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/:userId', {
+        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/', {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -44,7 +44,6 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
                 console.log(this.state.userMemes);
             })
     }
-
 
     render() {
         return (

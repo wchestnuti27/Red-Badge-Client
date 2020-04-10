@@ -41,16 +41,6 @@ class App extends React.Component<{}, AppState> {
     this.setState({ sessionToken: '' });
   }
 
-  componentWillMount() {
-    console.log('hi,')
-  }
-
-  componentDidMount() {
-    console.log('how are ya?')
-    console.log('GuesUser', this.state.guestUser)
-  }
-
-
   render() {
     const guestUserSwitch = () => {
       return (
