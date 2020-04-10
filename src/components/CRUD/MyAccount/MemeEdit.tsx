@@ -6,16 +6,15 @@ import {
 } from 'reactstrap';
 
 type AcctState = {
-    userMemes: any[],
     caption: string
 }
 
 type AcceptedProps = {
     sessionToken: string | null,
     memeId: string,
-    // openEditModal: (e: any) => void,
+    memeCaption: string,
     closeEditModal: (e: any) => void,
-    fetchUserMemes: (e: any) => void
+    fetchUserMemes: () => void
 }
 
 export default class MemeEdit extends Component<AcceptedProps, AcctState> {
@@ -23,7 +22,6 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
         super(props)
 
         this.state = {
-            userMemes: [],
             caption: ''
         }
     }
@@ -51,6 +49,8 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
             })
         })
             .then(res => {
+                console.log('we made it this far why you no work')
+                this.props.fetchUserMemes();
                 this.props.closeEditModal(event);
             })
     }
@@ -69,8 +69,8 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
                             <Label htmlFor="caption">Caption</Label>
                             <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
-                    </Form>
                         <Button type="submit">Submit</Button>
+                    </Form>
                 </ModalBody>
             </Modal>
         )

@@ -15,7 +15,8 @@ import Button from '@material-ui/core/Button';
 type AcctState = {
     userMemes: any[],
     editModal: boolean,
-    editMemeId: string
+    editMemeId: string,
+    editMemeCaption: string
 }
 
 type AcceptedProps = {
@@ -29,7 +30,8 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
         this.state = {
             userMemes: [],
             editModal: false,
-            editMemeId: ''
+            editMemeId: '',
+            editMemeCaption: ''
         }
     }
 
@@ -76,7 +78,7 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                         </CardContent>
                     </CardActionArea>
                     <CardActions className='buttonContainer'>
-                        <Button variant='contained' color='primary' id='button' onClick={e => this.openEditModal(e, meme.id)}>Update</Button>
+                        <Button variant='contained' color='primary' id='button' onClick={e => this.openEditModal(e, meme.id, meme.caption)}>Update</Button>
                         <Button variant='contained' color='secondary' id='button' onClick={e => this.deleteMeme(meme.id)}>Delete</Button>
                     </CardActions>
                 </Card>
@@ -84,10 +86,11 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
         })
     }
 
-    openEditModal(e: any, memeId: string) {
+    openEditModal(e: any, memeId: string, memeCaption: string) {
         this.setState({
             editModal: true,
-            editMemeId: memeId
+            editMemeId: memeId,
+            editMemeCaption: memeCaption
         });
         console.log('opened edit modal');
     }
@@ -95,7 +98,8 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
     closeEditModal(e: any) {
         this.setState({
             editModal: false,
-            editMemeId: ''
+            editMemeId: '',
+            editMemeCaption: ''
         });
         console.log('closed edit modal');
     }
@@ -129,9 +133,9 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                     <MemeEdit
                         sessionToken={this.props.sessionToken}
                         memeId={this.state.editMemeId}
-                        fetchUserMemes={this.fetchUserMemes.bind(this)}
-                        // openEditModal={this.openEditModal.bind(this)}
+                        memeCaption={this.state.editMemeCaption}
                         closeEditModal={this.closeEditModal.bind(this)}
+                        fetchUserMemes={this.fetchUserMemes.bind(this)}
                     />
                     : null}
             </div>
