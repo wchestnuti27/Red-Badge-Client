@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
 
+import {
+    Modal, ModalHeader, ModalBody, FormGroup,
+    Form, Button, Label, Input
+} from 'reactstrap';
+
 type AcctState = {
-    userMemes: any[]
+    caption: string
 }
 
 type AcceptedProps = {
-    sessionToken: string | null
+    sessionToken: string | null,
+    memeId: string,
+    memeCaption: string,
+    closeEditModal: (e: any) => void,
+    fetchUserMemes: () => void
 }
 
-export class MyAccount extends Component<AcceptedProps, AcctState> {
+export default class MemeEdit extends Component<AcceptedProps, AcctState> {
     constructor(props: AcceptedProps) {
         super(props)
 
         this.state = {
-            userMemes: []
+            caption: ''
         }
     }
 
@@ -25,38 +34,45 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
         }
     }
 
-    handleSubmit(event: any) {
+    editMeme(event: any, memeId: string) {
         event.preventDefault();
 
-
         // Update Memes by user //
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/:postId', {
+        fetch(`https://team6-red-badge-meme-server.herokuapp.com/mymemes/update/${memeId}`, {
             method: 'PUT',
+            body: JSON.stringify({
+                caption: this.state.caption
+            }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': this.checkSessionToken(this.props.sessionToken)
             })
         })
-            .then(response => response.json())
-            .then(json => {
-                this.setState({
-                    userMemes: json
-                });
-                console.log(this.state.userMemes);
+            .then(res => {
+                console.log('we made it this far why you no work')
+                this.props.fetchUserMemes();
+                this.props.closeEditModal(event);
             })
     }
 
     UpdateMemeImage(e: any) {
-        this.setState({ });
+        this.setState({});
     }
-
 
     render() {
         return (
-            <div>
-                
-            </div>
+            <Modal isOpen={true}>
+                <ModalHeader toggle={(e) => this.props.closeEditModal(e)}>Update this Meme</ModalHeader>
+                <ModalBody>
+                    <Form encType="multipart/form-data" onSubmit={event => this.editMeme(event, this.props.memeId)}>
+                        <FormGroup>
+                            <Label htmlFor="caption">Caption</Label>
+                            <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
+                        </FormGroup>
+                        <Button type="submit">Submit</Button>
+                    </Form>
+                </ModalBody>
+            </Modal>
         )
     }
-
-    }
+}

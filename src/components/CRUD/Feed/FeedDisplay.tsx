@@ -4,7 +4,6 @@ import Votes from '../Votes/Votes';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
@@ -17,19 +16,24 @@ let imageHeight = 150;
 
 const useStyles = makeStyles({
     root: {
-        display: 'flex',
-        flexDirection: 'column-reverse',
-        alignItems: 'center',
         backgroundColor: 'rgb(33,33,33)',
-        color: 'white'
+        color: 'white',
+        textAlign: 'center'
+    },
+    memeContainer: {
+        display: 'flex',
+        flexFlow: 'row-reverse wrap',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     card: {
         height: cardHeight,
         width: cardWidth,
         backgroundColor: 'white',
         textAlign: 'center',
-        marginBottom: '10px',
-        color: 'rgb(33,33,33)'
+        margin: '10px',
+        color: 'rgb(33,33,33)',
+        border: 'thin solid white'
     },
     image: {
         height: imageHeight,
@@ -45,10 +49,11 @@ const useStyles = makeStyles({
 })
 
 type AcceptedProps = {
+    sessionToken?: string | null,
     memes: any[]
 }
 
-const FeedDisplay = ({ memes }: AcceptedProps) => {
+const FeedDisplay = ({ sessionToken, memes }: AcceptedProps) => {
 
     const classes = useStyles();
 
@@ -60,10 +65,10 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
                         <CardMedia className={classes.image} image={meme.url} />
                         <CardContent>
                             <Typography variant="h6">{meme.caption}</Typography>
+                            <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                         </CardContent>
                     </CardActionArea>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
-                    {/* <p>Brought to you by: {meme.username}</p> */}
                 </Card>
             )
         })
@@ -71,8 +76,11 @@ const FeedDisplay = ({ memes }: AcceptedProps) => {
 
     return (
         <div className={classes.root}>
-            {displayMemes(memes)}
-            <h2>Dank Memes</h2>
+            {sessionToken ? <h3>Welcome Back!</h3> : <h2>Dank Memes</h2>}
+
+            <div className={classes.memeContainer}>
+                {displayMemes(memes)}
+            </div>
         </div>
     )
 }
