@@ -11,8 +11,9 @@ type PostState = {
 }
 
 type AcceptedProps = {
-    sessionToken: string | null,
-    closePostModal: (event: any) => any
+    sessionToken: any
+    closePostModal: (event: any) => any,
+    getMemes: (event: any) => any
 }
 
 export default class Feed extends Component<AcceptedProps, PostState> {
@@ -20,23 +21,22 @@ export default class Feed extends Component<AcceptedProps, PostState> {
         super(props)
 
         this.state = {
-            memeImage: 'did this change',
+            memeImage: '',
             caption: '',
             voteCount: '0',
         }
     }
 
-    checkSessionToken(token: string | null): string {
-        if (token === null) {
-            return 'no token'
-        } else {
-            return token
-        }
-    }
+    // checkSessionToken(token: string | null): string {
+    //     if (token === null) {
+    //         return 'no token'
+    //     } else {
+    //         return token
+    //     }
+    // }
 
     handleSubmit(event: any) {
-        event.preventDefault();
-        
+        // event.preventDefault();
 
         let formData = new FormData();
         formData.append('caption', this.state.caption);
@@ -47,17 +47,22 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             method: 'POST',
             body: formData,
             headers: new Headers({
-                'Authorization': this.checkSessionToken(this.props.sessionToken)
+                'Authorization': this.props.sessionToken
             })
         })
             .then(response => response.json())
-            .then(jsonData => console.log(jsonData))
-            .then(this.props.closePostModal(event))
+            .then((jsonData) => {
+                console.log(jsonData, 'post data')
+                this.props.closePostModal(event)
+            })
+                //  .then(function alert('Meme Posted'))
+                //  .then(
+                    // this.props.getMemes(event),
+                //  )
     }
 
     changeMemeImage(e: any) {
         this.setState({ memeImage: e.target.files[0] });
-        console.log(this.state.memeImage, '<-This should be the memeImage')
     }
 
     render() {
@@ -75,7 +80,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             <Modal isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closePostModal(e)}>Post a SupreMeme</ModalHeader>
                 <ModalBody>
-                    <form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
+                    <Form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
                         <FormGroup>
                             <Label htmlFor="memeImage">Choose an Image</Label>
                             <Input type="file" onChange={e => this.changeMemeImage(e)} />
@@ -85,7 +90,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                             <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
                         <Button type="submit">Submit</Button>
-                    </form>
+                    </Form>
                 </ModalBody>
             </Modal>
         )

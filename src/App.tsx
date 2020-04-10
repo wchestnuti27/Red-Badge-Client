@@ -31,11 +31,14 @@ class App extends React.Component<{}, AppState> {
     }
   }
 
+  componentDidMount() {
+    this.setState({ sessionToken: localStorage.getItem('token') })
+  }
+
 
   updateToken(newToken: string) {
     localStorage.setItem('token', newToken);
     this.setState({ sessionToken: localStorage.getItem('token') })
-    console.log(this.state.sessionToken)
   }
 
   clearToken() {
@@ -43,28 +46,28 @@ class App extends React.Component<{}, AppState> {
     this.setState({ sessionToken: '' });
   }
 
-  componentWillMount() {
-    console.log('hi,')
-  }
+  // componentWillMount() {
+  //   console.log('hi,')
+  // }
 
-  componentDidMount() {
-    console.log('how are ya?')
-    console.log('GuesUser', this.state.guestUser)
-  }
+  // componentDidMount() {
+  //   console.log('how are ya?')
+  //   console.log('GuesUser', this.state.guestUser)
+  // }
 
 
   render() {
-    const guestUserSwitch = () => {
-      return (
-        this.state.sessionToken === null ? // this toggles guest user landing page and auth
-          <Auth updateToken={this.updateToken.bind(this)} />
-          :
-          <div>
-            {/* <PostMeme sessionToken={this.state.sessionToken} /> */}
-            <Feed />
-          </div>
-      )
-    }
+    // const guestUserSwitch = () => {
+    //   return (
+    //     this.state.sessionToken === null ? // this toggles guest user landing page and auth
+    //       <Auth updateToken={this.updateToken.bind(this)} />
+    //       :
+    //       <div>
+    //         {/* <PostMeme sessionToken={this.state.sessionToken} /> */}
+    //         <Feed sessionToken={this.state.sessionToken} />
+    //       </div>
+    //   )
+    // }
     return (
       <div>
         <Router>
