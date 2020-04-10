@@ -10,6 +10,7 @@ import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 // import WillDisplay from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
+import WillDisplay from './Will/WillDisplay';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -86,7 +87,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
       <List>
         {/* ===== WILL ===== */}
         <ListItem button>
-          <Link to='<WillDisplay />' id='link' />
+          <Link to='/Will' id='link' />
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
@@ -156,6 +157,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
             }
           </Route>
 
+          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
         </Switch>
       </div >
     );

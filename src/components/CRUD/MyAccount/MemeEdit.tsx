@@ -29,22 +29,22 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
         event.preventDefault();
 
 
-        // Update Memes by user //
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/:postId', {
-            method: 'PUT',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization': this.checkSessionToken(this.props.sessionToken)
-            })
+    // Update Memes by user //
+    fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/:postId', {
+        method: 'PUT',
+        headers: new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': this.checkSessionToken(this.props.sessionToken)
         })
-            .then(response => response.json())
-            .then(json => {
-                this.setState({
-                    userMemes: json
-                });
-                console.log(this.state.userMemes);
-            })
-    }
+    })
+        .then(response => response.json())
+        .then(json => {
+            this.setState({
+                userMemes: json
+            });
+            console.log(this.state.userMemes);
+        })
+}
 
     UpdateMemeImage(e: any) {
         this.setState({});
