@@ -1,4 +1,11 @@
 import React, { Component } from 'react'
+import Votes from '../Votes/Votes';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
 type AcctState = {
     userMemes: any[]
@@ -8,7 +15,7 @@ type AcceptedProps = {
     sessionToken: string | null
 }
 
-export class MyAccount extends Component<AcceptedProps, AcctState> {
+class MyAccount extends Component<AcceptedProps, AcctState> {
     constructor(props: AcceptedProps) {
         super(props)
 
@@ -48,6 +55,7 @@ export class MyAccount extends Component<AcceptedProps, AcctState> {
     render() {
         return (
             <div>
+                {this.MemeDisplay(this.state.userMemes)}
                 <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Update Meme</button>
                 <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Delete Meme</button>
             </div>
