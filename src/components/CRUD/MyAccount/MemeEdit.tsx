@@ -49,6 +49,7 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
             })
         })
             .then(res => {
+                console.log('we made it this far why you no work')
                 this.props.fetchUserMemes();
                 this.props.closeEditModal(event);
             })
