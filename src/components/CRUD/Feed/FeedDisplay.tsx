@@ -65,7 +65,7 @@ const FeedDisplay = ({ sessionToken, memes }: AcceptedProps) => {
                         <CardMedia className={classes.image} image={meme.url} />
                         <CardContent>
                             <Typography variant="h6">{meme.caption}</Typography>
-                            <Typography variant="body2">{meme.username}</Typography>
+                            <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                         </CardContent>
                     </CardActionArea>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
