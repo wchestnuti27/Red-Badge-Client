@@ -1,4 +1,20 @@
-// import React, { Component } from 'react';
+import React from 'react';
+
+const WillDisplay = (props: any) => {
+
+    return (
+        <div>
+
+        </div>
+    )
+}
+
+export default WillDisplay;
+
+
+
+
+
 // import { Modal, Button } from 'antd';
 // import Will from './Will';
 // import ReactDOM from 'react-dom';

@@ -8,7 +8,7 @@ import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
-// import WillDisplay from '../Individual/Will/Will';
+import Will from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
 
 // material ui
@@ -98,11 +98,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
       <List>
         {/* ===== WILL ===== */}
-      <Link to='/will' id='link' />
+      <Link to='/will' id='link'>
         <ListItem button>
           <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
           <ListItemText>Will</ListItemText>
         </ListItem>
+        </Link>
 
         {/* ===== NATHAN ===== */}
         <ListItem button>
@@ -174,7 +175,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
             }
           </Route>
 
-          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
+          <Route exact path='/Will'><Will/></Route>
         </Switch>
       </div >
     );
