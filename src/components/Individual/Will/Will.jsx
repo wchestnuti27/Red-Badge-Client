@@ -1,24 +1,20 @@
 import React from 'react';
 import WillDisplay from './WillDisplay';
 
-export default class Will extends React.Component {
+class Will extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             activity: '',
-            type: '',
+            type: ''
         }
     }
 
-    componentWillMount () {
-        console.log("component will mount");
-    };
-
     componentDidMount () {
-        console.log("component mounted");
+        console.log("record found");
     
-    fetch(`https://www.boredapi.com/api/`)
+    fetch(`http://www.boredapi.com/api/activity/`)
     .then(response => response.json())
     .then(json => {
         console.log(json);
@@ -39,5 +35,7 @@ export default class Will extends React.Component {
         )
     }
 }
+
+export default Will;
 
 
