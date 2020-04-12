@@ -165,7 +165,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
 
           <Route exact path='/dan'><Dan /></Route>
-          <Route exact path='/will'><Dan /></Route>
+          {/* <Route exact path='/will'><Dan /></Route> */}
 
           {/* protected routes */}
           <Route exact path='/account'>
@@ -175,7 +175,7 @@ export default class SwipeableTemporaryDrawer extends React.Component {
             }
           </Route>
 
-          <Route exact path='/Will'><Will/></Route>
+          <Route exact path='/will'><Will/></Route>
         </Switch>
       </div >
     );
