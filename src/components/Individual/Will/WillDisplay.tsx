@@ -4,8 +4,20 @@ import 'antd/dist/antd.css';
 // import './index.css';
 import { Modal, Button } from 'antd';
 
-export default class WillDisplay extends React.Component {
-  constructor(props){
+type WillState = {
+  activity: string,
+  type: string,
+  visible: boolean,
+  confirmLoading: boolean,
+}
+
+type WillProps = {
+  activity: string,
+  type: string
+}
+
+export default class WillDisplay extends React.Component<WillProps, WillState>  {
+  constructor(props: WillProps){
     super(props)
 
     this.state = {
@@ -24,7 +36,7 @@ export default class WillDisplay extends React.Component {
 
   handleOk = () => {
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
+      // ModalText: 'The modal will be closed after two seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -43,7 +55,7 @@ export default class WillDisplay extends React.Component {
   };
 
   render() {
-    const { visible, confirmLoading, ModalText} = this.state;
+    const { visible, confirmLoading } = this.state;
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>
@@ -56,7 +68,7 @@ export default class WillDisplay extends React.Component {
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
         >
-          <p>{ModalText}</p>
+          {/* <p>{ModalText}</p> */}
           <h4>Activity:  {this.props.activity}</h4>
           <br />
           <h4>Type:  {this.props.type}</h4>
