@@ -10,6 +10,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 type AcctState = {
@@ -78,8 +80,8 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                         </CardContent>
                     </CardActionArea>
                     <CardActions className='buttonContainer'>
-                        <Button variant='contained' color='primary' id='button' onClick={e => this.openEditModal(e, meme.id, meme.caption)}>Update</Button>
-                        <Button variant='contained' color='secondary' id='button' onClick={e => this.deleteMeme(meme.id)}>Delete</Button>
+                        <EditIcon id='button' onClick={e => this.openEditModal(e, meme.id, meme.caption)} />
+                        <DeleteIcon id='button' onClick={e => this.deleteMeme(meme.id)} />
                     </CardActions>
                 </Card>
             )
