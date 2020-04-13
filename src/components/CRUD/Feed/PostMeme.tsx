@@ -54,10 +54,11 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             .then((jsonData) => {
                 console.log(jsonData, 'post data')
                 this.props.closePostModal(event)
+                this.props.getMemes(event)
+                console.log("last")
             })
                 //  .then(function alert('Meme Posted'))
                 //  .then(
-                    // this.props.getMemes(event),
                 //  )
     }
 
