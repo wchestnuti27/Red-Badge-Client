@@ -22,7 +22,6 @@ class Auth extends React.Component<AuthProps, AuthState> {
   render (){
     return (
       <div className='wrapper'>
-          <h1 className='welcome'>The Hype-Train</h1>
           <div className='login-banner'>
               <div className='auth-container'>
                   <br />
