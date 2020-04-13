@@ -39,7 +39,7 @@ type AcceptedProps = {
 
 type NavbarState = {
   right: boolean,
-  postModal: boolean
+  navPostModal: boolean
 }
 
 export default class SwipeableTemporaryDrawer extends React.Component<AcceptedProps, NavbarState> {
@@ -49,17 +49,17 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
     this.state = {
       // right tells the navbar to open from the right side (this comes from material-ui)
       right: false,
-      postModal: false
+      navPostModal: false
     }
   }
 
   openPostModal(e: any) {
-    this.setState({ postModal: true })
+    this.setState({ navPostModal: true })
     console.log('openPostModal fired')
   }
 
-  closePostModal(e: any) {
-    this.setState({ postModal: false })
+  closeNavPostModal(e: any) {
+    this.setState({ navPostModal: false })
     console.log('closePostModal fired')
   }
 
@@ -142,12 +142,19 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         <div id='navbar'>
 
           {/* OPEN NAV DRAWER */}
+          <div id='navButtons'>
+          </div>
           <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
+
+          <Link to='/' id='postMemeButton'>
+              <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
+                <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
+              </ListItem>
+            </Link>
 
           {/* POST MEME */}
           {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}
-          <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button>
-
+          {/* <Button id='postMemeButton' onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
         </div>
 
         <React.Fragment>
@@ -169,7 +176,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           : null} */}
 
         <Switch>
-          <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
+          <Route exact path='/'><Feed navPostModal={this.state.navPostModal} closeNavPostModal={this.closeNavPostModal.bind(this)} sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>

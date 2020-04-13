@@ -14,6 +14,9 @@ type MemeState = {
 
 type AcceptedProps = {
     sessionToken: string | null,
+    navPostModal: boolean,
+    closeNavPostModal: (e: any) => void
+    
     // sessionToken?: string
 }
 
@@ -28,14 +31,15 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
         }
     }
 
-    openPostModal(event: any) {
-        this.setState({ postModal: true })
-    }
+    // openPostModal(event: any) {
+    //     this.setState({ postModal: true })
+    // }
 
 
     closePostModal(event: any) {
         this.setState({ postModal: false })
         console.log('did it work')
+        this.props.closeNavPostModal(event)
 
     }
 
@@ -99,7 +103,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
             <div>
 
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
-                {/* {this.state.postModal ? <PostMeme getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null} */}
+                {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
                
                 {this.state.memes !== [] ?
                     <FeedDisplay
