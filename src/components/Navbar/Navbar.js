@@ -8,7 +8,7 @@ import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
-// import WillDisplay from '../Individual/Will/Will';
+import Will from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
 import Nathan from '../Individual/Nathan/Nathan';
 
@@ -99,11 +99,12 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
       <List>
         {/* ===== WILL ===== */}
-        <ListItem button>
-          <Link to='/Will' id='link' />
-          <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
-          <ListItemText>Will</ListItemText>
-        </ListItem>
+        <Link to='/will' id='link'>
+          <ListItem button>
+            <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
+            <ListItemText>Will</ListItemText>
+          </ListItem>
+        </Link>
 
         {/* ===== NATHAN ===== */}
         <Link to='/nathan' id='link'>
@@ -163,10 +164,8 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <Switch>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
-
-          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
-
           <Route exact path='/dan'><Dan /></Route>
+          <Route exact path='/will'><Will /></Route>
 
           {/* protected routes */}
           <Route exact path='/account'>
@@ -176,8 +175,13 @@ export default class SwipeableTemporaryDrawer extends React.Component {
             }
           </Route>
 
+
           {/* <Route exact path='/Will'><WillDisplay/></Route> */}
           <Route exact path='/nathan'><Nathan /></Route>
+
+          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
+
         </Switch>
       </div >
     );
