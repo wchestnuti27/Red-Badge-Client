@@ -45,11 +45,11 @@ export default class NathanDisplay extends React.Component<AcceptedProps, TacoSt
             .then(json => {
                 console.log(json)
                 this.setState({
-                    // shell: json.shell.name,
-                    // mixin: json.mixin.name,
-                    // seasoning: json.seasoning.name,
-                    // condiment: json.condiment.name,
-                    // base_layer: json.base_layer.name,
+                    shell: json.shell.name,
+                    mixin: json.mixin.name,
+                    seasoning: json.seasoning.name,
+                    condiment: json.condiment.name,
+                    base_layer: json.base_layer.name,
                     taco: `${json.base_layer.name} with ${json.mixin.name}, garnished with ${json.condiment.name} topped off with ${json.seasoning.name} and wrapped in delicious ${json.shell.name}.`
                 })
             })

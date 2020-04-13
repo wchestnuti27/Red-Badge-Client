@@ -26,6 +26,9 @@ export default class Nathan extends React.Component<AcceptedProps, TacoState> {
         }
     }
 
+    componentDidMount(){
+        console.log('mounted')
+    }
     showModal = () => {
         this.setState({
             visible: true,
