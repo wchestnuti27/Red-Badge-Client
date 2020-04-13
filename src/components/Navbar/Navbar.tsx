@@ -10,6 +10,7 @@ import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 import Will from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
+import Nathan from '../Individual/Nathan/Nathan';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -107,10 +108,12 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         </Link>
 
         {/* ===== NATHAN ===== */}
-        <ListItem button>
-          <ListItemIcon><FastfoodOutlinedIcon /></ListItemIcon>
-          <ListItemText>Nathan</ListItemText>
-        </ListItem>
+        <Link to='/nathan' id='link'>
+          <ListItem button>
+            <ListItemIcon><FastfoodOutlinedIcon /></ListItemIcon>
+            <ListItemText>Nathan</ListItemText>
+          </ListItem>
+        </Link>
 
         {/* ===== DANIEL ===== */}
         <Link to='/dan' id='link'>
@@ -179,7 +182,12 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             }
           </Route>
 
+
+          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
+          <Route exact path='/nathan'><Nathan /></Route>
+
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
 
         </Switch>
       </div >
