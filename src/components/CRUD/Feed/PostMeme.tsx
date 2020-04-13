@@ -57,9 +57,9 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                 this.props.getMemes(event)
                 console.log("last")
             })
-                //  .then(function alert('Meme Posted'))
-                //  .then(
-                //  )
+        //  .then(function alert('Meme Posted'))
+        //  .then(
+        //  )
     }
 
     changeMemeImage(e: any) {

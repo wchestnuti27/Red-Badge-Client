@@ -4,8 +4,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
-import Auth from './components/auth/Auth';
-import Feed from './components/CRUD/Feed/Feed';
 
 import './components/auth/style.scss'
 
