@@ -41,9 +41,9 @@ class App extends React.Component<{}, AppState> {
     this.setState({ sessionToken: '' });
   }
 
-  componentDidMount(){
+  componentDidMount() {
     console.log('top')
-    this.setState({sessionToken: localStorage.getItem('token')})
+    this.setState({ sessionToken: localStorage.getItem('token') })
   }
 
 
@@ -69,7 +69,7 @@ class App extends React.Component<{}, AppState> {
     //   )
     // }
     return (
-      <div style={{ backgroundColor: 'rgb(33,33,33)' }}>
+      <div style={{ backgroundColor: 'rgb(33,33,33)', color: 'white' }}>
         <Router>
           <Navbar
             sessionToken={this.state.sessionToken}
