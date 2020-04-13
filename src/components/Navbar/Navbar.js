@@ -98,11 +98,11 @@ export default class SwipeableTemporaryDrawer extends React.Component {
 
       <List>
         {/* ===== WILL ===== */}
-      <Link to='/will' id='link'>
-        <ListItem button>
-          <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
-          <ListItemText>Will</ListItemText>
-        </ListItem>
+        <Link to='/will' id='link'>
+          <ListItem button>
+            <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
+            <ListItemText>Will</ListItemText>
+          </ListItem>
         </Link>
 
         {/* ===== NATHAN ===== */}
@@ -161,11 +161,8 @@ export default class SwipeableTemporaryDrawer extends React.Component {
         <Switch>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
-
-          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
-
           <Route exact path='/dan'><Dan /></Route>
-          {/* <Route exact path='/will'><Dan /></Route> */}
+          <Route exact path='/will'><Will /></Route>
 
           {/* protected routes */}
           <Route exact path='/account'>
@@ -175,7 +172,8 @@ export default class SwipeableTemporaryDrawer extends React.Component {
             }
           </Route>
 
-          <Route exact path='/will'><Will/></Route>
+          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
         </Switch>
       </div >
     );
