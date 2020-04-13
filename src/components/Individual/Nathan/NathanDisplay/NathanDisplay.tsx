@@ -30,7 +30,7 @@ export default class NathanDisplay extends React.Component<AcceptedProps, TacoSt
             seasoning: '',
             condiment: '',
             base_layer: '',
-            taco: ''
+            taco: 'In Route For Taste Buds, Next Stop - Flavorville'
         }
     }
 
@@ -79,6 +79,7 @@ export default class NathanDisplay extends React.Component<AcceptedProps, TacoSt
         //         </div>
         //     )
         // }
+         
         return (
                 <Modal
                     title="Taco Tuesday Special"
@@ -91,6 +92,7 @@ export default class NathanDisplay extends React.Component<AcceptedProps, TacoSt
                 >
                     {/* <h6>{this.state.base_layer} with {this.state.mixin}, garnished with {this.state.condiment} topped off with {this.state.seasoning} and wrapped in delicious {this.state.shell}.</h6> */}
                     {/* {supremeTaco()} */}
+                    
                    { this.props.confirmLoading ? <p>{this.props.ModalText}</p> : <p>{this.state.taco}</p>}
                 </Modal>
         )

@@ -76,7 +76,7 @@ const FeedDisplay = ({ sessionToken, memes }: AcceptedProps) => {
 
     return (
         <div className={classes.root}>
-            {sessionToken ? <h3>Welcome Back!</h3> : <h2>Dank Memes</h2>}
+            {sessionToken ? <h3 style={{ color: 'white' }}>Welcome Back!</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
 
             <div className={classes.memeContainer}>
                 {displayMemes(memes)}

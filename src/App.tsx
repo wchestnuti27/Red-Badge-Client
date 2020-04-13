@@ -31,10 +31,6 @@ class App extends React.Component<{}, AppState> {
   }
 
 
-  componentDidMount() {
-    this.setState({ sessionToken: localStorage.getItem('token') })
-  }
-
   updateToken(newToken: string) {
     localStorage.setItem('token', newToken);
     this.setState({ sessionToken: localStorage.getItem('token') })
@@ -44,6 +40,12 @@ class App extends React.Component<{}, AppState> {
     localStorage.clear();
     this.setState({ sessionToken: '' });
   }
+
+  componentDidMount() {
+    console.log('top')
+    this.setState({ sessionToken: localStorage.getItem('token') })
+  }
+
 
   // componentWillMount() {
   //   console.log('hi,')
@@ -67,7 +69,7 @@ class App extends React.Component<{}, AppState> {
     //   )
     // }
     return (
-      <div style={{ backgroundColor: 'rgb(33,33,33)' }}>
+      <div style={{ backgroundColor: 'rgb(33,33,33)', color: 'white' }}>
         <Router>
           <Navbar
             sessionToken={this.state.sessionToken}
