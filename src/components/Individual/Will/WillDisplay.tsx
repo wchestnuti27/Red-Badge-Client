@@ -9,6 +9,7 @@ type WillState = {
   type: string,
   visible: boolean,
   confirmLoading: boolean,
+  ModalText: string
 }
 
 type WillProps = {
@@ -25,6 +26,7 @@ export default class WillDisplay extends React.Component<WillProps, WillState>  
       type: '',
       visible: false,
       confirmLoading: false,
+      ModalText: ''
   }
 };
 
@@ -36,7 +38,7 @@ export default class WillDisplay extends React.Component<WillProps, WillState>  
 
   handleOk = () => {
     this.setState({
-      // ModalText: 'The modal will be closed after two seconds',
+      ModalText: 'The modal will be closed after two seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -55,10 +57,10 @@ export default class WillDisplay extends React.Component<WillProps, WillState>  
   };
 
   render() {
-    const { visible, confirmLoading } = this.state;
+    const { visible, confirmLoading, ModalText } = this.state;
     return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
+      <div style={{textAlign: 'center', backgroundColor: 'skyblue'}}>
+        <Button style={{backgroundColor: 'red'}} type="primary" onClick={this.showModal}>
           Will's Button
         </Button> 
         <Modal
@@ -68,7 +70,7 @@ export default class WillDisplay extends React.Component<WillProps, WillState>  
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
         >
-          {/* <p>{ModalText}</p> */}
+          <p>{ModalText}</p>
           <h4>Activity:  {this.props.activity}</h4>
           <br />
           <h4>Type:  {this.props.type}</h4>
