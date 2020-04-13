@@ -14,27 +14,27 @@ class Will extends React.Component {
     // handleSubmit(event) {
     //     event.preventDefault();
 
-    componentDidMount () {
+    componentDidMount() {
         console.log("record found");
-    
-    fetch(`http://www.boredapi.com/api/activity/`)
-    .then(response => response.json())
-    .then(json => {
-        console.log(json);
-        this.setState({
-            activity: json.activity,
-            type: json.type,
-        })
-        console.log(this.state.activity);
-        console.log(this.state.type);
-    });
+
+        fetch(`https://www.boredapi.com/api/activity/`)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                this.setState({
+                    activity: json.activity,
+                    type: json.type,
+                })
+                console.log(this.state.activity);
+                console.log(this.state.type);
+            });
     }
-// }
+    // }
 
     render() {
         return (
             <div>
-                <WillDisplay activity={this.state.activity} type={this.state.type}/>
+                <WillDisplay activity={this.state.activity} type={this.state.type} />
             </div>
         )
     }
