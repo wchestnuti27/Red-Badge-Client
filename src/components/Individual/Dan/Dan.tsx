@@ -23,7 +23,7 @@ class Dan extends React.Component<DanProps, DanState> {
     }
 
     componentDidMount() {
-        fetch(`http://jservice.io/api/random?count=1`)
+        fetch(`https://jservice.io/api/random?count=1`)
             .then(response => response.json())
             .then(json => {
                 this.setState({
