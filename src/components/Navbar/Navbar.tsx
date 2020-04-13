@@ -34,7 +34,9 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 type AcceptedProps = {
   sessionToken: string | null,
   updateToken: (newToken: string) => void,
-  clearToken: () => void
+  clearToken: () => void,
+  user: object | null,
+  updateUser: (user: object) => void
 }
 
 type NavbarState = {
@@ -109,10 +111,10 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
 
         {/* ===== NATHAN ===== */}
         <Link to='/nathan' id='link'>
-        <ListItem button>
-          <ListItemIcon><FastfoodIcon /></ListItemIcon>
-          <ListItemText>Nathan</ListItemText>
-        </ListItem>
+          <ListItem button>
+            <ListItemIcon><FastfoodIcon /></ListItemIcon>
+            <ListItemText>Nathan</ListItemText>
+          </ListItem>
         </Link>
 
         {/* ===== DANIEL ===== */}
@@ -190,11 +192,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             }
           </Route>
 
-
-          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
-
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
-
 
         </Switch>
       </div >

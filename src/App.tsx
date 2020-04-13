@@ -39,6 +39,10 @@ class App extends React.Component<{}, AppState> {
     this.setState({ sessionToken: '' });
   }
 
+  updateUser(user: object) {
+    this.setState({ user: user });
+  }
+
   componentDidMount() {
     console.log('top')
     this.setState({ sessionToken: localStorage.getItem('token') })
@@ -73,6 +77,8 @@ class App extends React.Component<{}, AppState> {
             sessionToken={this.state.sessionToken}
             updateToken={this.updateToken.bind(this)}
             clearToken={this.clearToken.bind(this)}
+            user={this.state.user}
+            updateUser={this.updateUser.bind(this)}
           />
         </Router>
         {/* {guestUserSwitch()} */}
