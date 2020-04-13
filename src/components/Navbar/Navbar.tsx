@@ -34,7 +34,9 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 type AcceptedProps = {
   sessionToken: string | null,
   updateToken: (newToken: string) => void,
-  clearToken: () => void
+  clearToken: () => void,
+  user: object | null,
+  updateUser: (user: object) => void
 }
 
 type NavbarState = {
@@ -169,8 +171,8 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           : null} */}
 
         <Switch>
+          <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} updateUser={this.props.updateUser.bind(this)} /></Route>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
-          <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>
           <Route exact path='/nathan'><Nathan /></Route>
@@ -179,7 +181,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           <Route exact path='/account'>
             {
               this.props.sessionToken ? <MyAccount sessionToken={this.props.sessionToken} />
-                : <Auth updateToken={this.props.updateToken.bind(this)} />
+                : <Auth updateToken={this.props.updateToken.bind(this)} updateUser={this.props.updateUser.bind(this)} />
             }
           </Route>
 
