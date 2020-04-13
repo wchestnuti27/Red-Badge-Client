@@ -182,8 +182,13 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             }
           </Route>
 
+
           {/* <Route exact path='/Will'><WillDisplay/></Route> */}
           <Route exact path='/nathan'><Nathan /></Route>
+
+          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
+
         </Switch>
       </div >
     );
