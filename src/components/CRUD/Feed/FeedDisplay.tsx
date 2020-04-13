@@ -11,8 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import 'typeface-roboto';
 
 let cardHeight = 'auto';
-let cardWidth = 200;
-let imageHeight = 150;
+let cardWidth = 250;
+let imageHeight = 200;
+let imageWidth = cardWidth;
 
 const useStyles = makeStyles({
     root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles({
     },
     memeContainer: {
         display: 'flex',
-        flexFlow: 'row-reverse wrap',
+        flexFlow: 'row wrap',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -37,7 +38,10 @@ const useStyles = makeStyles({
     },
     image: {
         height: imageHeight,
-        width: 'auto'
+        width: imageWidth,
+        // maxWidth: '100%',
+        // maxHeight: 200,
+        objectFit: 'fill'
     },
     vote: {
         textAlign: 'center',
@@ -58,6 +62,9 @@ const FeedDisplay = ({ sessionToken, memes }: AcceptedProps) => {
     const classes = useStyles();
 
     const displayMemes = (memes: object[]) => {
+
+        memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
+
         return memes.map((meme: any, index: number) => {
             return (
                 <Card key={index} className={classes.card}>

@@ -69,6 +69,9 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
     }
 
     MemeDisplay(memes: any[]) {
+
+        memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
+
         return memes.map((meme: any, index: number) => {
             return (
                 <Card key={index} className='card'>
