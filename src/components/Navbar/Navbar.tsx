@@ -10,6 +10,7 @@ import Feed from '../CRUD/Feed/Feed';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 import Will from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
+import Nathan from '../Individual/Nathan/Nathan';
 
 // material ui
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -25,9 +26,9 @@ import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
-import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import HelpIcon from '@material-ui/icons/Help';
+import FastfoodIcon from '@material-ui/icons/Fastfood';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 type AcceptedProps = {
@@ -101,21 +102,21 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         {/* ===== WILL ===== */}
         <Link to='/will' id='link'>
           <ListItem button>
-            <ListItemIcon><SentimentVeryDissatisfiedIcon /></ListItemIcon>
+            <ListItemIcon><DirectionsRunIcon /></ListItemIcon>
             <ListItemText>Will</ListItemText>
           </ListItem>
         </Link>
 
         {/* ===== NATHAN ===== */}
         <ListItem button>
-          <ListItemIcon><FastfoodOutlinedIcon /></ListItemIcon>
+          <ListItemIcon><FastfoodIcon /></ListItemIcon>
           <ListItemText>Nathan</ListItemText>
         </ListItem>
 
         {/* ===== DANIEL ===== */}
         <Link to='/dan' id='link'>
           <ListItem button>
-            <ListItemIcon><HelpOutlineOutlinedIcon /></ListItemIcon>
+            <ListItemIcon><HelpIcon /></ListItemIcon>
             <ListItemText>Dan</ListItemText>
           </ListItem>
         </Link>
@@ -179,7 +180,12 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             }
           </Route>
 
+
+          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
+          <Route exact path='/nathan'><Nathan /></Route>
+
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
+
 
         </Switch>
       </div >

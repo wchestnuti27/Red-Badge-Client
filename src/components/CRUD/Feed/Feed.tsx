@@ -99,8 +99,8 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
             <div>
 
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
-                {this.state.postModal ? <PostMeme getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
-
+                {/* {this.state.postModal ? <PostMeme getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null} */}
+               
                 {this.state.memes !== [] ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
