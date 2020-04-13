@@ -108,10 +108,12 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         </Link>
 
         {/* ===== NATHAN ===== */}
+        <Link to='/nathan' id='link'>
         <ListItem button>
           <ListItemIcon><FastfoodIcon /></ListItemIcon>
           <ListItemText>Nathan</ListItemText>
         </ListItem>
+        </Link>
 
         {/* ===== DANIEL ===== */}
         <Link to='/dan' id='link'>
@@ -178,6 +180,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>
+          <Route exact path='/nathan'><Nathan /></Route>
 
           {/* protected routes */}
           <Route exact path='/account'>
@@ -189,7 +192,6 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
 
 
           {/* <Route exact path='/Will'><WillDisplay/></Route> */}
-          <Route exact path='/nathan'><Nathan /></Route>
 
           {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
 
