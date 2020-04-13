@@ -32,7 +32,7 @@ class Auth extends React.Component<AuthProps, AuthState> {
                           <br />
                           {/* {isLogin ? <h5>New User?</h5> : <h5>Existing User?</h5>} */}
                           <Button color='info' onClick={() => this.setState({isLogin: !this.state.isLogin})}>
-                              {this.state.isLogin ? 'Sign up here' : 'Login here'}
+                              {this.state.isLogin ? 'Sign up here//' : 'Login here'}
                           </Button>
                       </Col>
                       {/* <Col sm='6'>
