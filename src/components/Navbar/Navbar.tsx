@@ -25,14 +25,24 @@ import MenuOutlinedIcon from '@material-ui/icons/MenuOutlined';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonIcon from '@material-ui/icons/Person';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import FastfoodOutlinedIcon from '@material-ui/icons/FastfoodOutlined';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
-export default class SwipeableTemporaryDrawer extends React.Component {
-  constructor(props) {
+type AcceptedProps = {
+  sessionToken: string | null,
+  updateToken: (newToken: string) => void,
+  clearToken: () => void
+}
+
+type NavbarState = {
+  right: boolean,
+  postModal: boolean
+}
+
+export default class SwipeableTemporaryDrawer extends React.Component<AcceptedProps, NavbarState> {
+  constructor(props: AcceptedProps) {
     super(props)
 
     this.state = {
@@ -42,18 +52,17 @@ export default class SwipeableTemporaryDrawer extends React.Component {
     }
   }
 
-  openPostModal(e) {
+  openPostModal(e: any) {
     this.setState({ postModal: true })
     console.log('openPostModal fired')
   }
 
-
-  closePostModal(e) {
+  closePostModal(e: any) {
     this.setState({ postModal: false })
     console.log('closePostModal fired')
   }
 
-  toggleDrawer = (open) => (event) => {
+  toggleDrawer = (open: boolean) => (event: any) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
@@ -69,19 +78,11 @@ export default class SwipeableTemporaryDrawer extends React.Component {
       onKeyDown={this.toggleDrawer(false)}
     >
       <List>
-        {/* ===== LOGIN ===== */}
-        <Link to='/auth' id='link'>
-          <ListItem button>
-            <ListItemIcon><VpnKeyIcon /></ListItemIcon>
-            <ListItemText primary='Login' />
-          </ListItem>
-        </Link>
-
         {/* ===== MY ACCOUNT ===== */}
         <Link to='/account' id='link'>
           <ListItem button>
             <ListItemIcon><PersonIcon /></ListItemIcon>
-            <ListItemText primary='My Account' />
+            {this.props.sessionToken ? <ListItemText primary='My Account' /> : <ListItemText primary='Login' />}
           </ListItem>
         </Link>
 
@@ -157,7 +158,13 @@ export default class SwipeableTemporaryDrawer extends React.Component {
           </SwipeableDrawer>
         </React.Fragment>
 
-        {this.state.postModal ? <PostMeme closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
+        {/* {this.state.postModal ?
+          <PostMeme
+            closePostModal={this.closePostModal.bind(this)}
+            sessionToken={this.props.sessionToken}
+          />
+          : null} */}
+
         <Switch>
           <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
