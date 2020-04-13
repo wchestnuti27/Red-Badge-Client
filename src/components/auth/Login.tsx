@@ -1,11 +1,20 @@
 import React from 'react';
 import './style.scss'
 import '../../helpers/environment';
-import APIURL from '../../helpers/environment';
+// import APIURL from '../../helpers/environment';
 import loginImg from '../../Assets/Meme Pic.jpg';
 
-export class Login extends React.Component {
-    constructor(props) {
+type LoginState = {
+    username: string,
+    password: string
+  }
+  
+type LoginProps = {
+    updateToken: (newToken: string) => void,
+  }
+
+export class Login extends React.Component<LoginProps, LoginState> {
+    constructor(props: LoginProps) {
         super(props);
 
         this.state = {
@@ -15,7 +24,7 @@ export class Login extends React.Component {
     }
 
 
-    handleSubmit(event) {
+    handleSubmit(event: any) {
         event.preventDefault();
 
         fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
@@ -35,7 +44,7 @@ export class Login extends React.Component {
 
 
     render() {
-        return <div className="base-container" ref={this.props.containerRef}>
+        return <div className="base-container">
             <div className="header">Login</div>
             <br />
             <div className="content">
