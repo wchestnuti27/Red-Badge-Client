@@ -19,7 +19,7 @@ const DanDisplay = (props: AcceptedProps) => {
             icon: <SmileOutlined style={{ color: 'black' }} />,
             description: props.answer,
             placement: 'topLeft',
-            duration: 0,
+            duration: 5,
             top: 50,
             style: {
                 width: '50vw',
