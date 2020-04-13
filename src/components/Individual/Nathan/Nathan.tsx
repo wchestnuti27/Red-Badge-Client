@@ -3,15 +3,17 @@ import NathanDisplay from './NathanDisplay/NathanDisplay'
 import { Modal, Button } from 'antd';
 import 'antd/dist/antd.css';
 
-type AcceptedProps = {
-
-}
+type AcceptedProps = {}
 
 type TacoState = {
     visible: boolean,
     ModalText: string,
     confirmLoading: boolean,
-    okText: string
+    okText: string,
+    working: boolean,
+    cancelText: string,
+    impatient: boolean,
+    impatientText: string
 }
 
 export default class Nathan extends React.Component<AcceptedProps, TacoState> {
@@ -22,41 +24,68 @@ export default class Nathan extends React.Component<AcceptedProps, TacoState> {
             ModalText: '',
             visible: false,
             confirmLoading: false,
-            okText: 'Eat'
+            okText: 'Eat',
+            cancelText: 'No Thanks',
+            working: false,
+            impatient: false,
+            impatientText: 'We know you are hungry, please wait...'
         }
     }
 
-    componentDidMount(){
-        console.log('mounted')
+    componentDidMount() {
+        console.log('the taco app has mounted')
     }
+
     showModal = () => {
+        // if (!this.state.working) { 
         this.setState({
             visible: true,
         });
+        // }
     };
 
+    impatientCustomer = () => {
+        this.setState({
+            impatient: true
+        })
+    }
+
     handleOk = (e: any) => {
-        console.log(e);
         this.setState({
             okText: 'Chowing Down...',
             ModalText: 'Commencing Taco Stomach...',
-            confirmLoading: true
+            cancelText: 'DISGUSTING',
+            confirmLoading: true,
+            working: true,
+            impatient: false
         });
         setTimeout(() => {
             this.setState({
                 visible: false,
                 confirmLoading: false,
                 ModalText: '',
-                okText: 'Eat'
+                okText: 'Eat',
+                cancelText: 'No Thanks',
+                working: false,
+                impatient: false
             });
         }, 3500);
     };
 
     handleCancel = (e: any) => {
-        console.log(e);
-        this.setState({
-            visible: false,
-        });
+        if (this.state.working) {
+            this.setState({
+                ModalText: 'Returning Taco to Kitchen...',
+                okText: 'Spitting out food...',
+                impatient: false
+            });
+        } else {
+            this.setState({
+                visible: false,
+                ModalText: 'Returning Taco to Kitchen...',
+                impatient: false
+            })
+        }
     };
 
     render() {
@@ -78,7 +107,7 @@ export default class Nathan extends React.Component<AcceptedProps, TacoState> {
                 <br />
 
                 <Button type="primary" onClick={this.showModal}>
-                    PRESS FOR TACO
+                    {this.state.working ? "HELPING WITH CUSTOMER" : "PRESS FOR TACO"}
                 </Button>
                 {this.state.visible ? <NathanDisplay
                     visible={this.state.visible}
@@ -87,6 +116,10 @@ export default class Nathan extends React.Component<AcceptedProps, TacoState> {
                     handleOk={this.handleOk.bind(this)}
                     handleCancel={this.handleCancel.bind(this)}
                     okText={this.state.okText}
+                    cancelText={this.state.cancelText}
+                    impatientCustomer={this.impatientCustomer.bind(this)}
+                    impatient={this.state.impatient}
+                    impatientText={this.state.impatientText}
                 /> : null}
             </div>
         )
