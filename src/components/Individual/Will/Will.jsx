@@ -11,6 +11,9 @@ class Will extends React.Component {
         }
     }
 
+    // handleSubmit(event) {
+    //     event.preventDefault();
+
     componentDidMount () {
         console.log("record found");
     
@@ -25,12 +28,13 @@ class Will extends React.Component {
         console.log(this.state.activity);
         console.log(this.state.type);
     });
-}
+    }
+// }
 
     render() {
         return (
             <div>
-                <WillDisplay />
+                <WillDisplay activity={this.state.activity} type={this.state.type}/>
             </div>
         )
     }
