@@ -1,8 +1,17 @@
 import React from 'react';
 import WillDisplay from './WillDisplay';
 
-class Will extends React.Component {
-    constructor(props) {
+type WillState = {
+    activity: string,
+    type: string
+}
+
+type WillProps = {
+
+}
+
+class Will extends React.Component<WillProps, WillState> {
+    constructor(props: WillProps) {
         super(props)
 
         this.state = {

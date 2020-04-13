@@ -4,8 +4,21 @@ import 'antd/dist/antd.css';
 // import './index.css';
 import { Modal, Button } from 'antd';
 
-export default class WillDisplay extends React.Component {
-  constructor(props){
+type WillState = {
+  activity: string,
+  type: string,
+  visible: boolean,
+  confirmLoading: boolean,
+  ModalText: string
+}
+
+type WillProps = {
+  activity: string,
+  type: string
+}
+
+export default class WillDisplay extends React.Component<WillProps, WillState>  {
+  constructor(props: WillProps){
     super(props)
 
     this.state = {
@@ -13,6 +26,7 @@ export default class WillDisplay extends React.Component {
       type: '',
       visible: false,
       confirmLoading: false,
+      ModalText: ''
   }
 };
 
@@ -43,10 +57,10 @@ export default class WillDisplay extends React.Component {
   };
 
   render() {
-    const { visible, confirmLoading, ModalText} = this.state;
+    const { visible, confirmLoading, ModalText } = this.state;
     return (
-      <div>
-        <Button type="primary" onClick={this.showModal}>
+      <div style={{textAlign: 'center', backgroundColor: 'skyblue'}}>
+        <Button style={{backgroundColor: 'red'}} type="primary" onClick={this.showModal}>
           Will's Button
         </Button> 
         <Modal
