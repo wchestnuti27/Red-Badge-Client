@@ -37,7 +37,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
     // }
 
     handleSubmit(event: any) {
-        // event.preventDefault();
+        event.preventDefault();
 
         let formData = new FormData();
         formData.append('caption', this.state.caption);
@@ -54,9 +54,9 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             .then(response => response.json())
             .then((jsonData) => {
                 console.log(jsonData, 'post data')
-                this.props.closeNavPostModal(event)
                 this.props.getMemes(event)
                 console.log("last")
+                this.props.closeNavPostModal(event)
             })
         //  .then(function alert('Meme Posted'))
         //  .then(
