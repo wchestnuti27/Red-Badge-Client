@@ -178,13 +178,8 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           : null} */}
 
         <Switch>
-<<<<<<< HEAD
-          <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} updateUser={this.props.updateUser.bind(this)} /></Route>
-          <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
-=======
           <Route exact path='/'><Feed navPostModal={this.state.navPostModal} closeNavPostModal={this.closeNavPostModal.bind(this)} sessionToken={this.props.sessionToken} /></Route>
           <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
->>>>>>> 1d1fea152777868d9f59a624db801b3a11bd39c0
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>
           <Route exact path='/nathan'><Nathan /></Route>
@@ -193,7 +188,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           <Route exact path='/account'>
             {
               this.props.sessionToken ? <MyAccount sessionToken={this.props.sessionToken} />
-                : <Auth updateToken={this.props.updateToken.bind(this)} updateUser={this.props.updateUser.bind(this)} />
+                : <Auth updateToken={this.props.updateToken.bind(this)} />
             }
           </Route>
 

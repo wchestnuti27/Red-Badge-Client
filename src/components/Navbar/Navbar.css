@@ -6,7 +6,7 @@
     top: 0;
     z-index: 5;
     display: flex;
-    float: right;
+    /* float: right; */ /*uncomment this line to make nates component disapear :D */
 }
 
 #navButtons {
