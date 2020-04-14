@@ -13,7 +13,8 @@ type AuthState = {
 
 type AuthProps = {
   updateToken: (newToken: string) => void,
-  updateUsername: (username: string) => void
+  updateUsername: (username: string) => void,
+  updateUserRole: (role: string) => void
 }
 
 class Auth extends React.Component<AuthProps, AuthState> {
@@ -35,8 +36,8 @@ class Auth extends React.Component<AuthProps, AuthState> {
               <h2 style={{ color: 'white', textAlign: 'center' }}>{this.state.isLogin ? "Login" : "Create an Account"}</h2>
               {
                 this.state.isLogin ?
-                  <Login updateToken={this.props.updateToken} updateUsername={this.props.updateUsername} />
-                  : <Signup updateToken={this.props.updateToken} updateUsername={this.props.updateUsername} />
+                  <Login updateToken={this.props.updateToken} updateUsername={this.props.updateUsername} updateUserRole={this.props.updateUserRole} />
+                  : <Signup updateToken={this.props.updateToken} updateUsername={this.props.updateUsername} updateUserRole={this.props.updateUserRole} />
               }
               <br />
               <Button onClick={() => this.setState({ isLogin: !this.state.isLogin })}>
