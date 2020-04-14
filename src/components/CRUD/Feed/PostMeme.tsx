@@ -37,7 +37,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
     // }
 
     handleSubmit(event: any) {
-        // event.preventDefault();
+        event.preventDefault();
 
         let formData = new FormData();
         formData.append('caption', this.state.caption);
