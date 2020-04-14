@@ -52,8 +52,8 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
 
         return (
             <div style={{ margin: 50 }}>
-                <h3 style={{ color: 'white' }}>hello admin</h3>
-                <p>how do you want to abuse your power today, {this.props.username}?</p>
+                <h3 style={{ color: 'white' }}>Hello Admin</h3>
+                <p>"With great power, comes great responsibility" ~ Uncle Ben - SpiderMan. <br/> How do you want to abuse your power today, {this.props.username}?</p>
                 <hr style={{ borderColor: 'white' }} />
                 <div>
                     <Button color='info' disabled={this.state.showAllMemes} onClick={() => this.getAllMemes()}>view all posts</Button>
