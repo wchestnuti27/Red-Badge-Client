@@ -38,7 +38,7 @@ export default class WillDisplay extends React.Component<WillProps, WillState>  
 
   handleOk = () => {
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
+      ModalText: 'The modal will self destruct in 5 seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -46,7 +46,7 @@ export default class WillDisplay extends React.Component<WillProps, WillState>  
         visible: false,
         confirmLoading: false,
       });
-    }, 2000);
+    }, 5000);
   };
 
   handleCancel = () => {
