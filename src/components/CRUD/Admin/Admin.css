@@ -1,0 +1,29 @@
+.display {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.card {
+    margin: 5px;
+    width: 200px;
+    height: 100px;
+}
+
+/* .card:hover {
+   background: rgb(241, 42, 42);
+   opacity: 40%;
+}
+
+.card:hover .image {
+    opacity: 40%;
+} */
+
+.card .image {
+    width: 200px;
+    height: 100px;
+}
+
+.deleteContainer {
+    justify-content: center;
+    padding: 0;
+}

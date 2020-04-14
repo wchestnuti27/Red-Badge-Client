@@ -102,8 +102,8 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                 console.log('MEMES', this.state.memes);
                 // console.log('COMMENT FROM MEME ARRAY', this.state.memes[0].comments[0].comment)
             })
-            
-            // get all comments fetch
+
+        // get all comments fetch
         // fetch('https://team6-red-badge-meme-server.herokuapp.com/comment/getAllComments', {
         //     method: 'GET',
         //     headers: new Headers({
@@ -125,7 +125,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
                 {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
 
-                {this.state.memes !== [] ?
+                {this.state.memes !== undefined ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
                         username={this.props.username}
