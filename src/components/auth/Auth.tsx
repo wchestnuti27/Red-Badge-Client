@@ -1,49 +1,58 @@
 import React from 'react';
-import { Login, Signup } from './index';
-import { Container, Row, Col, Button } from 'reactstrap';
+// import { Login, Signup } from './index';
+import Login from './Login';
+import Signup from './Signup';
+import { Container, Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
+
+import loginImg from '../../Assets/Meme Pic.jpg';
+import signinImg from '../../Assets/Login Pic.jpg';
 
 type AuthState = {
   isLogin: boolean,
 }
 
 type AuthProps = {
-  updateToken: any
+  updateToken: (newToken: string) => void,
+  updateUsername: (username: string) => void
 }
 
 class Auth extends React.Component<AuthProps, AuthState> {
-    constructor(props: AuthProps) {
-      super(props)
+  constructor(props: AuthProps) {
+    super(props)
 
-      this.state = {
-        isLogin: true
-      }
-}
-//
-  render (){
+    this.state = {
+      isLogin: true
+    }
+  }
+  //
+  render() {
     return (
-      <div className='wrapper'>
-          <div className='login-banner'>
-              <div className='auth-container'>
-                  <br />
-                  <Row>
-                      <Col sm='6'>
-                          {this.state.isLogin ? <Login updateToken={this.props.updateToken} /> : <Signup updateToken={this.props.updateToken} />}
-                          <br />
-                          {/* {isLogin ? <h5>New User?</h5> : <h5>Existing User?</h5>} */}
-                          <Button color='info' onClick={() => this.setState({isLogin: !this.state.isLogin})}>
-                              {this.state.isLogin ? 'Sign up here' : 'Login here'}
-                          </Button>
-                      </Col>
-                      {/* <Col sm='6'>
-                      <div className='auth-pic-guide'>
-                      <img className='login-pic' style={{height: 280, width: 500}} src={Controller} />
-                      </div>
-                  </Col> */}
-                  </Row>
-              </div>
-          </div>
-      </div>
-  )
+      <Container>
+        <Row>
+          <Col sm='1'></Col>
+          <Col sm='5'>
+            <div>
+              <h2 style={{ color: 'white', textAlign: 'center' }}>{this.state.isLogin ? "Login" : "Create an Account"}</h2>
+              {
+                this.state.isLogin ?
+                  <Login updateToken={this.props.updateToken} updateUsername={this.props.updateUsername} />
+                  : <Signup updateToken={this.props.updateToken} updateUsername={this.props.updateUsername} />
+              }
+              <br />
+              <Button onClick={() => this.setState({ isLogin: !this.state.isLogin })}>
+                {this.state.isLogin ? "Don't have an account?" : 'Already have an account?'}
+              </Button>
+            </div>
+          </Col>
+          <Col sm='5'>
+            <div style={{ padding: 30, display: 'flex', height: '100%', width: '100%' }}>
+              <img style={{ alignContent: 'center', justifyContent: 'center', borderRadius: '5%' }} src={this.state.isLogin ? loginImg : signinImg} alt="auth pic" />
+            </div>
+          </Col>
+          <Col sm='1'></Col>
+        </Row>
+      </Container>
+    )
   }
 
 }

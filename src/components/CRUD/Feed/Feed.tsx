@@ -15,6 +15,7 @@ type MemeState = {
 
 type AcceptedProps = {
     sessionToken: string | null,
+    username: string | null,
     navPostModal: boolean,
     closeNavPostModal: (e: any) => void
 
@@ -122,13 +123,13 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
     render() {
         return (
             <div>
-
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
                 {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
 
                 {this.state.memes !== [] ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
+                        username={this.props.username}
                         memes={this.state.memes}
                     />
                     : <CircularProgress />}
