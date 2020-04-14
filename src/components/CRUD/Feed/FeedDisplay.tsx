@@ -67,7 +67,7 @@ const FeedDisplay = ({ sessionToken, username, memes }: AcceptedProps) => {
         memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
 
         return memes.map((meme: any, index: number) => {
-            console.log(meme.comments)
+            console.log(meme.comments[0])
             return (
                 <Card key={index} className={classes.card}>
                     <CardActionArea>
@@ -76,7 +76,7 @@ const FeedDisplay = ({ sessionToken, username, memes }: AcceptedProps) => {
                             <Typography variant="h6">{meme.caption}</Typography>
                             <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                             <br />
-                            <Typography variant="body2"><p>{meme.comments ? meme.comments.comment : 'no comments yet, be the first to comment:'}</p></Typography>
+                            <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'no comments yet, be the first to comment:'}</p></Typography>
                         </CardContent>
                     </CardActionArea>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
