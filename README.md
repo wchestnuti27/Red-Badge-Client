@@ -1,3 +1,27 @@
+# SupreMemes 
+
+This application was created to give users the ability to create custom memes
+
+## Demo
+
+
+
+
+
+
+
+
+
+
+
+## App Features
+* Create memes by using local image files
+* Stores memes in a user acct page
+* Allows users the ability to edit custom meme comment
+* Allows the user to ability to delete the meme on the acct page
+
+## Getting Started
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
