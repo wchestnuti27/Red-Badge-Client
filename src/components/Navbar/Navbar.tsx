@@ -7,6 +7,7 @@ import './Navbar.css';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
+import Admin from '../CRUD/Admin/Admin';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 import Will from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
@@ -36,7 +37,9 @@ type AcceptedProps = {
   updateToken: (newToken: string) => void,
   clearToken: () => void,
   username: string | null,
-  updateUsername: (username: string) => void
+  updateUsername: (username: string) => void,
+  userRole: string | null,
+  updateUserRole: (role: string) => void
 }
 
 type NavbarState = {
@@ -129,6 +132,18 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
       <Divider />
 
       <List>
+        {/* ===== ADMIN PORTAL ===== */}
+        {
+          this.props.userRole === 'admin' ?
+            <Link to='/admin' id='link'>
+              <ListItem button>
+                <ListItemIcon><HelpIcon /></ListItemIcon>
+                <ListItemText>Admin Settings</ListItemText>
+              </ListItem>
+            </Link>
+            : null
+        }
+
         {/* ===== LOGOUT ===== */}
         <ListItem button id='logoutButton' onClick={this.props.clearToken}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
@@ -149,10 +164,10 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
           <Link to='/' id='postMemeButton'>
-              <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
-                <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
-              </ListItem>
-            </Link>
+            <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
+              <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
+            </ListItem>
+          </Link>
 
           {/* POST MEME */}
           {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}
@@ -178,8 +193,15 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           : null} */}
 
         <Switch>
-          <Route exact path='/'><Feed navPostModal={this.state.navPostModal} closeNavPostModal={this.closeNavPostModal.bind(this)} sessionToken={this.props.sessionToken} username={this.props.username} /></Route>
-          {/* <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route> */}
+          <Route exact path='/'>
+            <Feed
+              navPostModal={this.state.navPostModal}
+              closeNavPostModal={this.closeNavPostModal.bind(this)}
+              sessionToken={this.props.sessionToken}
+              username={this.props.username}
+            />
+          </Route>
+          <Route exact path='/admin'><Admin sessionToken={this.props.sessionToken} username={this.props.username} /></Route>
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>
           <Route exact path='/nathan'><Nathan /></Route>
@@ -188,11 +210,13 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           <Route exact path='/account'>
             {
               this.props.sessionToken ? <MyAccount sessionToken={this.props.sessionToken} username={this.props.username} />
-                : <Auth updateToken={this.props.updateToken.bind(this)} updateUsername={this.props.updateUsername.bind(this)} />
+                : <Auth
+                  updateToken={this.props.updateToken.bind(this)}
+                  updateUsername={this.props.updateUsername.bind(this)}
+                  updateUserRole={this.props.updateUserRole.bind(this)}
+                />
             }
           </Route>
-
-          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
 
         </Switch>
       </div >

@@ -10,7 +10,8 @@ type LoginState = {
 
 type LoginProps = {
     updateToken: (newToken: string) => void,
-    updateUsername: (username: string) => void
+    updateUsername: (username: string) => void,
+    updateUserRole: (role: string) => void
 }
 
 class Login extends React.Component<LoginProps, LoginState> {
@@ -22,7 +23,6 @@ class Login extends React.Component<LoginProps, LoginState> {
             password: ''
         }
     }
-
 
     handleSubmit(event: any) {
         event.preventDefault();
@@ -38,6 +38,7 @@ class Login extends React.Component<LoginProps, LoginState> {
             ).then(data => {
                 console.log(data);
                 data.user ? this.props.updateUsername(data.user.username) : console.log('could not update user')
+                data.user ? this.props.updateUserRole(data.user.role) : console.log('no user role assigned')
                 data.sessionToken ? this.props.updateToken(data.sessionToken)
                     : alert(`${data.error}: Username or Password Not Found`)
             })
