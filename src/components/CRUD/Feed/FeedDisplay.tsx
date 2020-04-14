@@ -57,48 +57,77 @@ type AcceptedProps = {
     sessionToken?: string | null,
     username?: string | null,
     memes: any[],
-    commentModal: boolean,
-    closeCommentModal: (e: any) => void,
-    openCommentModal: (e: any) => void
 }
 
-const FeedDisplay = ({ sessionToken, username, memes, commentModal, closeCommentModal, openCommentModal }: AcceptedProps) => {
+type FeedState = {
+    commentModal: boolean,
+    memeId: string,
+    memeComments: any[]
+}
 
-    const classes = useStyles();
+export default class FeedDisplay extends React.Component<AcceptedProps, FeedState> {
+    constructor(props: AcceptedProps) {
+        super(props)
 
-    const displayMemes = (memes: object[]) => {
+        this.state = {
+            commentModal: false,
+            memeId: '',
+            memeComments: []
+        }
+    }
 
-        memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
+    // commentModal toggler logic
 
-        return memes.map((meme: any, index: number) => {
-            console.log(meme.comments)
+    openCommentModal(event: any, memeId: string, memeComments: any[]) {
+        this.setState({ commentModal: true, memeId: memeId, memeComments: memeComments })
+        console.log('open commentModal fired')
+        
+    }
+
+    closeCommentModal(event: any) {
+        this.setState({ commentModal: false, memeId: '' })
+        console.log('close commentModal fired')
+    }
+
+    // classes = useStyles();
+
+    // componentDidMount() {
+        
+       displayMemes = (memes: object[]) => {
+        this.props.memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
+        
+        return this.props.memes.map((meme: any, index: number) => {
+            // console.log(meme.id)
             return (
-                <Card key={index} className={classes.card}>
-                    <CardActionArea onClick={(e) => openCommentModal(e)}>
-                        <CardMedia className={classes.image} image={meme.url} />
+                <Card style={{width: 500}} key={index}>
+                    <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
+                        <CardMedia style={{height: 300}} image={meme.url} />
                         <CardContent>
                             <Typography variant="h6">{meme.caption}</Typography>
                             <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                             <br />
                             <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'no comments yet, be the first to comment:'}</p></Typography>
-                            {commentModal ? <Comments sessionToken={sessionToken} closeCommentModal={closeCommentModal} memeId={meme.id} /> : null}
+                            
                         </CardContent>
                     </CardActionArea>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
                 </Card>
             )
         })
-    }
+        }
+    // }
 
-    return (
-        <div className={classes.root}>
-            {sessionToken ? <h3 style={{ color: 'white' }}>{`Welcome Back ${username}!`}</h3> : <h2 style={{ color: 'white' }}>SupreMemes</h2>}
+    render() {
+        return (
+            <div>
+                {this.props.sessionToken ? <h3 style={{ color: 'white' }}>{`Welcome Back ${this.props.username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
 
-            <div className={classes.memeContainer}>
-                {displayMemes(memes)}
+                <div>
+                    {this.displayMemes(this.props.memes)}
+                    {this.state.commentModal ? <Comments memeComments={this.state.memeComments} sessionToken={this.props.sessionToken} closeCommentModal={this.closeCommentModal.bind(this)} memeId={this.state.memeId} /> : null}
+                </div>
             </div>
-        </div>
-    )
-}
+        )
 
-export default FeedDisplay;
+    }
+}
