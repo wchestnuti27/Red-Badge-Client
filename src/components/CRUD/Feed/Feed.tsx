@@ -10,6 +10,7 @@ type MemeState = {
     memes: any[],
     comments: any[],
     postModal: boolean,
+    commentModal: boolean
     // postFlag: boolean
 }
 
@@ -30,6 +31,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
             memes: [],
             comments: [],
             postModal: false,
+            commentModal: false
             // postFlag: false
         }
     }
@@ -41,9 +43,19 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
 
     closePostModal(event: any) {
         this.setState({ postModal: false })
-        console.log('did it work')
         this.props.closeNavPostModal(event)
+    }
 
+    // commentModal toggler logic
+
+    openCommentModal(event: any) {
+        this.setState({ commentModal: true })
+        console.log('open commentModal fired')
+    }
+
+    closeCommentModal(event: any) {
+        this.setState({ commentModal: false })
+        console.log('close commentModal fired')
     }
 
     getMemes(event: any) {
@@ -101,7 +113,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                     memes: json
                 });
                 console.log('MEMES', this.state.memes);
-                console.log('COMMENT FROM MEME ARRAY', this.state.memes[0].comments[0].comment)
+                // console.log('COMMENT FROM MEME ARRAY', this.state.memes[0].comments[0].comment)
             })
             
             // get all comments fetch
@@ -131,6 +143,9 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                         sessionToken={this.props.sessionToken}
                         username={this.props.username}
                         memes={this.state.memes}
+                        commentModal={this.state.commentModal}
+                        closeCommentModal={this.closeCommentModal.bind(this)}
+                        openCommentModal={this.openCommentModal.bind(this)}
                     />
                     : <CircularProgress />}
 
