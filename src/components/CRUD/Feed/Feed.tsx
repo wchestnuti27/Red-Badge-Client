@@ -8,12 +8,18 @@ import Button from '@material-ui/core/Button';
 
 type MemeState = {
     memes: any[],
+    comments: any[],
     postModal: boolean,
+    commentModal: boolean
     // postFlag: boolean
 }
 
 type AcceptedProps = {
     sessionToken: string | null,
+    username: string | null,
+    navPostModal: boolean,
+    closeNavPostModal: (e: any) => void
+
     // sessionToken?: string
 }
 
@@ -23,24 +29,40 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
 
         this.state = {
             memes: [],
+            comments: [],
             postModal: false,
+            commentModal: false
             // postFlag: false
         }
     }
 
-    openPostModal(event: any) {
-        this.setState({ postModal: true })
-    }
+    // openPostModal(event: any) {
+    //     this.setState({ postModal: true })
+    // }
 
 
     closePostModal(event: any) {
         this.setState({ postModal: false })
-        console.log('did it work')
+        this.props.closeNavPostModal(event)
+    }
 
+    // commentModal toggler logic
+
+    openCommentModal(event: any) {
+        this.setState({ commentModal: true })
+        console.log('open commentModal fired')
+    }
+
+    closeCommentModal(event: any) {
+        this.setState({ commentModal: false })
+        console.log('close commentModal fired')
     }
 
     getMemes(event: any) {
         event.preventDefault()
+
+        console.log('GET MEMES', this.props.sessionToken)
+
         fetch('https://team6-red-badge-meme-server.herokuapp.com/feed/all', {
             method: 'GET',
             headers: new Headers({
@@ -91,20 +113,39 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                     memes: json
                 });
                 console.log('MEMES', this.state.memes);
+                // console.log('COMMENT FROM MEME ARRAY', this.state.memes[0].comments[0].comment)
             })
+
+        // get all comments fetch
+        // fetch('https://team6-red-badge-meme-server.herokuapp.com/comment/getAllComments', {
+        //     method: 'GET',
+        //     headers: new Headers({
+        //         'Content-Type' : 'application/json'
+        //     })
+        // })
+        //     .then(response => response.json())
+        //     .then(json => {
+        //         this.setState({
+        //             comments: json
+        //         })
+        //         console.log('COMMENTS', this.state.comments);
+        //     })
     }
 
     render() {
         return (
             <div>
-
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
-                {/* {this.state.postModal ? <PostMeme getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null} */}
-               
-                {this.state.memes !== [] ?
+                {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
+
+                {this.state.memes !== undefined ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
+                        username={this.props.username}
                         memes={this.state.memes}
+                        commentModal={this.state.commentModal}
+                        closeCommentModal={this.closeCommentModal.bind(this)}
+                        openCommentModal={this.openCommentModal.bind(this)}
                     />
                     : <CircularProgress />}
 

@@ -13,7 +13,8 @@ type PostState = {
 type AcceptedProps = {
     sessionToken: any
     closePostModal: (event: any) => any,
-    getMemes: (event: any) => any
+    getMemes: (event: any) => any,
+    closeNavPostModal: (e: any) => void
 }
 
 export default class Feed extends Component<AcceptedProps, PostState> {
@@ -36,7 +37,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
     // }
 
     handleSubmit(event: any) {
-        // event.preventDefault();
+        event.preventDefault();
 
         let formData = new FormData();
         formData.append('caption', this.state.caption);
@@ -53,9 +54,9 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             .then(response => response.json())
             .then((jsonData) => {
                 console.log(jsonData, 'post data')
-                this.props.closePostModal(event)
                 this.props.getMemes(event)
                 console.log("last")
+                this.props.closeNavPostModal(event)
             })
         //  .then(function alert('Meme Posted'))
         //  .then(
@@ -79,7 +80,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             //     </form>
             // </div>
             <Modal isOpen={true}>
-                <ModalHeader toggle={(e) => this.props.closePostModal(e)}>Post a SupreMeme</ModalHeader>
+                <ModalHeader toggle={(e) => this.props.closeNavPostModal(e)}>Post a SupreMeme</ModalHeader>
                 <ModalBody>
                     <Form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
                         <FormGroup>

@@ -11,7 +11,8 @@ document.title = 'SupreMemes';
 
 type AppState = {
   sessionToken: string | null,
-  user: object,
+  username: string | null,
+  userRole: string | null,
   guestUser: boolean,
   authToggler: boolean
 }
@@ -22,7 +23,9 @@ class App extends React.Component<{}, AppState> {
 
     this.state = {
       sessionToken: "",
-      user: {},
+      username: '',
+      userRole: 'guest',
+
       guestUser: true, // this will gate the users ability to post memes if they are not logged in, true by default (no accout/user not signed in)
       authToggler: true // this will be changes when someone clicks the sign up or log in button
     }
@@ -36,12 +39,30 @@ class App extends React.Component<{}, AppState> {
 
   clearToken() {
     localStorage.clear();
-    this.setState({ sessionToken: '' });
+    this.setState({
+      sessionToken: '',
+      username: '',
+      userRole: 'guest'
+    });
+  }
+
+  updateUsername(username: string) {
+    localStorage.setItem('username', username);
+    this.setState({ username: username });
+  }
+
+  updateUserRole(role: string) {
+    localStorage.setItem('userRole', role);
+    this.setState({ userRole: role });
   }
 
   componentDidMount() {
     console.log('top')
-    this.setState({ sessionToken: localStorage.getItem('token') })
+    this.setState({
+      sessionToken: localStorage.getItem('token'),
+      username: localStorage.getItem('username'),
+      userRole: localStorage.getItem('userRole')
+    })
   }
 
 
@@ -73,6 +94,10 @@ class App extends React.Component<{}, AppState> {
             sessionToken={this.state.sessionToken}
             updateToken={this.updateToken.bind(this)}
             clearToken={this.clearToken.bind(this)}
+            username={this.state.username}
+            updateUsername={this.updateUsername.bind(this)}
+            userRole={this.state.userRole}
+            updateUserRole={this.updateUserRole.bind(this)}
           />
         </Router>
         {/* {guestUserSwitch()} */}

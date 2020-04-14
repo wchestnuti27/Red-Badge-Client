@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import './MyAccount.css';
 
 import MemeEdit from './MemeEdit';
@@ -22,7 +22,8 @@ type AcctState = {
 }
 
 type AcceptedProps = {
-    sessionToken: string | null
+    sessionToken: string | null,
+    username: string | null
 }
 
 class MyAccount extends Component<AcceptedProps, AcctState> {
@@ -69,6 +70,9 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
     }
 
     MemeDisplay(memes: any[]) {
+
+        memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
+
         return memes.map((meme: any, index: number) => {
             return (
                 <Card key={index} className='card'>
@@ -123,13 +127,13 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
     render() {
         return (
             <div className='myMemes'>
-                <h2 style={{ color: 'white' }}>My Account</h2>
-                <i>"i used to have dreams, now all i have are memes" -- george washington (circa 1776)</i>
+                {this.props.username !== '' ? <h2 style={{ color: 'white' }}>{this.props.username}'s Account</h2> : <h2 style={{ color: 'white' }}>My Account</h2>}
+                <i>these are all the memes you have posted so far</i>
                 <br />
                 <br />
                 <br />
                 <div className='memeContainer'>
-                    {this.MemeDisplay(this.state.userMemes)}
+                    {this.state.userMemes.length === 0 ? <h4 style={{ color: 'white' }}>You haven't posted any memes yet!</h4> : this.MemeDisplay(this.state.userMemes)}
                 </div>
                 {this.state.editModal ?
                     <MemeEdit

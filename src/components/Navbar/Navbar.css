@@ -5,7 +5,12 @@
     position: sticky;
     top: 0;
     z-index: 5;
-    /* display: flex ; */
+    display: flex;
+    /* float: right; */ /*uncomment this line to make nates component disapear :D */
+}
+
+#navButtons {
+    float: right;
 }
 
 #link {
@@ -23,9 +28,13 @@
 }
 
 #drawerButton {
-    text-align: left;
+    /* text-align: right; */
+    float: right;
+    /* position: right; */
 }
 
 #postMemeButton {
-    text-align: right;
+    /* text-align: right; */
+    float: right;
+    /* position: right; */
 }

@@ -7,6 +7,7 @@ import './Navbar.css';
 import Auth from '../auth/Auth';
 import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
+import Admin from '../CRUD/Admin/Admin';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
 import Will from '../Individual/Will/Will';
 import Dan from '../Individual/Dan/Dan';
@@ -30,16 +31,21 @@ import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import HelpIcon from '@material-ui/icons/Help';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 type AcceptedProps = {
   sessionToken: string | null,
   updateToken: (newToken: string) => void,
-  clearToken: () => void
+  clearToken: () => void,
+  username: string | null,
+  updateUsername: (username: string) => void,
+  userRole: string | null,
+  updateUserRole: (role: string) => void
 }
 
 type NavbarState = {
   right: boolean,
-  postModal: boolean
+  navPostModal: boolean
 }
 
 export default class SwipeableTemporaryDrawer extends React.Component<AcceptedProps, NavbarState> {
@@ -49,17 +55,17 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
     this.state = {
       // right tells the navbar to open from the right side (this comes from material-ui)
       right: false,
-      postModal: false
+      navPostModal: false
     }
   }
 
   openPostModal(e: any) {
-    this.setState({ postModal: true })
+    this.setState({ navPostModal: true })
     console.log('openPostModal fired')
   }
 
-  closePostModal(e: any) {
-    this.setState({ postModal: false })
+  closeNavPostModal(e: any) {
+    this.setState({ navPostModal: false })
     console.log('closePostModal fired')
   }
 
@@ -96,6 +102,17 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         </Link>
       </List>
 
+      {/* ===== ADMIN PORTAL ===== */}
+      {
+        this.props.userRole === 'admin' ?
+          <Link to='/admin' id='link'>
+            <ListItem button>
+              <ListItemIcon><SupervisorAccountIcon /></ListItemIcon>
+              <ListItemText>Admin Settings</ListItemText>
+            </ListItem>
+          </Link>
+          : null
+      }
       <Divider />
 
       <List>
@@ -108,10 +125,12 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         </Link>
 
         {/* ===== NATHAN ===== */}
-        <ListItem button>
-          <ListItemIcon><FastfoodIcon /></ListItemIcon>
-          <ListItemText>Nathan</ListItemText>
-        </ListItem>
+        <Link to='/nathan' id='link'>
+          <ListItem button>
+            <ListItemIcon><FastfoodIcon /></ListItemIcon>
+            <ListItemText>Nathan</ListItemText>
+          </ListItem>
+        </Link>
 
         {/* ===== DANIEL ===== */}
         <Link to='/dan' id='link'>
@@ -140,12 +159,19 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         <div id='navbar'>
 
           {/* OPEN NAV DRAWER */}
+          <div id='navButtons'>
+          </div>
           <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
+
+          <Link to='/' id='postMemeButton'>
+            <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
+              <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
+            </ListItem>
+          </Link>
 
           {/* POST MEME */}
           {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}
-          <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button>
-
+          {/* <Button id='postMemeButton' onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
         </div>
 
         <React.Fragment>
@@ -167,25 +193,30 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           : null} */}
 
         <Switch>
-          <Route exact path='/'><Feed sessionToken={this.props.sessionToken} /></Route>
-          <Route exact path='/auth'><Auth updateToken={this.props.updateToken.bind(this)} /></Route>
+          <Route exact path='/'>
+            <Feed
+              navPostModal={this.state.navPostModal}
+              closeNavPostModal={this.closeNavPostModal.bind(this)}
+              sessionToken={this.props.sessionToken}
+              username={this.props.username}
+            />
+          </Route>
+          <Route exact path='/admin'><Admin sessionToken={this.props.sessionToken} username={this.props.username} /></Route>
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>
+          <Route exact path='/nathan'><Nathan /></Route>
 
           {/* protected routes */}
           <Route exact path='/account'>
             {
-              this.props.sessionToken ? <MyAccount sessionToken={this.props.sessionToken} />
-                : <Auth updateToken={this.props.updateToken.bind(this)} />
+              this.props.sessionToken ? <MyAccount sessionToken={this.props.sessionToken} username={this.props.username} />
+                : <Auth
+                  updateToken={this.props.updateToken.bind(this)}
+                  updateUsername={this.props.updateUsername.bind(this)}
+                  updateUserRole={this.props.updateUserRole.bind(this)}
+                />
             }
           </Route>
-
-
-          {/* <Route exact path='/Will'><WillDisplay/></Route> */}
-          <Route exact path='/nathan'><Nathan /></Route>
-
-          {/* <Route exact path='/postmeme'><PostMeme sessionToken={this.props.sessionToken} /></Route> */}
-
 
         </Switch>
       </div >

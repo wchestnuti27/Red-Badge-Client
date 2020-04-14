@@ -1,19 +1,20 @@
 import React from 'react';
-import './style.scss'
-import '../../helpers/environment';
-// import APIURL from '../../helpers/environment';
+// import './style.scss'
+import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import loginImg from '../../Assets/Meme Pic.jpg';
 
 type LoginState = {
     username: string,
     password: string
-  }
-  
+}
+
 type LoginProps = {
     updateToken: (newToken: string) => void,
-  }
+    updateUsername: (username: string) => void,
+    updateUserRole: (role: string) => void
+}
 
-export class Login extends React.Component<LoginProps, LoginState> {
+class Login extends React.Component<LoginProps, LoginState> {
     constructor(props: LoginProps) {
         super(props);
 
@@ -23,71 +24,47 @@ export class Login extends React.Component<LoginProps, LoginState> {
         }
     }
 
-
     handleSubmit(event: any) {
         event.preventDefault();
 
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
-            method: 'POST',
-            body: JSON.stringify({ username: this.state.username, password: this.state.password }),
-            headers: new Headers({
-                'Content-Type': 'application/json'
+        if (this.state.username !== '' && this.state.password !== '') {
+            fetch('https://team6-red-badge-meme-server.herokuapp.com/user/login', {
+                method: 'POST',
+                body: JSON.stringify({ username: this.state.username, password: this.state.password }),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                })
+            }).then(response => response.json()
+            ).then(data => {
+                console.log(data);
+                data.user ? this.props.updateUsername(data.user.username) : console.log('could not update user')
+                data.user ? this.props.updateUserRole(data.user.role) : console.log('no user role assigned')
+                data.sessionToken ? this.props.updateToken(data.sessionToken)
+                    : alert(`${data.error}: Username or Password Not Found`)
             })
-        }).then(
-            (response) => response.json()
-        ).then((data) => {
-            console.log(data)
-            data.sessionToken ? this.props.updateToken(data.sessionToken)
-                : alert(`${data.error}: Username or Password Not Found`)
-        })
+        } else { alert('Please fill out all fields') }
     }
 
-
     render() {
-        return <div className="base-container">
-            <div className="header">Login</div>
-            <br />
-            <div className="content">
-                <div className="image">
-                    <img src={loginImg} alt="login" />
-                </div>
-                <div className="form">
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
-                        <input onChange={e => this.setState({ username: e.target.value })} type="text" name="username" placeholder="username" />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input onChange={e => this.setState({ password: e.target.value })} type="password" name="password" placeholder="password" />
-                    </div>
-                </div>
+        return (
+            <div>
+                <Form onSubmit={e => this.handleSubmit(e)}>
+                    <FormGroup>
+                        <Label htmlFor='username'>Username:</Label>
+                        <Input id='username' value={this.state.username} onChange={(e) => this.setState({ username: e.target.value })}></Input>
+                    </FormGroup>
+                    <FormGroup>
+                        <Label htmlFor='password'>Password:</Label>
+                        <Input id='password' type='password' value={this.state.password} onChange={(e) => this.setState({ password: e.target.value })}></Input>
+                    </FormGroup>
+                    <Button type='submit' color='info'>Login</Button>
+                </Form>
             </div>
-            <div className="footer">
-                <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Login</button>
-            </div>
-        </div>
+        )
     }
 }
 
-// export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Login;
 
 
 
