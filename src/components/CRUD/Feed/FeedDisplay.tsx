@@ -1,5 +1,6 @@
 import React from 'react';
 import Votes from '../Votes/Votes';
+import Comments from '../Comments/Comments';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -55,10 +56,13 @@ const useStyles = makeStyles({
 type AcceptedProps = {
     sessionToken?: string | null,
     username?: string | null,
-    memes: any[]
+    memes: any[],
+    commentModal: boolean,
+    closeCommentModal: (e: any) => void,
+    openCommentModal: (e: any) => void
 }
 
-const FeedDisplay = ({ sessionToken, username, memes }: AcceptedProps) => {
+const FeedDisplay = ({ sessionToken, username, memes, commentModal, closeCommentModal, openCommentModal }: AcceptedProps) => {
 
     const classes = useStyles();
 
@@ -67,16 +71,17 @@ const FeedDisplay = ({ sessionToken, username, memes }: AcceptedProps) => {
         memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
 
         return memes.map((meme: any, index: number) => {
-            console.log(meme.comments[0])
+            console.log(meme.comments)
             return (
                 <Card key={index} className={classes.card}>
-                    <CardActionArea>
+                    <CardActionArea onClick={(e) => openCommentModal(e)}>
                         <CardMedia className={classes.image} image={meme.url} />
                         <CardContent>
                             <Typography variant="h6">{meme.caption}</Typography>
                             <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                             <br />
                             <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'no comments yet, be the first to comment:'}</p></Typography>
+                            { commentModal ? <Comments sessionToken={sessionToken} closeCommentModal={closeCommentModal} memeId={meme.id} />  : null}
                         </CardContent>
                     </CardActionArea>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
