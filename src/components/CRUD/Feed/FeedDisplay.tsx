@@ -81,7 +81,7 @@ const FeedDisplay = ({ sessionToken, username, memes, commentModal, closeComment
                             <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                             <br />
                             <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'no comments yet, be the first to comment:'}</p></Typography>
-                            { commentModal ? <Comments sessionToken={sessionToken} closeCommentModal={closeCommentModal} memeId={meme.id} />  : null}
+                            {commentModal ? <Comments sessionToken={sessionToken} closeCommentModal={closeCommentModal} memeId={meme.id} /> : null}
                         </CardContent>
                     </CardActionArea>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
@@ -92,7 +92,7 @@ const FeedDisplay = ({ sessionToken, username, memes, commentModal, closeComment
 
     return (
         <div className={classes.root}>
-            {sessionToken ? <h3 style={{ color: 'white' }}>{`Welcome Back ${username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
+            {sessionToken ? <h3 style={{ color: 'white' }}>{`Welcome Back ${username}!`}</h3> : <h2 style={{ color: 'white' }}>SupreMemes</h2>}
 
             <div className={classes.memeContainer}>
                 {displayMemes(memes)}

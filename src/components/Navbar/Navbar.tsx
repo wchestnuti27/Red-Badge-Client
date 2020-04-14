@@ -31,6 +31,7 @@ import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import HelpIcon from '@material-ui/icons/Help';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 
 type AcceptedProps = {
   sessionToken: string | null,
@@ -101,6 +102,17 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         </Link>
       </List>
 
+      {/* ===== ADMIN PORTAL ===== */}
+      {
+        this.props.userRole === 'admin' ?
+          <Link to='/admin' id='link'>
+            <ListItem button>
+              <ListItemIcon><SupervisorAccountIcon /></ListItemIcon>
+              <ListItemText>Admin Settings</ListItemText>
+            </ListItem>
+          </Link>
+          : null
+      }
       <Divider />
 
       <List>
@@ -132,18 +144,6 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
       <Divider />
 
       <List>
-        {/* ===== ADMIN PORTAL ===== */}
-        {
-          this.props.userRole === 'admin' ?
-            <Link to='/admin' id='link'>
-              <ListItem button>
-                <ListItemIcon><HelpIcon /></ListItemIcon>
-                <ListItemText>Admin Settings</ListItemText>
-              </ListItem>
-            </Link>
-            : null
-        }
-
         {/* ===== LOGOUT ===== */}
         <ListItem button id='logoutButton' onClick={this.props.clearToken}>
           <ListItemIcon><ExitToAppIcon /></ListItemIcon>
