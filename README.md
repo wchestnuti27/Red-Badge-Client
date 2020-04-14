@@ -1,4 +1,4 @@
-# SupreMemes 
+# SupreMemes (Client)
 
 This application was created to give users the ability to create custom memes
 
