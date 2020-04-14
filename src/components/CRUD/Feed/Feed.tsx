@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 
 type MemeState = {
     memes: any[],
+    comments: any[],
     postModal: boolean,
     // postFlag: boolean
 }
@@ -26,6 +27,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
 
         this.state = {
             memes: [],
+            comments: [],
             postModal: false,
             // postFlag: false
         }
@@ -98,7 +100,23 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                     memes: json
                 });
                 console.log('MEMES', this.state.memes);
+                console.log('COMMENT FROM MEME ARRAY', this.state.memes[0].comments[0].comment)
             })
+            
+            // get all comments fetch
+        // fetch('https://team6-red-badge-meme-server.herokuapp.com/comment/getAllComments', {
+        //     method: 'GET',
+        //     headers: new Headers({
+        //         'Content-Type' : 'application/json'
+        //     })
+        // })
+        //     .then(response => response.json())
+        //     .then(json => {
+        //         this.setState({
+        //             comments: json
+        //         })
+        //         console.log('COMMENTS', this.state.comments);
+        //     })
     }
 
     render() {
