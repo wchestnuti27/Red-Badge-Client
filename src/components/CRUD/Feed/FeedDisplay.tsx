@@ -54,10 +54,11 @@ const useStyles = makeStyles({
 
 type AcceptedProps = {
     sessionToken?: string | null,
+    username?: string | null,
     memes: any[]
 }
 
-const FeedDisplay = ({ sessionToken, memes }: AcceptedProps) => {
+const FeedDisplay = ({ sessionToken, username, memes }: AcceptedProps) => {
 
     const classes = useStyles();
 
@@ -83,7 +84,7 @@ const FeedDisplay = ({ sessionToken, memes }: AcceptedProps) => {
 
     return (
         <div className={classes.root}>
-            {sessionToken ? <h3 style={{ color: 'white' }}>Welcome Back!</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
+            {sessionToken ? <h3 style={{ color: 'white' }}>{`Welcome Back ${username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
 
             <div className={classes.memeContainer}>
                 {displayMemes(memes)}
