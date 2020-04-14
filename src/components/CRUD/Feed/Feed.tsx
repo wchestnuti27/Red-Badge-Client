@@ -16,7 +16,7 @@ type AcceptedProps = {
     sessionToken: string | null,
     navPostModal: boolean,
     closeNavPostModal: (e: any) => void
-    
+
     // sessionToken?: string
 }
 
@@ -45,6 +45,9 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
 
     getMemes(event: any) {
         event.preventDefault()
+
+        console.log('GET MEMES', this.props.sessionToken)
+
         fetch('https://team6-red-badge-meme-server.herokuapp.com/feed/all', {
             method: 'GET',
             headers: new Headers({
@@ -104,7 +107,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
 
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
                 {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
-               
+
                 {this.state.memes !== [] ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
