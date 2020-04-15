@@ -1,5 +1,6 @@
 import React from 'react';
 // import { Login, Signup } from './index';
+import './auth.css';
 import Login from './Login';
 import Signup from './Signup';
 import { Container, Row, Col, Form, FormGroup, Input, Label, Button } from 'reactstrap';
