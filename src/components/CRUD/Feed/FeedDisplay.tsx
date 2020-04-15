@@ -58,16 +58,20 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         return this.props.memes.map((meme: any, index: number) => {
             // console.log(meme.id)
             return (
-                <Card className='feedCard' key={index} >
-                    <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
-                        <CardMedia className='feedImage' image={meme.url} />
-                        <CardContent className='cardContent'>
-                            <Typography id='caption' variant="subtitle1">{meme.caption}</Typography>
-                            <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
-                            <br />
-                            <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'no comments yet, be the first to comment:'}</p></Typography>
-                        </CardContent>
+                <Card className='card' key={index} >
+                    <CardActionArea>
+                        <CardMedia className='image' image={meme.url} />
+                        <Typography id='caption' variant="subtitle1">{meme.caption}</Typography>
                     </CardActionArea>
+                    <CardContent className='cardContent'>
+                        <CardActionArea>
+                            <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
+                        </CardActionArea>
+                        <br />
+                        <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
+                            <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'Add a public comment...'}</p></Typography>
+                        </CardActionArea>
+                    </CardContent>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
                 </Card>
             )
@@ -78,7 +82,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
     render() {
         return (
             <div className='feed'>
-                {this.props.sessionToken ? <h3 style={{ color: 'white' }}>{`Welcome Back ${this.props.username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
+                {this.props.sessionToken ? <h3 style={{ color: 'white', fontSize: "auto" }}>{`Welcome Back ${this.props.username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
 
                 <div className='displayMemes'>
                     {this.displayMemes(this.props.memes)}
