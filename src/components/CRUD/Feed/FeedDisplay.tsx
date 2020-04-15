@@ -62,6 +62,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         console.log('close commentModal fired')
         this.props.getMemes(event)
     }
+    // this
 
     openImageModal(memeUrl: string, memeCaption: string, memeUsername: string, memeComments: any[]) {
         this.setState({
