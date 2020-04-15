@@ -1,6 +1,7 @@
 # SupreMemes (Client)
 
 This application was created to give users the ability to create custom memes
+<br/>
 
 ## Authors
 Will Chestnut - wchestnuti27 - view my individual github page at https://github.com/wchestnuti27
@@ -8,24 +9,27 @@ Will Chestnut - wchestnuti27 - view my individual github page at https://github.
 Daniel Marsh - dmmarsh114 - view my individual github page at https://github.com/dmmarsh114
 
 Nathan Gaffney - NathanGaffney - view my individual github page at https://github.com/NathanGaffney
+<br/>
 
 ## Demo
 
+### Posting a Meme
 
+<img src="https://media0.giphy.com/media/QVbU9QDUoHArzVCemD/giphy.gif">
 
+<br/>
 
+### Editing a Comment and Deleting the Meme
 
-
-
-
-
-
+<img src="https://media2.giphy.com/media/gI5veKVsaeUSzov6Zq/giphy.gif">
+<br/>
 
 ## App Features
 * Create memes by using local image files
 * Stores memes in an user acct page
 * Allows users the ability to edit custom meme comment
 * Allows the user the ability to delete the meme on the acct page
+<br/>
 
 ## Endpoints: 
 
@@ -45,6 +49,7 @@ Nathan Gaffney - NathanGaffney - view my individual github page at https://githu
 * /mymemes/new - upload a meme
 * /mymemes/ - returns all memes posted by the logged in user
 * /mymemes/delete/:postId - deletes the specified meme
+<br/>
 
 ## Getting Started
 
@@ -55,6 +60,7 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+<br/>
 
 ## Available Scripts
 
@@ -92,6 +98,8 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+<br/>
 
 ## Learn More
 
