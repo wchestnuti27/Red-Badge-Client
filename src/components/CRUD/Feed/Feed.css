@@ -23,6 +23,11 @@
     overflow: hidden;
 }
 
+#commentSection {
+    height: 25px;
+    overflow: hidden;
+}
+
 .feedImage {
     height: 150px;
     width: auto;
@@ -33,9 +38,6 @@
     border: thin solid #ced4da;
     border-radius: .25rem;
     color: #495057;
+
 }
 
-#commentSection {
-    height: 30px;
-    overflow: hidden;
-}

@@ -12,6 +12,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import 'typeface-roboto';
 
@@ -60,6 +62,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         console.log('close commentModal fired')
         this.props.getMemes(event)
     }
+    // this
 
     openImageModal(memeUrl: string, memeCaption: string, memeUsername: string, memeComments: any[]) {
         this.setState({
@@ -96,14 +99,33 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                         onClick={() => this.openImageModal(meme.url, meme.caption, meme.username, meme.comments)}
                     >
                         <CardMedia className='feedImage' image={meme.url} />
-                        <Typography id='feedCaption' variant="subtitle1">{meme.caption}</Typography>
+
+                        <Typography  id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><p>{meme.caption}</p> <MoreHorizIcon /></p> : <p style={{ display: 'flex', justifyContent: 'flex-end' }}><MoreHorizIcon /></p>}</Typography>
+
                         <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                     </CardActionArea>
                     <CardContent className='cardContent'>
                         {/* <br /> */}
-                        <CardActionArea style={{ border: 'thin solid #ced4da', borderRadius: '.25em', padding: 5 }} onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
-                            <Typography id='commentSection' variant="body2"> {meme.comments[meme.comments.length - 1] ? <p><ChatBubbleOutlineIcon />    <i>{meme.comments[meme.comments.length - 1].posterUsername}:</i> {meme.comments[meme.comments.length - 1].comment}</p> : <p><ChatBubbleOutlineIcon />  Add a public comment...</p>}</Typography>
-                            {/* <Typography id='commentSection' variant="body2"><ChatBubbleOutlineIcon /> click here to see comments!</Typography> */}
+                        <CardActionArea style={{
+                            display: 'flex',
+                            alignItems: 'left',
+                            borderBottom: 'thin solid #ced4da',
+                            padding: 5
+                        }}
+                            onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}
+                        >
+                            <Typography id='commentSection' variant="body2">
+                                {meme.comments[meme.comments.length - 1]
+
+                                    ?
+
+                                    <p><p><ChatBubbleOutlineIcon />    <i>{meme.comments[meme.comments.length - 1].posterUsername}:</i> {meme.comments[meme.comments.length - 1].comment}  </p><ArrowDropDownIcon /></p>
+
+                                    :
+
+                                    <p><ChatBubbleOutlineIcon />  Add a public comment...  <ArrowDropDownIcon /></p>}</Typography>
+                            {/* <Typography id='commentSection' variant="body2"><ChatBubbleOutlineIcon /> click here to see comments!</Typography> */}      <ArrowDropDownIcon />
+
                         </CardActionArea>
                     </CardContent>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
