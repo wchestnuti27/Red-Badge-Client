@@ -58,9 +58,9 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         return this.props.memes.map((meme: any, index: number) => {
             // console.log(meme.id)
             return (
-                <Card className='card' key={index} >
+                <Card className='feedCard' key={index} >
                     <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
-                        <CardMedia className='image' image={meme.url} />
+                        <CardMedia className='feedImage' image={meme.url} />
                         <CardContent className='cardContent'>
                             <Typography id='caption' variant="subtitle1">{meme.caption}</Typography>
                             <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
