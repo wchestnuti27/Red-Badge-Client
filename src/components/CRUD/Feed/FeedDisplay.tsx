@@ -5,16 +5,16 @@ import ImageModal from './ImageModal';
 
 import './Feed.css';
 
+import memeQuotes from '../../../memeQuotes';
+
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-
 import 'typeface-roboto';
 
 type AcceptedProps = {
@@ -53,16 +53,12 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
 
     openCommentModal(event: any, memeId: string, memeComments: any[]) {
         this.setState({ commentModal: true, memeId: memeId, memeComments: memeComments })
-        console.log('open commentModal fired')
-
     }
 
     closeCommentModal(event: any) {
         this.setState({ commentModal: false, memeId: '' })
-        console.log('close commentModal fired')
         this.props.getMemes(event)
     }
-    // this
 
     openImageModal(memeUrl: string, memeCaption: string, memeUsername: string, memeComments: any[]) {
         this.setState({
@@ -84,15 +80,10 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         })
     }
 
-    // classes = useStyles();
-
-    // componentDidMount() {
-
     displayMemes = (memes: object[]) => {
         this.props.memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
 
         return this.props.memes.map((meme: any, index: number) => {
-            console.log(meme.comments)
             return (
                 <Card className='feedCard' key={index} >
                     <CardActionArea
@@ -100,12 +91,11 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                     >
                         <CardMedia className='feedImage' image={meme.url} />
 
-                        <Typography  id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><p>{meme.caption}</p> <MoreHorizIcon /></p> : <p style={{ display: 'flex', justifyContent: 'flex-end' }}><MoreHorizIcon /></p>}</Typography>
+                        <Typography id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><p>{meme.caption}</p> <MoreHorizIcon /></p> : <p style={{ display: 'flex', justifyContent: 'flex-end' }}><MoreHorizIcon /></p>}</Typography>
 
                         <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                     </CardActionArea>
                     <CardContent className='cardContent'>
-                        {/* <br /> */}
                         <CardActionArea style={{
                             display: 'flex',
                             alignItems: 'left',
@@ -133,12 +123,17 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
             )
         })
     }
-    // }
+
+    getQuoteOfTheDay() {
+        const randomQuote = memeQuotes[Math.floor(Math.random() * memeQuotes.length)];
+        return randomQuote;
+    }
 
     render() {
         return (
             <div className='feed'>
-                {this.props.sessionToken ? <h3 style={{ color: 'white', fontSize: "auto" }}>{`Welcome Back ${this.props.username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
+                {this.props.sessionToken ? <h3 style={{ color: 'white', fontSize: "auto" }}>{`Welcome Back ${this.props.username}!`}</h3> : <h2 style={{ color: 'white' }}>SupreMemes</h2>}
+                {/* <p>{this.getQuoteOfTheDay()}</p> */}
 
                 <div className='displayMemes'>
                     {this.displayMemes(this.props.memes)}
@@ -160,6 +155,5 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                 </div>
             </div>
         )
-
     }
 }
