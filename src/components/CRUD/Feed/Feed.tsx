@@ -125,13 +125,13 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
                 {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
 
-                {this.state.memes !== undefined ?
+                {this.state.memes.length !== 0 ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
                         username={this.props.username}
                         memes={this.state.memes}
                     />
-                    : <CircularProgress />}
+                    :  <p style={{margin: 40}} ><CircularProgress /> Loading...</p>}
 
             </div>
         )

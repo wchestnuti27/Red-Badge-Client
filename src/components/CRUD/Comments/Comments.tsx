@@ -65,7 +65,7 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
 
     render() {
         console.log('comment modal')
-        console.log(this.props.memeComments) // this
+        console.log(this.props.memeComments)
         return (
             <Modal isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closeCommentModal(e)}>Comment Your Heart Out There Big Shoots</ModalHeader>

@@ -7,10 +7,13 @@
     z-index: 5;
     display: flex;
     /* float: right; */ /*uncomment this line to make nates component disapear :D */
+    justify-content: flex-end;
+    position: right;
+    margin: 0;
 }
 
 #navButtons {
-    float: right;
+    /* float: right; */
 }
 
 #link {
@@ -27,6 +30,18 @@
     color: #333;
 }
 
+#homeButton {
+    display: flex;
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    /* width: 30px; */
+    /* position: right; */
+    /* float: right; */
+    position: relative;
+    right: -5px;
+}
+
 #drawerButton {
     /* text-align: right; */
     float: right;
@@ -37,4 +52,8 @@
     /* text-align: right; */
     float: right;
     /* position: right; */
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    /* width: 15px; */
 }
