@@ -5,6 +5,8 @@ import ImageModal from './ImageModal';
 
 import './Feed.css';
 
+import memeQuotes from '../../../memeQuotes';
+
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -113,10 +115,16 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
     }
     // }
 
+    getQuoteOfTheDay() {
+        const randomQuote = memeQuotes[Math.floor(Math.random() * memeQuotes.length)];
+        return randomQuote;
+    }
+
     render() {
         return (
             <div className='feed'>
                 {this.props.sessionToken ? <h3 style={{ color: 'white', fontSize: "auto" }}>{`Welcome Back ${this.props.username}!`}</h3> : <h2 style={{ color: 'white' }}>Dank Memes</h2>}
+                <p>{this.getQuoteOfTheDay()}</p>
 
                 <div className='displayMemes'>
                     {this.displayMemes(this.props.memes)}
