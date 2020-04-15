@@ -1,6 +1,7 @@
 # SupreMemes (Client)
 
 This application was created to give users the ability to create custom memes
+
 <br/>
 
 ## Authors
@@ -9,6 +10,7 @@ Will Chestnut - wchestnuti27 - view my individual github page at https://github.
 Daniel Marsh - dmmarsh114 - view my individual github page at https://github.com/dmmarsh114
 
 Nathan Gaffney - NathanGaffney - view my individual github page at https://github.com/NathanGaffney
+
 <br/>
 
 ## Demo
@@ -22,6 +24,7 @@ Nathan Gaffney - NathanGaffney - view my individual github page at https://githu
 ### Editing a Comment and Deleting the Meme
 
 <img src="https://media2.giphy.com/media/gI5veKVsaeUSzov6Zq/giphy.gif">
+
 <br/>
 
 ## App Features
@@ -29,6 +32,7 @@ Nathan Gaffney - NathanGaffney - view my individual github page at https://githu
 * Stores memes in an user acct page
 * Allows users the ability to edit custom meme comment
 * Allows the user the ability to delete the meme on the acct page
+
 <br/>
 
 ## Endpoints: 
@@ -49,6 +53,7 @@ Nathan Gaffney - NathanGaffney - view my individual github page at https://githu
 * /mymemes/new - upload a meme
 * /mymemes/ - returns all memes posted by the logged in user
 * /mymemes/delete/:postId - deletes the specified meme
+
 <br/>
 
 ## Getting Started
@@ -60,6 +65,7 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+
 <br/>
 
 ## Available Scripts
