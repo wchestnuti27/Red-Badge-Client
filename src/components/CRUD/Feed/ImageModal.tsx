@@ -1,13 +1,11 @@
 import React from 'react';
-import {
-    Modal, ModalHeader, ModalBody, ModalFooter, Button
-} from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     imageModal: {
-        maxWidth: '80%',
+        maxWidth: '85%',
         maxHeight: '100%',
         marginLeft: 'auto',
         marginRight: 'auto',
@@ -31,7 +29,6 @@ type ImageModalProps = {
 const ImageModal = ({ memeUrl, memeCaption, memeUsername, memeComments, closeImageModal }: ImageModalProps) => {
 
     const classes = useStyles();
-    console.log('YO', memeComments)
 
     const displayComments = (comments: any[]) => {
         comments.sort((a: any, b: any) => (a.createdAt < b.createdAt) ? -1 : ((a.createdAt > b.createdAt) ? 1 : 0));

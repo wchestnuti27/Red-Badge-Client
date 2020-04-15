@@ -41,7 +41,6 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
                 })
             }).then((res) => res.json())
                 .then((commentData) => {
-                    console.log(commentData)
                     // this.setState({
                     //     flag: true
                     // })
@@ -52,12 +51,8 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
     }
 
     displayComments = (memeComments: object[]) => {
-        // this.props.memeComments.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
-        // memeComments.sort((a: any, b: any) => (a.createdAt < b.createdAt) ? -1 : ((a.createdAt > b.createdAt) ? 1 : 0));
 
         return this.props.memeComments.map((individualComments: any, index: number) => {
-            // console.log(meme.id)
-
             return (
                 <div>
                     <p><i>{individualComments.posterUsername}: </i> {individualComments.comment}</p>
@@ -67,8 +62,6 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
     }
 
     render() {
-        console.log('comment modal')
-        console.log(this.props.memeComments)
         return (
             <Modal isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closeCommentModal(e)}>Comment Your Heart Out There Big Shoots</ModalHeader>
@@ -87,5 +80,3 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
         )
     }
 }
-
-

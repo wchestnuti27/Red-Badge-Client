@@ -38,7 +38,6 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                 this.setState({
                     allMemes: json
                 });
-                console.log('ADMIN MEMES', this.state.allMemes);
             })
     }
 
@@ -53,7 +52,10 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
         return (
             <div style={{ margin: 50 }}>
                 <h3 style={{ color: 'white' }}>Hello Admin</h3>
-                <p>"With great power, comes great responsibility" ~ Uncle Ben - SpiderMan. <br/> How do you want to abuse your power today, {this.props.username}?</p>
+                <p>"With great power, comes great responsibility" ~ Uncle Ben - SpiderMan.</p>
+                <br />
+                <p>How do you want to abuse your power today, {this.props.username}?</p>
+
                 <hr style={{ borderColor: 'white' }} />
                 <div>
                     <Button color='info' disabled={this.state.showAllMemes} onClick={() => this.getAllMemes()}>view all posts</Button>

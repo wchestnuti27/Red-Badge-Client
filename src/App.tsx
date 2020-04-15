@@ -12,9 +12,7 @@ document.title = 'SupreMemes';
 type AppState = {
   sessionToken: string | null,
   username: string | null,
-  userRole: string | null,
-  guestUser: boolean,
-  authToggler: boolean
+  userRole: string | null
 }
 
 class App extends React.Component<{}, AppState> {
@@ -25,9 +23,6 @@ class App extends React.Component<{}, AppState> {
       sessionToken: "",
       username: '',
       userRole: 'guest',
-
-      guestUser: true, // this will gate the users ability to post memes if they are not logged in, true by default (no accout/user not signed in)
-      authToggler: true // this will be changes when someone clicks the sign up or log in button
     }
   }
 
@@ -57,7 +52,6 @@ class App extends React.Component<{}, AppState> {
   }
 
   componentDidMount() {
-    console.log('top')
     this.setState({
       sessionToken: localStorage.getItem('token'),
       username: localStorage.getItem('username'),
@@ -65,28 +59,8 @@ class App extends React.Component<{}, AppState> {
     })
   }
 
-
-  // componentWillMount() {
-  //   console.log('hi,')
-  // }
-
-  // componentDidMount() {
-  //   console.log('how are ya?')
-  //   console.log('GuesUser', this.state.guestUser)
-  // }
-
   render() {
-    // const guestUserSwitch = () => {
-    //   return (
-    //     this.state.sessionToken === null ? // this toggles guest user landing page and auth
-    //       <Auth updateToken={this.updateToken.bind(this)} />
-    //       :
-    //       <div>
-    //         {/* <PostMeme sessionToken={this.state.sessionToken} /> */}
-    //         <Feed sessionToken={this.state.sessionToken} />
-    //       </div>
-    //   )
-    // }
+
     return (
       <div style={{ backgroundColor: 'rgb(33,33,33)', color: 'white' }}>
         <Router>
@@ -100,7 +74,6 @@ class App extends React.Component<{}, AppState> {
             updateUserRole={this.updateUserRole.bind(this)}
           />
         </Router>
-        {/* {guestUserSwitch()} */}
       </div>
     )
   }

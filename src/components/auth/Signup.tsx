@@ -1,7 +1,5 @@
 import React from 'react';
-// import './style.scss'
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
-import loginImg from '../../Assets/Login Pic.jpg';
 
 type SignupState = {
     username: string,
@@ -43,11 +41,10 @@ class Signup extends React.Component<SignupProps, SignupState> {
                 })
             }).then(response => response.json()
             ).then(data => {
-                console.log(data);
                 data.user ? this.props.updateUsername(data.user.username) : console.log('could not update user')
                 data.user ? this.props.updateUserRole(data.user.role) : console.log('no user role assigned')
                 data.sessionToken ? this.props.updateToken(data.sessionToken)
-                    : alert(data.errors[0].message) //data.errors[0].message
+                    : alert(data.errors[0].message)
             })
         } else { alert('Please fill out all fields') }
     }
@@ -79,33 +76,3 @@ class Signup extends React.Component<SignupProps, SignupState> {
 }
 
 export default Signup;
-
-
-
-
-        // return <div className="base-container">
-        //     <div className="header">Signup</div>
-        //     <br />
-        //     <div className="content">
-        //         <div className="image">
-        //             <img src={loginImg} alt="login" />
-        //         </div>
-        //         <div className="form">
-        //             <div className="form-group">
-        //                 <label htmlFor="username">Username</label>
-        //                 <input onChange={e => this.setState({ username: e.target.value })} type="text" name="username" placeholder="username" />
-        //             </div>
-        //             <div className="form-group">
-        //                 <label htmlFor="email">Email</label>
-        //                 <input onChange={e => this.setState({ email: e.target.value })} type="email" name="email" placeholder="email" />
-        //             </div>
-        //             <div className="form-group">
-        //                 <label htmlFor="password">Password</label>
-        //                 <input onChange={e => this.setState({ password: e.target.value })} type="password" name="password" placeholder="password" />
-        //             </div>
-        //         </div>
-        //     </div>
-        //     <div className="footer">
-        //         <button onClick={(e) => this.handleSubmit(e)} type="button" className="btn">Signup</button>
-        //     </div>
-        // </div>
