@@ -1,6 +1,7 @@
 import React from 'react';
 import Votes from '../Votes/Votes';
 import Comments from '../Comments/Comments';
+import ImageModal from './ImageModal';
 
 import './Feed.css';
 
@@ -25,8 +26,12 @@ type AcceptedProps = {
 
 type FeedState = {
     commentModal: boolean,
+    imageModal: boolean,
     memeId: string,
-    memeComments: any[]
+    memeComments: any[],
+    memeUrl: string,
+    memeCaption: string,
+    memeUsername: string
 }
 
 export default class FeedDisplay extends React.Component<AcceptedProps, FeedState> {
@@ -35,8 +40,12 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
 
         this.state = {
             commentModal: false,
+            imageModal: false,
             memeId: '',
-            memeComments: []
+            memeComments: [],
+            memeUrl: '',
+            memeCaption: '',
+            memeUsername: ''
         }
     }
 
@@ -54,6 +63,26 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         this.props.getMemes(event)
     }
 
+    openImageModal(memeUrl: string, memeCaption: string, memeUsername: string, memeComments: any[]) {
+        this.setState({
+            imageModal: true,
+            memeUrl: memeUrl,
+            memeCaption: memeCaption,
+            memeUsername: memeUsername,
+            memeComments: memeComments
+        })
+    }
+
+    closeImageModal() {
+        this.setState({
+            imageModal: false,
+            memeUrl: '',
+            memeCaption: '',
+            memeUsername: '',
+            memeComments: []
+        })
+    }
+
     // classes = useStyles();
 
     // componentDidMount() {
@@ -65,7 +94,9 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
             console.log(meme.comments)
             return (
                 <Card className='feedCard' key={index} >
-                    <CardActionArea>
+                    <CardActionArea
+                        onClick={() => this.openImageModal(meme.url, meme.caption, meme.username, meme.comments)}
+                    >
                         <CardMedia className='feedImage' image={meme.url} />
 
                         <Typography  id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><p>{meme.caption}</p> <MoreHorizIcon /></p> : <p style={{ display: 'flex', justifyContent: 'flex-end' }}><MoreHorizIcon /></p>}</Typography>
@@ -110,7 +141,21 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
 
                 <div className='displayMemes'>
                     {this.displayMemes(this.props.memes)}
-                    {this.state.commentModal ? <Comments memeComments={this.state.memeComments} sessionToken={this.props.sessionToken} closeCommentModal={this.closeCommentModal.bind(this)} memeId={this.state.memeId} /> : null}
+                    {this.state.commentModal ?
+                        <Comments
+                            memeComments={this.state.memeComments}
+                            sessionToken={this.props.sessionToken}
+                            closeCommentModal={this.closeCommentModal.bind(this)}
+                            memeId={this.state.memeId}
+                        /> : null}
+                    {this.state.imageModal ?
+                        <ImageModal
+                            memeUrl={this.state.memeUrl}
+                            memeCaption={this.state.memeCaption}
+                            memeUsername={this.state.memeUsername}
+                            memeComments={this.state.memeComments}
+                            closeImageModal={this.closeImageModal.bind(this)}
+                        /> : null}
                 </div>
             </div>
         )
