@@ -53,9 +53,11 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
 
     displayComments = (memeComments: object[]) => {
         // this.props.memeComments.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
+        // memeComments.sort((a: any, b: any) => (a.createdAt < b.createdAt) ? -1 : ((a.createdAt > b.createdAt) ? 1 : 0));
 
         return this.props.memeComments.map((individualComments: any, index: number) => {
             // console.log(meme.id)
+
             return (
                 <div>
                     <p><i>{individualComments.posterUsername}: </i> {individualComments.comment}</p>
