@@ -1,0 +1,32 @@
+@media screen and (min-width: 200px) and (max-width: 320px) {
+    img {
+        justify-content: center;
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    img {
+        justify-content: center;
+        width: 280px;
+        height: 280px;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    img {
+        justify-content: center;
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+    img {
+        justify-content: center;
+        width: 250px;
+        height: 250px;
+    }
+}
+

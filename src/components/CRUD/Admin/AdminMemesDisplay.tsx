@@ -30,7 +30,6 @@ const AdminMemesDisplay = ({ allMemes, sessionToken, getAllMemes }: AdminDisplay
         memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
 
         return memes.map((meme: any, index: number) => {
-            console.log(meme.comments[0])
             return (
                 <Card key={index} className='card'>
                     <CardActionArea>

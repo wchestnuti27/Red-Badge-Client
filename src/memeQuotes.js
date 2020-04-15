@@ -8,3 +8,5 @@ const memeQuotes = [
     '"bruh" -- Neil DeGrasse Tysonn (2017)',
     'you guys heard about this game, animal crossing?',
 ]
+
+export default memeQuotes;

@@ -37,14 +37,6 @@ export default class Feed extends Component<AcceptedProps, PostState> {
         }
     }
 
-    // checkSessionToken(token: string | null): string {
-    //     if (token === null) {
-    //         return 'no token'
-    //     } else {
-    //         return token
-    //     }
-    // }
-
     handleSubmit(event: any) {
         event.preventDefault();
 
@@ -64,14 +56,9 @@ export default class Feed extends Component<AcceptedProps, PostState> {
         })
             .then(response => response.json())
             .then((jsonData) => {
-                console.log(jsonData, 'post data')
                 this.props.getMemes(event)
-                console.log("last")
                 this.props.closeNavPostModal(event)
             })
-        //  .then(function alert('Meme Posted'))
-        //  .then(
-        //  )
     }
 
     changeMemeImage(e: any) {
@@ -80,16 +67,6 @@ export default class Feed extends Component<AcceptedProps, PostState> {
 
     render() {
         return (
-            // <div>
-            //     <form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
-            //         <label htmlFor="memeImage">Choose an Image</label>
-            //         <input type="file" onChange={e => this.changeMemeImage(e)} />
-
-            //         <label htmlFor="caption">Caption</label>
-            //         <input type="text" onChange={e => this.setState({ caption: e.target.value })} />
-            //         <button type="submit">submit</button>
-            //     </form>
-            // </div>
             <Modal isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closeNavPostModal(e)}>Post a SupreMeme</ModalHeader>
                 {this.props.sessionToken ? <ModalBody>

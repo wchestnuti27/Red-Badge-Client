@@ -5,7 +5,6 @@ import './Navbar.css';
 
 // components
 import Auth from '../auth/Auth';
-import PostMeme from '../CRUD/Feed/PostMeme';
 import Feed from '../CRUD/Feed/Feed';
 import Admin from '../CRUD/Admin/Admin';
 import MyAccount from '../CRUD/MyAccount/MyAccount';
@@ -62,12 +61,10 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
 
   openPostModal(e: any) {
     this.setState({ navPostModal: true })
-    console.log('openPostModal fired')
   }
 
   closeNavPostModal(e: any) {
     this.setState({ navPostModal: false })
-    console.log('closePostModal fired')
   }
 
   toggleDrawer = (open: boolean) => (event: any) => {
@@ -165,7 +162,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
               <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
             </ListItem>
-            
+
           </Link>
           <Link to='/' id='homeButton'>
             <ListItem button id='homeButton'>
@@ -175,12 +172,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
           <div id='navButtons'>
           </div>
           <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
-          
-          
 
-          {/* POST MEME */}
-          {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}
-          {/* <Button id='postMemeButton' onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
         </div>
 
         <React.Fragment>
@@ -193,13 +185,6 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             {this.list()}
           </SwipeableDrawer>
         </React.Fragment>
-
-        {/* {this.state.postModal ?
-          <PostMeme
-            closePostModal={this.closePostModal.bind(this)}
-            sessionToken={this.props.sessionToken}
-          />
-          : null} */}
 
         <Switch>
           <Route exact path='/'>
