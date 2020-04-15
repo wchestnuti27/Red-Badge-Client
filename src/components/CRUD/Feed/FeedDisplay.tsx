@@ -73,7 +73,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                         </CardActionArea>
                         <br />
                         <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
-                            <Typography variant="body2"> {meme.comments[0] ? <p><ChatBubbleOutlineIcon />    <i>{meme.comments[0].posterUsername}:</i> {meme.comments[0].comment}</p> : <p><ChatBubbleOutlineIcon />  Add a public comment...</p>}</Typography>
+                            <Typography id='commentSection' variant="body2"> {meme.comments[meme.comments.length - 1] ? <p><ChatBubbleOutlineIcon />    <i>{meme.comments[meme.comments.length - 1].posterUsername}:</i> {meme.comments[meme.comments.length - 1].comment}</p> : <p><ChatBubbleOutlineIcon />  Add a public comment...</p>}</Typography>
                         </CardActionArea>
                     </CardContent>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />
