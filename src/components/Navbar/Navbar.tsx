@@ -165,6 +165,7 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
             <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
               <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
             </ListItem>
+            
           </Link>
           <Link to='/' id='homeButton'>
             <ListItem button id='homeButton'>

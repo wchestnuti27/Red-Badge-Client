@@ -9,6 +9,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
+import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 
 import 'typeface-roboto';
 
@@ -16,6 +18,7 @@ type AcceptedProps = {
     sessionToken?: string | null,
     username?: string | null,
     memes: any[],
+    getMemes: (e: any) => void
 }
 
 type FeedState = {
@@ -46,6 +49,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
     closeCommentModal(event: any) {
         this.setState({ commentModal: false, memeId: '' })
         console.log('close commentModal fired')
+        this.props.getMemes(event)
     }
 
     // classes = useStyles();
@@ -56,7 +60,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         this.props.memes.sort((a: any, b: any) => (a.createdAt > b.createdAt) ? -1 : ((a.createdAt < b.createdAt) ? 1 : 0));
 
         return this.props.memes.map((meme: any, index: number) => {
-            // console.log(meme.id)
+            console.log(meme.comments)
             return (
                 <Card className='feedCard' key={index} >
                     <CardActionArea>
@@ -69,7 +73,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                         </CardActionArea>
                         <br />
                         <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
-                            <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'Add a public comment...'}</p></Typography>
+                            <Typography variant="body2"> {meme.comments[0] ? <p><ChatBubbleOutlineIcon />    <i>{meme.comments[0].posterUsername}:</i> {meme.comments[0].comment}</p> : <p><ChatBubbleOutlineIcon />  Add a public comment...</p>}</Typography>
                         </CardActionArea>
                     </CardContent>
                     <Votes voteCount={meme.voteCount} memeId={meme.id} />

@@ -130,6 +130,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                         sessionToken={this.props.sessionToken}
                         username={this.props.username}
                         memes={this.state.memes}
+                        getMemes={this.getMemes.bind(this)}
                     />
                     :  <p style={{margin: 40}} ><CircularProgress /> Loading...</p>}
 

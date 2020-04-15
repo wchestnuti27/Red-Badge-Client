@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Col, Row } from 'reactstrap';
 
+
 type AcceptedProps = {
     sessionToken?: any
     memeId: string,
@@ -10,7 +11,7 @@ type AcceptedProps = {
 
 type CommentState = {
     comment: string,
-    flag: boolean
+    // flag: boolean
 }
 
 export default class Comments extends React.Component<AcceptedProps, CommentState> {
@@ -19,7 +20,7 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
 
         this.state = {
             comment: '',
-            flag: true
+            // flag: false,
         }
     }
 
@@ -45,7 +46,7 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
                     //     flag: true
                     // })
                     // this.displayComments()
-                    // this.props.closeCommentModal(e)
+                    this.props.closeCommentModal(e)
                 })
         } else { alert('please write a comment before posting.') }
     }
@@ -71,6 +72,7 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
                 <ModalHeader toggle={(e) => this.props.closeCommentModal(e)}>Comment Your Heart Out There Big Shoots</ModalHeader>
                 <ModalBody>
                     {this.displayComments(this.props.memeComments)}
+                    {/* {this.state.flag ? <p>{this.state.comment}</p> : null} */}
                     <Form onSubmit={e => this.handleSubmit(e)}>
                         <FormGroup>
                             <Label htmlFor='comment'>Post a Comment!</Label>
