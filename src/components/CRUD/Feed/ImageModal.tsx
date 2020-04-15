@@ -52,14 +52,14 @@ const ImageModal = ({ memeUrl, memeCaption, memeUsername, memeComments, closeIma
             </ModalHeader>
             <ModalBody className={classes.imageModal} style={{ padding: 10 }}>
                 <img className={classes.memeImage} src={memeUrl} alt="big meme" />
-            </ModalBody>
-            <ModalFooter>
-                <p><i>posted by: {memeUsername}</i></p>
-            </ModalFooter>
-            <ModalBody>
+                <hr />
+                <p style={{ textAlign: 'right' }}><i>posted by: {memeUsername}</i></p>
                 <hr />
                 {displayComments(memeComments)}
             </ModalBody>
+            <ModalFooter>
+                {/* post comment logic here? */}
+            </ModalFooter>
         </Modal >
     )
 }
