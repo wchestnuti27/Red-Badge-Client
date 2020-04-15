@@ -3,11 +3,19 @@ import {
     Modal, ModalHeader, ModalBody, FormGroup,
     Form, Button, Label, Input
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import PersonIcon from '@material-ui/icons/Person';
+
+import './Feed.css';
 
 type PostState = {
     memeImage: string | Blob,
     caption: string,
-    voteCount: string
+    voteCount: string,
+    posting: boolean
 }
 
 type AcceptedProps = {
@@ -25,6 +33,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             memeImage: '',
             caption: '',
             voteCount: '0',
+            posting: false
         }
     }
 
@@ -38,6 +47,8 @@ export default class Feed extends Component<AcceptedProps, PostState> {
 
     handleSubmit(event: any) {
         event.preventDefault();
+
+        this.setState({ posting: true });
 
         let formData = new FormData();
         formData.append('caption', this.state.caption);
@@ -81,19 +92,37 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             // </div>
             <Modal isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closeNavPostModal(e)}>Post a SupreMeme</ModalHeader>
-                <ModalBody>
+                {this.props.sessionToken ? <ModalBody>
                     <Form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
                         <FormGroup>
                             <Label htmlFor="memeImage">Choose an Image</Label>
-                            <Input type="file" onChange={e => this.changeMemeImage(e)} />
+                            <Input type="file" className='fileInput' onChange={e => this.changeMemeImage(e)} />
                         </FormGroup>
                         <FormGroup>
                             <Label htmlFor="caption">Caption</Label>
-                            <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
+                            <Input type="text" placeholder={'ex: "Checkout this meme..."'} onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
-                        <Button type="submit">Submit</Button>
+                        <Button
+                            disabled={this.state.posting} type="submit">
+                            {this.state.posting ? <i>please wait...</i> : 'Submit'}
+                        </Button>
                     </Form>
                 </ModalBody>
+
+                    :
+
+                    <ModalBody>
+                        <h5>You need to be logged in to post</h5>
+                        <Link to='/account' id='link'>
+                            <ListItem button>
+                                <ListItemIcon><PersonIcon /></ListItemIcon>
+                                <ListItemText primary='Login' />
+                            </ListItem>
+                        </Link>
+                    </ModalBody>
+
+                }
+
             </Modal>
         )
     }

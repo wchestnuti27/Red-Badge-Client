@@ -1,0 +1,41 @@
+.feed {
+    text-align: center;
+}
+
+.displayMemes {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 65px 5px 65px;
+}
+
+.feedCard {
+    height: 400px;
+    width: 250px;
+    border: thin solid white;
+    margin: 10px;
+}
+
+#feedCaption {
+    font-weight: bold;
+    height: 30px;
+    overflow: hidden;
+}
+
+.feedImage {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+}
+
+.fileInput {
+    border: thin solid #ced4da;
+    border-radius: .25rem;
+    color: #495057;
+}
+
+#commentSection {
+    height: 20px;
+    overflow: hidden;
+}

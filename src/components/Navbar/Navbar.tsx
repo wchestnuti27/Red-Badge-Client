@@ -32,6 +32,7 @@ import HelpIcon from '@material-ui/icons/Help';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import HomeIcon from '@material-ui/icons/Home';
 
 type AcceptedProps = {
   sessionToken: string | null,
@@ -159,15 +160,23 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
         <div id='navbar'>
 
           {/* OPEN NAV DRAWER */}
-          <div id='navButtons'>
-          </div>
-          <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
 
           <Link to='/' id='postMemeButton'>
             <ListItem button id='postMemeButton' onClick={e => this.openPostModal(e)}>
               <ListItemIcon><AddCircleOutlineIcon /></ListItemIcon>
             </ListItem>
+            
           </Link>
+          <Link to='/' id='homeButton'>
+            <ListItem button id='homeButton'>
+              <ListItemIcon><HomeIcon /></ListItemIcon>
+            </ListItem>
+          </Link>
+          <div id='navButtons'>
+          </div>
+          <Button id='drawerButton' onClick={this.toggleDrawer(true)}><MenuOutlinedIcon /></Button>
+          
+          
 
           {/* POST MEME */}
           {/* <Button id='postMemeButton'><Link to='/postmeme' id='link'><AddCircleOutlineIcon /></Link></Button> */}

@@ -10,7 +10,6 @@ type MemeState = {
     memes: any[],
     comments: any[],
     postModal: boolean,
-    commentModal: boolean
     // postFlag: boolean
 }
 
@@ -31,7 +30,6 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
             memes: [],
             comments: [],
             postModal: false,
-            commentModal: false
             // postFlag: false
         }
     }
@@ -46,17 +44,6 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
         this.props.closeNavPostModal(event)
     }
 
-    // commentModal toggler logic
-
-    openCommentModal(event: any) {
-        this.setState({ commentModal: true })
-        console.log('open commentModal fired')
-    }
-
-    closeCommentModal(event: any) {
-        this.setState({ commentModal: false })
-        console.log('close commentModal fired')
-    }
 
     getMemes(event: any) {
         event.preventDefault()
@@ -138,16 +125,14 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                 {/* <Button onClick={e => this.openPostModal(e)}><AddCircleOutlineIcon /></Button> */}
                 {this.props.navPostModal ? <PostMeme closeNavPostModal={this.props.closeNavPostModal.bind(this)} getMemes={this.getMemes.bind(this)} closePostModal={this.closePostModal.bind(this)} sessionToken={this.props.sessionToken} /> : null}
 
-                {this.state.memes !== undefined ?
+                {this.state.memes.length !== 0 ?
                     <FeedDisplay
                         sessionToken={this.props.sessionToken}
                         username={this.props.username}
                         memes={this.state.memes}
-                        commentModal={this.state.commentModal}
-                        closeCommentModal={this.closeCommentModal.bind(this)}
-                        openCommentModal={this.openCommentModal.bind(this)}
+                        getMemes={this.getMemes.bind(this)}
                     />
-                    : <CircularProgress />}
+                    :  <p style={{margin: 40}} ><CircularProgress /> Loading...</p>}
 
             </div>
         )
