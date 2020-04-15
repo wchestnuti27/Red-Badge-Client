@@ -50,10 +50,13 @@
 
 #postMemeButton {
     /* text-align: right; */
-    float: right;
+    /* float: right; */
     /* position: right; */
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+    display: inline-flex;
+ position: relative;
+    align-items: center;
     /* width: 15px; */
 }
