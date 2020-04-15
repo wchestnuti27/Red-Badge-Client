@@ -75,7 +75,7 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
                     {/* {this.state.flag ? <p>{this.state.comment}</p> : null} */}
                     <Form onSubmit={e => this.handleSubmit(e)}>
                         <FormGroup>
-                            <Label htmlFor='comment'>Post a Comment!</Label>
+                            {/* <Label htmlFor='comment'>Post a Comment!</Label> */}
                             <Input name='comment' placeholder='write your comment:' onChange={(e) => this.setState({ comment: e.target.value })}></Input>
                         </FormGroup>
                         <Button type='submit' color='info'>Post</Button>

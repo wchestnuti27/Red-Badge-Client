@@ -9,6 +9,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
 
+import './Feed.css';
+
 type PostState = {
     memeImage: string | Blob,
     caption: string,
@@ -94,7 +96,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                     <Form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
                         <FormGroup>
                             <Label htmlFor="memeImage">Choose an Image</Label>
-                            <Input type="file" onChange={e => this.changeMemeImage(e)} />
+                            <Input type="file" className='fileInput' onChange={e => this.changeMemeImage(e)} />
                         </FormGroup>
                         <FormGroup>
                             <Label htmlFor="caption">Caption</Label>
