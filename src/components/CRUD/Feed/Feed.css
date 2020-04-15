@@ -16,8 +16,10 @@
     margin: 10px;
 }
 
-#caption {
+#feedCaption {
     font-weight: bold;
+    height: 30px;
+    overflow: hidden;
 }
 
 .feedImage {
