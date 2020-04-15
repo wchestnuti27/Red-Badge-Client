@@ -15,6 +15,8 @@ import Typography from '@material-ui/core/Typography';
 import ChatBubbleOutlineIcon from '@material-ui/icons/ChatBubbleOutline';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+import LaunchIcon from '@material-ui/icons/Launch';
+
 import 'typeface-roboto';
 
 type AcceptedProps = {
@@ -91,7 +93,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                     >
                         <CardMedia className='feedImage' image={meme.url} />
 
-                        <Typography id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><p>{meme.caption}</p> <MoreHorizIcon /></p> : <p style={{ display: 'flex', justifyContent: 'flex-end' }}><MoreHorizIcon /></p>}</Typography>
+                        <Typography  id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><LaunchIcon /> Expand</p> : ''}</Typography>
 
                         <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                     </CardActionArea>
