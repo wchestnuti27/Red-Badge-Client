@@ -41,3 +41,14 @@
 
 }
 
+#postLogin:hover {
+    background-color: lightgray;
+    color: #333;
+    border-radius: 4px;
+    width: 50%;
+}
+#postLogin {
+    border-radius: 4px;
+    width: 50%;
+}
+

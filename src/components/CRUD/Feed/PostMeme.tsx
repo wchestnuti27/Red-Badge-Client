@@ -112,13 +112,14 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                     :
 
                     <ModalBody>
-                        <h5>You need to be logged in to post</h5>
+                        <div id ='postLogin'>
                         <Link to='/account' id='link'>
                             <ListItem button>
                                 <ListItemIcon><PersonIcon /></ListItemIcon>
-                                <ListItemText primary='Login' />
+                                <ListItemText primary='Login to post meme' />
                             </ListItem>
                         </Link>
+                        </div>
                     </ModalBody>
 
                 }

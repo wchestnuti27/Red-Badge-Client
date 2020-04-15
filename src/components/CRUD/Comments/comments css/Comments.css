@@ -1,0 +1,10 @@
+#commentLogin:hover {
+    background-color: lightgray;
+    color: #333;
+    border-radius: 4px;
+    width: 50%;
+}
+#commentLogin {
+    border-radius: 4px;
+    width: 50%;
+}
