@@ -7,7 +7,8 @@ import {
 type PostState = {
     memeImage: string | Blob,
     caption: string,
-    voteCount: string
+    voteCount: string,
+    posting: boolean
 }
 
 type AcceptedProps = {
@@ -25,6 +26,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
             memeImage: '',
             caption: '',
             voteCount: '0',
+            posting: false
         }
     }
 
@@ -38,6 +40,8 @@ export default class Feed extends Component<AcceptedProps, PostState> {
 
     handleSubmit(event: any) {
         event.preventDefault();
+
+        this.setState({ posting: true });
 
         let formData = new FormData();
         formData.append('caption', this.state.caption);
@@ -91,7 +95,10 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                             <Label htmlFor="caption">Caption</Label>
                             <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
-                        <Button type="submit">Submit</Button>
+                        <Button
+                            disabled={this.state.posting} type="submit">
+                            {this.state.posting ? <i>please wait...</i> : 'Submit'}
+                        </Button>
                     </Form>
                 </ModalBody>
             </Modal>

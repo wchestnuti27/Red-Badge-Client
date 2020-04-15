@@ -61,10 +61,12 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                 <Card className='card' key={index} >
                     <CardActionArea>
                         <CardMedia className='image' image={meme.url} />
+                        <Typography id='caption' variant="subtitle1">{meme.caption}</Typography>
                     </CardActionArea>
                     <CardContent className='cardContent'>
-                        <Typography id='caption' variant="subtitle1">{meme.caption}</Typography>
-                        <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
+                        <CardActionArea>
+                            <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
+                        </CardActionArea>
                         <br />
                         <CardActionArea onClick={(e) => this.openCommentModal(e, meme.id, meme.comments)}>
                             <Typography variant="body2"><p>{meme.comments[0] ? meme.comments[0].comment : 'Add a public comment...'}</p></Typography>

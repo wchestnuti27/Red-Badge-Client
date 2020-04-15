@@ -9,17 +9,19 @@
     justify-content: center;
 }
 
-.card {
-    height: 400;
-    width: 250;
+.feedCard {
+    height: 400px;
+    width: 250px;
     border: thin solid white;
+    margin: 10px;
 }
 
 #caption {
     font-weight: bold;
 }
 
-.image {
-    height: auto;
-    width: 250;
+.feedImage {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
 }
