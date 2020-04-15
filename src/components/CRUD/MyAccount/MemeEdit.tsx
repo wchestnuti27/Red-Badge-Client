@@ -22,7 +22,7 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
         super(props)
 
         this.state = {
-            caption: ''
+            caption: this.props.memeCaption
         }
     }
 
@@ -67,7 +67,7 @@ export default class MemeEdit extends Component<AcceptedProps, AcctState> {
                     <Form encType="multipart/form-data" onSubmit={event => this.editMeme(event, this.props.memeId)}>
                         <FormGroup>
                             <Label htmlFor="caption">Caption</Label>
-                            <Input type="text" onChange={e => this.setState({ caption: e.target.value })} />
+                            <Input type="text" value={this.state.caption} onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
                         <Button type="submit">Submit</Button>
                     </Form>

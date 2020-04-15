@@ -29,7 +29,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
 
         this.state = {
             memeImage: '',
-            caption: 'Checkout this meme...',
+            caption: '',
             voteCount: '0',
             posting: false
         }
@@ -98,7 +98,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                         </FormGroup>
                         <FormGroup>
                             <Label htmlFor="caption">Caption</Label>
-                            <Input type="text" placeholder={'Checkout this meme...'} onChange={e => this.setState({ caption: e.target.value })} />
+                            <Input type="text" placeholder={'ex: "Checkout this meme..."'} onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
                         <Button
                             disabled={this.state.posting} type="submit">

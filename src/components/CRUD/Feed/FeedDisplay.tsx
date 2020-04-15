@@ -65,7 +65,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                 <Card className='feedCard' key={index} >
                     <CardActionArea>
                         <CardMedia className='feedImage' image={meme.url} />
-                        <Typography id='caption' variant="subtitle1">{meme.caption}</Typography>
+                        <Typography id='feedCaption' variant="subtitle1">{meme.caption}</Typography>
                     </CardActionArea>
                     <CardContent className='cardContent'>
                         <CardActionArea>
