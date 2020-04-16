@@ -12,10 +12,7 @@ type AdminProps = {
 
 type AdminState = {
     allMemes: any[],
-    showAllMemes: boolean,
-    displayCommentModal: boolean,
-    displayCommentMemeId: string,
-    displayCommentMemeComments: any[]
+    showAllMemes: boolean
 }
 
 export default class Admin extends React.Component<AdminProps, AdminState> {
@@ -24,10 +21,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
 
         this.state = {
             allMemes: [],
-            showAllMemes: false,
-            displayCommentModal: false,
-            displayCommentMemeId: '',
-            displayCommentMemeComments: []
+            showAllMemes: false
         }
     }
 
@@ -46,18 +40,6 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                     allMemes: json
                 });
             })
-    }
-
-    openDisplayCommentModal = (memeId: string, memeComments: any[]) => {
-        this.setState({
-            displayCommentModal: true,
-            displayCommentMemeId: memeId,
-            displayCommentMemeComments: memeComments
-        })
-    }
-
-    closeDisplayCommentModal = () => {
-        this.setState({ displayCommentModal: false })
     }
 
     getAllUsers() {
@@ -92,9 +74,6 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                                 allMemes={this.state.allMemes}
                                 sessionToken={this.props.sessionToken}
                                 getAllMemes={this.getAllMemes.bind(this)}
-                                commentModal={this.state.displayCommentModal}
-                                openCommentModal={this.openDisplayCommentModal(this.state.displayCommentMemeId, this.state.displayCommentMemeComments)}
-                                closeCommentModal={this.closeDisplayCommentModal}
                             />
                         </div> : null
                 }
