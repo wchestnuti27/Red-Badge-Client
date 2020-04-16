@@ -13,9 +13,6 @@ type AdminProps = {
 type AdminState = {
     allMemes: any[],
     showAllMemes: boolean,
-    displayCommentModal: boolean,
-    displayCommentMemeId: string,
-    displayCommentMemeComments: any[]
 }
 
 export default class Admin extends React.Component<AdminProps, AdminState> {
@@ -25,9 +22,6 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
         this.state = {
             allMemes: [],
             showAllMemes: false,
-            displayCommentModal: false,
-            displayCommentMemeId: '',
-            displayCommentMemeComments: []
         }
     }
 
@@ -48,17 +42,6 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
             })
     }
 
-    openDisplayCommentModal = (memeId: string, memeComments: any[]) => {
-        this.setState({
-            displayCommentModal: true,
-            displayCommentMemeId: memeId,
-            displayCommentMemeComments: memeComments
-        })
-    }
-
-    closeDisplayCommentModal = () => {
-        this.setState({ displayCommentModal: false })
-    }
 
     getAllUsers() {
         this.setState({ showAllMemes: false })
@@ -81,7 +64,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                 </div>
                 <br />
                 <div>
-                    <Button color='info' onClick={() => this.getAllUsers()}>view all users</Button>
+                    <Button color='info' onClick={() => this.getAllUsers()}>view all users</Button> <i>(under construction)</i>
                 </div>
                 {
                     this.state.showAllMemes ?
@@ -91,10 +74,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                                 userRole={this.props.userRole}
                                 allMemes={this.state.allMemes}
                                 sessionToken={this.props.sessionToken}
-                                getAllMemes={this.getAllMemes.bind(this)}
-                                commentModal={this.state.displayCommentModal}
-                                openCommentModal={this.openDisplayCommentModal(this.state.displayCommentMemeId, this.state.displayCommentMemeComments)}
-                                closeCommentModal={this.closeDisplayCommentModal}
+                                getAllMemes={this.getAllMemes.bind(this)}                                
                             />
                         </div> : null
                 }
