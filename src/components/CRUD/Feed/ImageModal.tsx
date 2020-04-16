@@ -50,14 +50,15 @@ const ImageModal = ({ memeUrl, memeCaption, memeUsername, memeComments, closeIma
             </ModalHeader>
             <ModalBody className={classes.imageModal} style={{ padding: 10 }}>
                 <img className={classes.memeImage} src={memeUrl} alt="big meme" />
+                <br />
+                <p style={{ textAlign: 'right' }}><i>posted by {memeUsername}</i></p>
                 <hr />
-                <p style={{ textAlign: 'right' }}><i>posted by: {memeUsername}</i></p>
-                <hr />
+                {memeComments.length !==0 ? <h6><i>comments:</i></h6> : null}
                 {displayComments(memeComments)}
             </ModalBody>
-            <ModalFooter>
+            {/* <ModalFooter> */}
                 {/* post comment logic here? */}
-            </ModalFooter>
+            {/* </ModalFooter> */}
         </Modal >
     )
 }
