@@ -114,7 +114,7 @@ export default class Comments extends React.Component<AcceptedProps, CommentStat
 
     render() {
         return (
-            <Modal isOpen={true}>
+            <Modal backdrop={'static'} isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closeCommentModal(e)}>Comment Your Heart Out There Big Shoots</ModalHeader>
                 <ModalBody>
                     {this.displayComments(this.state.commentsToDisplay)}
