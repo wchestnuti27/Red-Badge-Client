@@ -13,6 +13,7 @@ const useStyles = makeStyles({
         paddingRight: 0
     },
     memeImage: {
+        height: 'auto',
         maxWidth: '100%',
         maxHeight: '100%'
     }
@@ -43,7 +44,7 @@ const ImageModal = ({ memeUrl, memeCaption, memeUsername, memeComments, closeIma
     }
 
     return (
-        < Modal isOpen={true} >
+        < Modal backdrop={'static'} isOpen={true} >
             <ModalHeader toggle={() => closeImageModal()}>
                 {memeCaption !== '' ? memeCaption : `${memeUsername}'s meme`}
             </ModalHeader>

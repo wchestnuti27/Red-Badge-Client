@@ -52,7 +52,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
         }
     }
 
-    // commentModal toggler logic
+    // commentModal toggler logic //
 
     openCommentModal(event: any, memeId: string, memeComments: any[]) {
         this.setState({ commentModal: true, memeId: memeId, memeComments: memeComments })
