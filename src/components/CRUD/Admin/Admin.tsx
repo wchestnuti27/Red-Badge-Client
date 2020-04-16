@@ -6,12 +6,13 @@ import AdminMemesDisplay from './AdminMemesDisplay';
 
 type AdminProps = {
     sessionToken: string | null,
-    username: string | null
+    username: string | null,
+    userRole: string | null
 }
 
 type AdminState = {
     allMemes: any[],
-    showAllMemes: boolean
+    showAllMemes: boolean,
 }
 
 export default class Admin extends React.Component<AdminProps, AdminState> {
@@ -20,7 +21,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
 
         this.state = {
             allMemes: [],
-            showAllMemes: false
+            showAllMemes: false,
         }
     }
 
@@ -40,6 +41,7 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                 });
             })
     }
+
 
     getAllUsers() {
         this.setState({ showAllMemes: false })
@@ -62,16 +64,17 @@ export default class Admin extends React.Component<AdminProps, AdminState> {
                 </div>
                 <br />
                 <div>
-                    <Button color='info' onClick={() => this.getAllUsers()}>view all users</Button>
+                    <Button color='info' onClick={() => this.getAllUsers()}>view all users</Button> <i>(under construction)</i>
                 </div>
                 {
                     this.state.showAllMemes ?
                         <div>
                             <hr style={{ borderColor: 'white' }} />
                             <AdminMemesDisplay
+                                userRole={this.props.userRole}
                                 allMemes={this.state.allMemes}
                                 sessionToken={this.props.sessionToken}
-                                getAllMemes={this.getAllMemes.bind(this)}
+                                getAllMemes={this.getAllMemes.bind(this)}                                
                             />
                         </div> : null
                 }

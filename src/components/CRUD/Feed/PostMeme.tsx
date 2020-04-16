@@ -8,6 +8,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
+import PublishIcon from '@material-ui/icons/Publish';
 
 import './Feed.css';
 
@@ -40,25 +41,30 @@ export default class Feed extends Component<AcceptedProps, PostState> {
     handleSubmit(event: any) {
         event.preventDefault();
 
-        this.setState({ posting: true });
+        if (this.state.memeImage === '') {
+            alert('Please select a meme to upload');
+        } else {
 
-        let formData = new FormData();
-        formData.append('caption', this.state.caption);
-        formData.append('voteCount', this.state.voteCount);
-        formData.append('memeImage', this.state.memeImage);
+            this.setState({ posting: true });
 
-        fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/new', {
-            method: 'POST',
-            body: formData,
-            headers: new Headers({
-                'Authorization': this.props.sessionToken
+            let formData = new FormData();
+            formData.append('caption', this.state.caption);
+            formData.append('voteCount', this.state.voteCount);
+            formData.append('memeImage', this.state.memeImage);
+
+            fetch('https://team6-red-badge-meme-server.herokuapp.com/mymemes/new', {
+                method: 'POST',
+                body: formData,
+                headers: new Headers({
+                    'Authorization': this.props.sessionToken
+                })
             })
-        })
-            .then(response => response.json())
-            .then((jsonData) => {
-                this.props.getMemes(event)
-                this.props.closeNavPostModal(event)
-            })
+                .then(response => response.json())
+                .then((jsonData) => {
+                    this.props.getMemes(event)
+                    this.props.closeNavPostModal(event)
+                })
+        }
     }
 
     changeMemeImage(e: any) {
@@ -80,8 +86,8 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                             <Input type="text" placeholder={'ex: "Checkout this meme..."'} onChange={e => this.setState({ caption: e.target.value })} />
                         </FormGroup>
                         <Button
-                            disabled={this.state.posting} type="submit">
-                            {this.state.posting ? <i>please wait...</i> : 'Submit'}
+                            disabled={this.state.posting} type="submit" color='info'>
+                            {this.state.posting ? <i>please wait...</i> : <p style={{ margin: 0 }}><PublishIcon /> Submit</p>}
                         </Button>
                     </Form>
                 </ModalBody>
@@ -89,13 +95,13 @@ export default class Feed extends Component<AcceptedProps, PostState> {
                     :
 
                     <ModalBody>
-                        <div id ='postLogin'>
-                        <Link to='/account' id='link'>
-                            <ListItem button>
-                                <ListItemIcon><PersonIcon /></ListItemIcon>
-                                <ListItemText primary='Login to post meme' />
-                            </ListItem>
-                        </Link>
+                        <div id='postLogin'>
+                            <Link to='/account' id='link'>
+                                <ListItem button>
+                                    <ListItemIcon><PersonIcon /></ListItemIcon>
+                                    <ListItemText primary='Login to post meme' />
+                                </ListItem>
+                            </Link>
                         </div>
                     </ModalBody>
 

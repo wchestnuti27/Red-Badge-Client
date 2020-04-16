@@ -193,9 +193,10 @@ export default class SwipeableTemporaryDrawer extends React.Component<AcceptedPr
               closeNavPostModal={this.closeNavPostModal.bind(this)}
               sessionToken={this.props.sessionToken}
               username={this.props.username}
+              userRole={this.props.userRole}
             />
           </Route>
-          <Route exact path='/admin'><Admin sessionToken={this.props.sessionToken} username={this.props.username} /></Route>
+          <Route exact path='/admin'><Admin sessionToken={this.props.sessionToken} username={this.props.username} userRole={this.props.userRole} /></Route>
           <Route exact path='/dan'><Dan /></Route>
           <Route exact path='/will'><Will /></Route>
           <Route exact path='/nathan'><Nathan /></Route>

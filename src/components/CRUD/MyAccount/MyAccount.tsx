@@ -113,7 +113,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
             })
         })
             .then(res => {
-                console.log('DELETE RESPONSE', res);
                 this.fetchUserMemes();
             })
     }
