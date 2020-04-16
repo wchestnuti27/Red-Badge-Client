@@ -73,7 +73,7 @@ export default class Feed extends Component<AcceptedProps, PostState> {
 
     render() {
         return (
-            <Modal isOpen={true}>
+            <Modal backdrop={'static'} isOpen={true}>
                 <ModalHeader toggle={(e) => this.props.closeNavPostModal(e)}>Post a SupreMeme</ModalHeader>
                 {this.props.sessionToken ? <ModalBody>
                     <Form encType="multipart/form-data" onSubmit={event => this.handleSubmit(event)}>
