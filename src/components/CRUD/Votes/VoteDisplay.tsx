@@ -8,8 +8,6 @@ import CardActions from '@material-ui/core/CardActions';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
-import { Col, Row } from 'reactstrap';
-
 const useStyles = makeStyles({
     vote: {
         display: 'flex',

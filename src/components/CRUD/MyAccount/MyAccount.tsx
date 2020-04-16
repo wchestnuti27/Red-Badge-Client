@@ -9,7 +9,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -47,8 +46,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
     }
 
     componentDidMount() {
-        console.log("my account component mounted");
-
         this.fetchUserMemes();
     }
 
@@ -65,7 +62,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
                 this.setState({
                     userMemes: json
                 });
-                console.log(this.state.userMemes);
             })
     }
 
@@ -98,7 +94,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
             editMemeId: memeId,
             editMemeCaption: memeCaption
         });
-        console.log('opened edit modal');
     }
 
     closeEditModal(e: any) {
@@ -107,7 +102,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
             editMemeId: '',
             editMemeCaption: ''
         });
-        console.log('closed edit modal');
     }
 
     deleteMeme(memeId: string) {
@@ -119,7 +113,6 @@ class MyAccount extends Component<AcceptedProps, AcctState> {
             })
         })
             .then(res => {
-                console.log('DELETE RESPONSE', res);
                 this.fetchUserMemes();
             })
     }

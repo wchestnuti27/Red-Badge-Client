@@ -19,10 +19,6 @@ export default class Votes extends Component<AcceptedProps, VoteState> {
         }
     }
 
-    componentDidMount() {
-        // do we need to refresh component after vote?
-    }
-
     changeVote(vote: number) {
         this.setState({
             voteCount: this.state.voteCount + vote
@@ -31,8 +27,6 @@ export default class Votes extends Component<AcceptedProps, VoteState> {
 
     voteOnMeme(event: any, memeId: string, vote: number) {
         event.preventDefault();
-
-        // this.setState({ voteCount: this.state.voteCount + vote })
 
         fetch(`https://team6-red-badge-meme-server.herokuapp.com/vote/${memeId}`, {
             method: 'PUT',
