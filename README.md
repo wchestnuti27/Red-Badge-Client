@@ -13,6 +13,14 @@ Nathan Gaffney - NathanGaffney - view my individual github page at https://githu
 
 <br/>
 
+## App Features
+* Create memes by using local image files
+* Stores memes in an user acct page
+* Allows users the ability to edit custom meme comment
+* Allows the user the ability to delete the meme on the acct page
+
+<br/>
+
 ## Demo
 
 ### Posting a Meme
@@ -24,14 +32,6 @@ Nathan Gaffney - NathanGaffney - view my individual github page at https://githu
 ### Editing a Comment and Deleting the Meme
 
 <img src="https://media2.giphy.com/media/gI5veKVsaeUSzov6Zq/giphy.gif">
-
-<br/>
-
-## App Features
-* Create memes by using local image files
-* Stores memes in an user acct page
-* Allows users the ability to edit custom meme comment
-* Allows the user the ability to delete the meme on the acct page
 
 <br/>
 
