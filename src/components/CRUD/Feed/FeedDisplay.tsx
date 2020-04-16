@@ -23,7 +23,8 @@ type AcceptedProps = {
     sessionToken?: string | null,
     username?: string | null,
     memes: any[],
-    getMemes: (e: any) => void
+    getMemes: (e: any) => void,
+    userRole: string | null
 }
 
 type FeedState = {
@@ -58,7 +59,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
     }
 
     closeCommentModal(event: any) {
-        this.setState({ commentModal: false, memeId: '' })
+        this.setState({ commentModal: false, memeId: '', memeComments: [] })
         this.props.getMemes(event)
     }
 
@@ -93,7 +94,7 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                     >
                         <CardMedia className='feedImage' image={meme.url} />
 
-                        <Typography  id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><LaunchIcon /> Expand</p> : ''}</Typography>
+                        <Typography id='feedCaption' variant="subtitle1">{meme.caption !== '' ? <p><LaunchIcon /> Expand</p> : ''}</Typography>
 
                         <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
                     </CardActionArea>
@@ -145,6 +146,8 @@ export default class FeedDisplay extends React.Component<AcceptedProps, FeedStat
                             sessionToken={this.props.sessionToken}
                             closeCommentModal={this.closeCommentModal.bind(this)}
                             memeId={this.state.memeId}
+                            username={this.props.username}
+                            userRole={this.props.userRole}
                         /> : null}
                     {this.state.imageModal ?
                         <ImageModal

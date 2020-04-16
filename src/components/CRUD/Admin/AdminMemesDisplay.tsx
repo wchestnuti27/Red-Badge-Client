@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Comments from '../Comments/Comments';
+
 import './Admin.css';
 
 import Card from '@material-ui/core/Card';
@@ -11,12 +13,16 @@ import Typography from '@material-ui/core/Typography';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 type AdminDisplayProps = {
+    userRole: string | null,
     allMemes: any[],
     sessionToken: string | null,
-    getAllMemes: () => void
+    getAllMemes: () => void,
+    commentModal: boolean,
+    openCommentModal: (memeId: string, memeComments: any[]) => void,
+    closeCommentModal: () => void
 }
 
-const AdminMemesDisplay = ({ allMemes, sessionToken, getAllMemes }: AdminDisplayProps) => {
+const AdminMemesDisplay = ({ userRole, allMemes, sessionToken, getAllMemes, commentModal, openCommentModal, closeCommentModal }: AdminDisplayProps) => {
 
     const checkSessionToken = (token: string | null): string => {
         if (token === null) {
@@ -31,19 +37,30 @@ const AdminMemesDisplay = ({ allMemes, sessionToken, getAllMemes }: AdminDisplay
 
         return memes.map((meme: any, index: number) => {
             return (
-                <Card key={index} className='card'>
-                    <CardActionArea>
-                        <CardMedia className='image' image={meme.url} />
-                        <CardContent>
-                            <Typography variant="body1">{meme.caption}</Typography>
-                            <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
-                            <Typography variant='body2'>Votes: {meme.voteCount}</Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions className='deleteContainer'>
-                        <DeleteForeverIcon color='error' fontSize='large' onClick={() => deleteMeme(meme.id)} />
-                    </CardActions>
-                </Card>
+                <div key={index}>
+                    <Card className='card'>
+                        <CardActionArea onClick={(e) => openCommentModal(meme.id, meme.comments)}>
+                            <CardMedia className='image' image={meme.url} />
+                            <CardContent>
+                                <Typography variant="body1">{meme.caption}</Typography>
+                                <Typography variant="body2"><i>posted by {meme.username}</i></Typography>
+                                <Typography variant='body2'>Votes: {meme.voteCount}</Typography>
+                            </CardContent>
+                        </CardActionArea>
+                        <CardActions className='deleteContainer'>
+                            <DeleteForeverIcon color='error' fontSize='large' onClick={() => deleteMeme(meme.id)} />
+                        </CardActions>
+                    </Card>
+
+                    {commentModal ?
+                        <Comments
+                            sessionToken={sessionToken}
+                            memeId={meme.id}
+                            closeCommentModal={closeCommentModal}
+                            memeComments={meme.comments}
+                            userRole={userRole}
+                        /> : null}
+                </div>
             )
         })
     }

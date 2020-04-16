@@ -14,7 +14,8 @@ type AcceptedProps = {
     sessionToken: string | null,
     username: string | null,
     navPostModal: boolean,
-    closeNavPostModal: (e: any) => void
+    closeNavPostModal: (e: any) => void,
+    userRole: string | null
 }
 
 export default class Feed extends Component<AcceptedProps, MemeState> {
@@ -76,6 +77,7 @@ export default class Feed extends Component<AcceptedProps, MemeState> {
                         username={this.props.username}
                         memes={this.state.memes}
                         getMemes={this.getMemes.bind(this)}
+                        userRole={this.props.userRole}
                     />
                     : <p style={{ margin: 40 }} ><CircularProgress /> Loading...</p>}
 
